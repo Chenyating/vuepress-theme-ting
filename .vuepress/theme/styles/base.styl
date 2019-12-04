@@ -1,0 +1,57 @@
+.content-box{
+    margin  0 auto
+    position relative
+    width  1024px
+    height 100%
+    display  flex
+    justify-content  center
+}
+@media (max-width  $MQNarrow)
+  .content-box{
+    width  100%
+    height 100%
+}
+.catalog{
+    display  none
+    }
+
+// wide mobile
+@media (max-width  $MQMobile)
+  .content-box{
+    width  100%
+    height 100%
+    display  block
+}
+.catalog{
+    display  none
+    }
+
+// narrow mobile
+@media (max-width  $MQMobileNarrow)
+ .content-box{
+    width  100%
+    height 100%
+    display  block
+}
+.catalog{
+    display  none
+    }
+
+// layout 
+.all-box{
+    // height 100%;
+    width  100%
+    position relative
+    overflow-x: hidden
+    }
+
+// 解决vue高度100%无效问题
+html,body,#app{
+  overflow-x: hidden
+}
+body{
+  background transparent;
+}
+html{
+height 100%
+}

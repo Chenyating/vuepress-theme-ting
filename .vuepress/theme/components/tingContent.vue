@@ -1,0 +1,361 @@
+<template>
+    <div class="content-box">
+        <div class="content">
+            <div class="catalog-box">
+                <div class="catalog-item-big">
+                    <div class="catalog-item">
+                        <div class="title">
+                            {{$page.title}}
+                        </div>
+                        <div class="article-time">
+                            {{$page.lastUpdated}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--内容-->
+            <Content/>
+            <div class="over" v-if="showMessage">
+                完
+                <div class="block"></div>
+            </div>
+            <tingGitalk v-if="showMessage"/>
+        </div>
+        <div class="catalog " v-if="showMessage">
+            <!-- 标题-->
+            <a class="level1" :href="'#'+$page.title.replace(/\s+/g,'-').toLowerCase()">{{$page.title}}</a>
+            <a :class="[item.level==2?'level2':'level3',{'select':item.slug==selectTitle}]"
+               v-for="(item,index) in $page.headers" :key="index" :href="'#'+item.slug" nofollow>{{item.title}}</a>
+        </div>
+        <img v-if="showTop" @click="backTop" class="top" src="../public/icon/top.png">
+    </div>
+</template>
+
+<script>
+    import tingGitalk from "../components/tingGitalk.vue";
+
+    export default {
+        components: {
+            tingGitalk
+        },
+        data() {
+            return {
+                showMessage: true,
+                positionList: [],//锚点
+                selectTitle: '',
+                showTop: false
+            }
+        },
+        methods: {
+            // 点击a以后获得改变的hash路由
+            clickTitle() {
+                window.onhashchange = (e) => {
+                    this.selectTitle = decodeURIComponent(location.hash).replace('#', '');
+                };
+            },
+            // 路由随鼠标滚动而改变，对应标题列表改变样式
+            scrollTitle() {
+                var list = document.getElementsByClassName('header-anchor');
+                this.positionList = this.positionList.concat(list);
+                window.onscroll = () => {
+                    var position = document.documentElement.scrollTop;
+                    this.showTop = position >= 200 ? true : false;
+                    var small = 100;
+                    var titleId;
+                    for (var i = 0; i < this.positionList[0].length; i++) {
+                        var now = this.positionList[0][i].offsetTop;
+                        if (Math.abs(now - position) < small) {
+                            titleId = i;
+                            small = Math.abs(now - position)
+                        }
+                    }
+                    if (titleId >= 0) {
+                        this.selectTitle = decodeURIComponent(this.positionList[0][titleId].hash).replace('#', '');
+                        window.history.replaceState({}, " ", this.positionList[0][titleId]);
+                    }
+                }
+            },
+            styleOperation() {
+                var allTitle = document.getElementsByClassName('header-anchor')
+                for (var i = 0; i < allTitle.length; i++) {
+                    allTitle[i].innerHTML = ' '
+                }
+            },
+            backTop() {
+                document.documentElement.scrollTop = 0;
+            }
+        },
+        mounted() {
+            this.clickTitle();
+            this.scrollTitle();
+            this.styleOperation();
+            if (this.$page.frontmatter.showMessage==false) {
+                this.showMessage = this.$page.frontmatter.showMessage
+            }
+        }
+    }
+</script>
+
+<style lang="stylus">
+    .top {
+        position fixed;
+        bottom 100px;
+        width 40px;
+        height 40px;
+        z-index 98;
+        border-radius 50px;
+        transition all;
+        animation topShow 1s;
+        left 0;
+    }
+
+    //conten
+    .content {
+        width 100%
+        padding 0 1em;
+        box-sizing border-box;
+        font-size 15px;
+        background rgba(255, 255, 255, 0.95);
+        //title
+
+        .article-time {
+            max-height 100px;
+            padding 5px;
+            border-right: 1px solid green
+            vertical-align bottom;
+            letter-spacing 5px;
+            /*color #a8c4d4;*/
+            color green;
+            font-size 12px;
+            overflow: hidden; /*超出部分隐藏*/
+            text-overflow: ellipsis; /* 超出部分显示省略号 */
+            text-align right;
+        }
+
+        .title {
+            text-align center;
+            width inherit;
+            font-size 30px;
+            letter-spacing 3px;
+            color #7aaac6
+            margin-left 10px;
+            overflow: hidden; /*超出部分隐藏*/
+            text-overflow: ellipsis; /* 超出部分显示省略号 */
+        }
+
+        .text {
+            height 50px;
+            color #2c3e50
+            font-size 12px;
+            overflow: hidden; /*超出部分隐藏*/
+            text-overflow: ellipsis; /* 超出部分显示省略号 */
+        }
+
+        .catalog-item-big {
+            height: auto;
+            margin: 2%;
+            padding: 2%;
+            flex-grow 1;
+        }
+
+        .catalog-item {
+            background: url("../public/icon/li.png") no-repeat;
+            background-size: 50px 50px;
+            background-position right top;
+        }
+
+        .catalog-box {
+            display flex;
+            flex-wrap wrap;
+            flex-flow 1
+            max-width: 1024px;
+            margin: 0 auto
+        }
+
+        //code
+
+        li {
+            display flex;
+            &:nth-child(2n) {
+                &:before {
+                    content: " ";
+                    width: 20px;
+                    height 20px;
+                    background: url("../public/icon/li.png") no-repeat;
+                    background-size: 100% 100%;
+                    margin-right 10px;
+                }
+            }
+
+            &:before {
+                content: " ";
+                width: 20px;
+                height 20px;
+                background: url("../public/icon/lo.png") no-repeat;
+                background-size: 100% 100%;
+                margin-right 10px;
+            }
+            img{
+              max-height 500px;
+              width auto;
+              margin 0 auto;
+            }
+        }
+
+        hr {
+            border 0;
+            &:after {
+                content: " ";
+                display: block;
+                height 20px;
+                width 100%
+                background: url("../public/icon/line.png");
+                background-repeat repeat-x;
+                background-size 300px 20px;
+                margin 10px;
+            }
+        }
+
+        .extra-class {
+            margin 10px 0;
+        }
+
+        div[class*="language-"] {
+            font-size 14px;
+        }
+
+        h2, h3, h4 {
+            display flex;
+            align-items center;
+            color #7aaac6;
+
+            &:before {
+                content: " ";
+                display: block;
+                width: 20px;
+                height 20px;
+                background: url("../public/icon/flower.gif") no-repeat;
+                background-size: 100% 100%;
+                margin-right 20px;
+            }
+        }
+
+        h1 {
+            color #7aaac6;
+            justify-content center;
+            display flex;
+            white-space: nowrap;
+            align-items center;
+            max-width 80%;
+            padding 10px;
+            display none;
+
+            &:after {
+                content: " ";
+                width: 26px;
+                height 46px;
+                background: url("../public/icon/flower-l.png") no-repeat;
+                background-size: 100% 100%;
+            }
+
+            &:before {
+                content: " ";
+                width: 26px;
+                height 46px;
+                background: url("../public/icon/flower-r.png") no-repeat;
+                background-size: 100% 100%;
+            }
+        }
+        img {
+            box-shadow: 0px 0px 10px #ececec;
+            width:100%;
+            display block;
+        }
+    }
+
+    // catalog
+    .catalog {
+        a{
+            color #2e5c77 !important;
+            margin 5px 0;
+        }
+        position fixed;
+        margin auto;
+        top 10em;
+        transform translateX(690px);
+        width 400px;
+        height 600px;
+        overflow-y auto
+        color #b6c3d0;
+        padding-left 20px;
+    }
+
+    .level1 {
+        font-size 1.5em
+        padding-left 0.5em
+    }
+
+    .level2 {
+        font-size 1em
+        padding-left 1.5em;
+    }
+
+    .level3 {
+        font-size 0.8em
+        line-height 2em
+        padding-left 3em
+    }
+
+    //over
+    .over {
+        width: 40px;
+        height: 40px;
+        border: 1px solid rgb(0, 0, 1);
+        border-radius: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        line-height: 40px;
+        margin-bottom: 5px;
+    }
+
+    .block {
+        width: 10px;
+        height: 10px;
+        margin-top: -12px;
+        background-color: rgb(255, 255, 255);
+        left: 0;
+
+    }
+
+    .select {
+        color: #88c1ea;
+        font-weight: bold;
+        text-shadow :2px 2px 10px #7aaac6;
+
+        &:before {
+            content: " ";
+            display: block;
+            width: 26px;
+            height 26px;
+            background: url("../public/icon/flower.gif") no-repeat;
+            background-size: 100% 100%;
+            position absolute;
+            left 0px;
+        }
+    }
+
+    .level1 {
+        color: #88c1ea;
+    }
+
+    a {
+        display: block;
+        color: #2c3e50;
+    }
+
+    a:hover {
+        color: #88c1ea
+    }
+
+</style>

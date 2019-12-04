@@ -1,0 +1,32 @@
+{
+  "name": "vuepress-theme-ting",
+  "version": "1.2.0",
+  "description": "vuepress主题，小清新",
+  "main": "./index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "chenyating",
+    "email": "924471303@qq.com",
+    "url": "https://www.yating.online/"
+  },
+  "license": "ISC",
+  "keywords": [
+    "vuepress",
+    "Theme",
+    "vuepress-Theme"
+  ],
+  "homepage": "https://chenyating.github.io/",
+  "bugs": {
+    "url": "https://github.com/Chenyating/vuepress-theme-ting/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Chenyating/vuepress-theme-ting.git"
+  },
+  "dependencies": {
+    "gitalk": "^1.5.0",
+    "jquery": "^3.4.1"
+  }
+}
