@@ -13,9 +13,6 @@
             <div>{{item.count}}</div>
         </div>
     </div>
-    <!--        <div class="my-content" v-for="(item,index) in list" :key="index">-->
-    <!--            <div class="">{{item.content}}</div>-->
-    <!--        </div>-->
 </div>
 </template>
 

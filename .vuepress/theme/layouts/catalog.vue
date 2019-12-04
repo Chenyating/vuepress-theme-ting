@@ -1,16 +1,11 @@
 <template>
-    <div>
-        <div class="select-box">
+    <div class="catalog-box">
+        <div class="select-box-top">
             <div class="select-tip">类别:</div>
-                <div :class="nowTag=='all'?'select-type':'type-catalog'" @click="changeType('all')" >全部</div>
-                <div :class="nowTag==item?'select-type':'type-catalog'"  @click="changeType(item)"  v-for="item in tagList" :key="item">{{item}}</div>
+            <div :class="nowTag=='all'?'select-type':'type-catalog'" @click="changeType('all')" >全部</div>
+            <div :class="nowTag==item?'select-type':'type-catalog'"  @click="changeType(item)"  v-for="item in tagList" :key="item">{{item}}</div>
         </div>
         <div class="catalog-big">
-            <div class="page-box">
-                <div @click="choosePage(item-1)" class="page-item" :class="{'page-select':pageId==item-1}"
-                     v-for="item in pageNum">{{item}}
-                </div>
-            </div>
             <div class="catalog-box">
                 <div class="catalog-item-big" @click="goArticle(item.path)" v-if="item"
                      v-for="(item,index) in list"
@@ -21,10 +16,17 @@
                             {{item.tag }}
                         </div>
                         <!-- 标题 -->
-                        <div>
+                        <div class="title-box">
                             <div class="title">{{item.title?item.title:'未命名'}}</div>
                             <div class="tag"> {{item.lastUpdated?item.lastUpdated:item.title}}</div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-box">
+                <div class="page">
+                    <div @click="choosePage(item-1)" class="page-item" :class="{'page-select':pageId==item-1}"
+                        v-for="item in pageNum">{{item}}
                     </div>
                 </div>
             </div>
@@ -109,7 +111,7 @@
     }
 </script>
 <style lang="stylus" scoped>
-    .select-box {
+    .select-box-top {
         display flex;
         flex-wrap wrap;
         align-items center;
@@ -137,7 +139,11 @@
             cursor: pointer;
         }
     }
-
+    .title-box{
+        display flex;
+        flex-direction column;
+        justify-content:center;
+    }
     .tag {
         width 100%;
         color green;
@@ -166,22 +172,20 @@
     .catalog-big {
         display flex;
         align-items flex-start;
+        justify-content space-between;
         max-width 1024px;
-        margin 0 auto;
     }
 
-    .page-box {
-        padding-top 4%;
+    .page {
+        // position fixed; 
+        padding-top 2%;
         padding-left 5px;
         display flex;
         flex-direction column;
         justify-content flex-end;
         flex-wrap wrap;
-        flex-flow 1
-
         .page-item {
             width 30px;
-            height 30px;
             background #c3dae4;
             text-align center;
             line-height 30px;
@@ -247,7 +251,7 @@
     .catalog-item-big {
         height: auto;
         margin: 2%;
-        box-shadow: 0px 0px 10px #ececec;
+        box-shadow: 0px 0px 5px #ececec;
         padding: 2%;
         background white;
         flex-grow 1;

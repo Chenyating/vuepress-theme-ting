@@ -35,13 +35,14 @@
         position fixed;
         z-index -8;
         background: url("../public/img/bg.jpg");
+        transform: rotateY(180deg) translateX(600px);
         background-size: cover;
         background-position: center;
     }
     .foot{
         text-align: center;
         font-size: 0.8em;
-        margin-bottom: 0.5em;
+        margin: 0.5em;
     }
     #global-layout{
         max-width 1024px;

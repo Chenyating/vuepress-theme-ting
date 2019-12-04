@@ -137,7 +137,7 @@
             width inherit;
             font-size 30px;
             letter-spacing 3px;
-            color #7aaac6
+            color #2e5c77
             margin-left 10px;
             overflow: hidden; /*超出部分隐藏*/
             text-overflow: ellipsis; /* 超出部分显示省略号 */
@@ -173,7 +173,6 @@
         }
 
         //code
-
         li {
             display flex;
             &:nth-child(2n) {
@@ -196,7 +195,7 @@
                 margin-right 10px;
             }
             img{
-              max-height 500px;
+              max-height 300px;
               width auto;
               margin 0 auto;
             }
@@ -225,10 +224,12 @@
         }
 
         h2, h3, h4 {
+            font-weight: normal;
             display flex;
-            align-items center;
-            color #7aaac6;
-
+            color:#7aaac6;
+            border-bottom: 0px solid #eaecef;
+            padding-bottom 10px;
+            cursor pointer;
             &:before {
                 content: " ";
                 display: block;
@@ -237,11 +238,17 @@
                 background: url("../public/icon/flower.gif") no-repeat;
                 background-size: 100% 100%;
                 margin-right 20px;
+                margin-top 5px;
+            }
+            &:hover{
+                color #2e5c77;
+                text-shadow: 2px 2px 10px #7aaac6;
             }
         }
 
         h1 {
-            color #7aaac6;
+            font-weight: normal;
+            color #2e5c77;
             justify-content center;
             display flex;
             white-space: nowrap;
@@ -276,12 +283,12 @@
     // catalog
     .catalog {
         a{
-            color #2e5c77 !important;
-            margin 5px 0;
+            color rgba(0,0,0,.75);
+            margin 10px 0;
         }
         position fixed;
         margin auto;
-        top 10em;
+        top 12em;
         transform translateX(690px);
         width 400px;
         height 600px;
@@ -329,9 +336,7 @@
     }
 
     .select {
-        color: #88c1ea;
-        font-weight: bold;
-        text-shadow :2px 2px 10px #7aaac6;
+        color: #2b89d4 !important;
 
         &:before {
             content: " ";

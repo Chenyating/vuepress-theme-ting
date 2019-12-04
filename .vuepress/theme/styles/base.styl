@@ -10,32 +10,60 @@
   .content-box{
     width  100%
     height 100%
-}
-.catalog{
+    }
+    .catalog{
     display  none
+    }
+    .catalog-box{
+        margin 15px 0;
     }
 
 // wide mobile
 @media (max-width  $MQMobile)
-  .content-box{
+   .content-box{
     width  100%
     height 100%
     display  block
-}
-.catalog{
+    }
+    .catalog{
     display  none
+    }
+    .catalog-box{
+    margin 15px 0;
+    background white;
+    }
+    .page-box {
+    width 100px;
+        .page{
+        position fixed; 
+        bottom 30px;
+        z-index 99;
+        }
     }
 
 // narrow mobile
 @media (max-width  $MQMobileNarrow)
- .content-box{
+   .content-box{
     width  100%
     height 100%
     display  block
-}
-.catalog{
+   }
+   .catalog{
     display  none
     }
+    .catalog-box{
+    margin 15px 0;
+    background white;
+    }
+    .page-box {
+    width 100px;
+        .page{
+        position fixed; 
+        bottom 30px;
+        z-index 99;
+        }
+    }
+
 
 // layout 
 .all-box{
