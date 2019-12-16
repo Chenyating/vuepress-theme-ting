@@ -11,11 +11,14 @@
     width  100%
     height 100%
     }
-    .catalog{
-    display  none
+    .catalog,.select-box-top{
+    display  none !important;
     }
     .catalog-box{
         margin 15px 0;
+    }
+    .fixed-box{
+    display none !important;;
     }
 
 // wide mobile
@@ -25,22 +28,21 @@
     height 100%
     display  block
     }
-    .catalog{
-    display  none
+    .catalog,.select-box-top{
+    display  none !important;
     }
     .catalog-box{
     margin 15px 0;
     background white;
     }
-    .page-box {
-    width 100px;
-        .page{
-        position fixed; 
-        bottom 30px;
-        z-index 99;
-        }
+    .page {
+    position fixed; 
+    bottom 30px;
+    right :0px;
     }
-
+    .fixed-box{
+    display block !important;;
+    }
 // narrow mobile
 @media (max-width  $MQMobileNarrow)
    .content-box{
@@ -55,13 +57,13 @@
     margin 15px 0;
     background white;
     }
-    .page-box {
-    width 100px;
-        .page{
-        position fixed; 
-        bottom 30px;
-        z-index 99;
-        }
+    .page {
+    position fixed; 
+    bottom 30px
+    right :0px;
+    }
+    .fixed-box{
+        display block !important;;
     }
 
 

@@ -1,7 +1,13 @@
 <template>
     <div class="catalog-box">
+        <div class="fixed-box">
+            <div class="fixed-catalog-menu" @click="ifshowCatalog">类别</div>
+            <div v-if="showCatalog" class="fixed-catalog-box">
+                <div :class="nowTag=='all'?'select-fixed':'fixed-catalog'" @click="changeType('all')" >全部</div>
+                <div :class="nowTag==item?'select-fixed':'fixed-catalog'"  @click="changeType(item)"  v-for="item in tagList" :key="item">{{item}}</div>
+            </div>
+        </div>
         <div class="select-box-top">
-            <div class="select-tip">类别:</div>
             <div :class="nowTag=='all'?'select-type':'type-catalog'" @click="changeType('all')" >全部</div>
             <div :class="nowTag==item?'select-type':'type-catalog'"  @click="changeType(item)"  v-for="item in tagList" :key="item">{{item}}</div>
         </div>
@@ -12,7 +18,8 @@
                      :key="index">
                     <div class="catalog-item">
                         <!-- 更新时间 -->
-                        <div class="article-time">
+                        <img v-if="item.frontmatter.img" class="catalog-icon" :src="'../img/'+item.frontmatter.img"/>
+                        <div v-else class="article-time">
                             {{item.tag }}
                         </div>
                         <!-- 标题 -->
@@ -20,14 +27,15 @@
                             <div class="title">{{item.title?item.title:'未命名'}}</div>
                             <div class="tag"> {{item.lastUpdated?item.lastUpdated:item.title}}</div>
                         </div>
+                        <div v-if="item.frontmatter.img" class="article-time">
+                            {{item.tag }}
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="page-box">
-                <div class="page">
-                    <div @click="choosePage(item-1)" class="page-item" :class="{'page-select':pageId==item-1}"
-                        v-for="item in pageNum">{{item}}
-                    </div>
+            <div class="page">
+                <div @click="choosePage(item-1)" class="page-item" :class="{'page-select':pageId==item-1}"
+                    v-for="item in pageNum">{{item}}
                 </div>
             </div>
         </div>
@@ -43,16 +51,21 @@
                 pageNum: null,//分页
                 list: [],
                 nowList: [],
-                everyPageNumber: null,//每页多少个
+                everyPageNumber: 10,//每页多少个
                 tagList: [],
-                nowTag: 'all'
+                nowTag: 'all',
+                showCatalog:false,
             }
         },
         methods: {
+            ifshowCatalog(){
+                this.showCatalog=!this.showCatalog;
+            },
             changeType(val) {
                 this.nowTag=val;
                 this.init(val);
                 this.choosePage(0);
+                this.showCatalog=false;
             },
             choosePage(num) {
                 this.pageId = num;
@@ -103,7 +116,7 @@
             }
         },
         mounted() {
-            this.nowTag = 'all';
+            this.nowTag = this.$route.query.type?this.$route.query.type:'all';
             this.init(this.nowTag);
             this.choosePage(0);
             this.getTag();
@@ -111,26 +124,74 @@
     }
 </script>
 <style lang="stylus" scoped>
+    .fixed-box{        
+        position:fixed;  
+        height 50px;
+        top:0;
+        z-index 5;
+        display none;
+        .fixed-catalog{
+        background:#c4deaa;
+        vertical-align top;
+        }
+        .fixed-catalog-box{
+        width 98%;
+        margin 0 auto;
+        padding 5px 0 ;
+        background white;
+        box-shadow 0px 0px 5px #00000040;
+        }
+        .select-fixed{
+            padding 10px;
+            margin 5px;
+            text-align center;
+            display inline-block;
+            font-size 15px;
+            background #fda6bc;
+            border-radius 5px;
+        }
+        .fixed-catalog{
+            padding 10px;
+            margin 5px;
+            text-align center;
+            display inline-block;
+            font-size 15px;
+            background #c4deaa;
+            border-radius 5px;
+        }
+        .fixed-catalog-menu{
+            text-align center;
+            display inline-block;
+            width:50px;
+            height 50px;
+            margin-left 15px;
+            border-radius 50px;
+            font-weight bold;
+            font-size 12px;
+            line-height 50px;
+            margin 5px;
+            background #fda6bc;
+            animation rotate 10s infinite;
+            background #c3dae4;
+        }
+    }
+    .catalog-icon{
+        height 120px;
+        border-radius 5px;
+    }
     .select-box-top {
         display flex;
         flex-wrap wrap;
         align-items center;
         max-width 1024px;
-        margin 0 auto;
         padding-top 20px;
         padding-left 20px;
         padding-bottom 10px;
-
-        .select-tip {
-            margin-right 5px;
-            font-size 1em;
-            font-weight bold;
-            color #6aa57b;
-        }
         .select-type{
             padding 5px 10px;
-            color #2e5c77;
-            text-shadow 1px 1px 10px #2e5c77;
+            color #009688;
+            font-weight bold;
+            text-shadow 1px 1px 10px #FFEB3B;
             cursor: pointer;
         }
         .type-catalog{
@@ -171,6 +232,7 @@
 
     .catalog-big {
         display flex;
+        width 100%;
         align-items flex-start;
         justify-content space-between;
         max-width 1024px;
@@ -218,6 +280,7 @@
         border-top 0;
         vertical-align bottom;
         margin 5px;
+        margin-right 0;
         margin-bottom 0;
         letter-spacing 5px;
         /*color #a8c4d4;*/
@@ -256,6 +319,7 @@
         background white;
         flex-grow 1;
         cursor pointer;
+        display:flex;
         &:nth-child(2n) {
             animation moveing infinite 15s alternate;
         }
@@ -270,6 +334,7 @@
         background-position right top;
         display flex;
         align-items stretch;
+        width 100%;
     }
 
     .catalog-box {

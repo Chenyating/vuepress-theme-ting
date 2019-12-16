@@ -15,6 +15,7 @@
             </div>
             <!--内容-->
             <Content/>
+            <img v-if="$page.frontmatter.img" class="catalog-img" :src="'../img/'+$page.frontmatter.img"/>
             <div class="over" v-if="showMessage">
                 完
                 <div class="block"></div>
@@ -23,7 +24,7 @@
         </div>
         <div class="catalog " v-if="showMessage">
             <!-- 标题-->
-            <a class="level1" :href="'#'+$page.title.replace(/\s+/g,'-').toLowerCase()">{{$page.title}}</a>
+            <div class="level1" :href="'#'+$page.title.replace(/\s+/g,'-').toLowerCase()">{{$page.title}}</div>
             <a :class="[item.level==2?'level2':'level3',{'select':item.slug==selectTitle}]"
                v-for="(item,index) in $page.headers" :key="index" :href="'#'+item.slug" nofollow>{{item.title}}</a>
         </div>
@@ -117,7 +118,10 @@
         font-size 15px;
         background rgba(255, 255, 255, 0.95);
         //title
-
+        .catalog-img{
+            width 200px;
+            margin 5px auto;
+        }
         .article-time {
             max-height 100px;
             padding 5px;
@@ -175,6 +179,7 @@
         //code
         li {
             display flex;
+            overflow-x scroll;
             &:nth-child(2n) {
                 &:before {
                     content: " ";
@@ -197,6 +202,7 @@
             img{
               max-height 300px;
               width auto;
+              padding 0 5px;
               margin 0 auto;
             }
         }

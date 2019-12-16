@@ -29,7 +29,7 @@ export default {
     },
     methods: {
         goCatalog(tagType) {
-            this.$router.push(`/config/catalog`);
+            this.$router.push(`/config/catalog.html`);
         },
         getTag() {
             var list = this.$site.pages;
@@ -94,7 +94,7 @@ export default {
     flex-wrap wrap;
     text-align center;
     font-weight bold;
-    text-shadow 2px 2px 5px black;
+    text-shadow 1px 1px 2px black;
 
     .tag {
         flex-grow 1;

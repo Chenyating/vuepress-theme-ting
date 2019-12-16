@@ -51,14 +51,6 @@
         },
         methods: {
             // 跳转页面
-            goPage(link,index) {
-                console.log(index,"??/**/")
-                if (link.indexOf('catalog')) {
-                    sessionStorage.setItem('tagType', 'all')
-                }
-                this.navId=index;
-            },
-            // 跳转页面
             searchLink(link) {
                 this.$router.push(link).catch(err => {
                 })
@@ -174,7 +166,7 @@
         display flex;
         flex-direction column;
         align-items center;
-
+        z-index 6;
         input {
             border: 0; // 去除未选中状态边框
             outline: none; // 去除选中状态边框
