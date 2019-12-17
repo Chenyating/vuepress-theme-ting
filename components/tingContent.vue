@@ -15,7 +15,6 @@
             </div>
             <!--内容-->
             <Content/>
-            <img v-if="$page.frontmatter.img" class="catalog-img" :src="'../img/'+$page.frontmatter.img"/>
             <div class="over" v-if="showMessage">
                 完
                 <div class="block"></div>
@@ -44,7 +43,13 @@
                 showMessage: true,
                 positionList: [],//锚点
                 selectTitle: '',
-                showTop: false
+                showTop: false,
+                nowPosition:0
+            }
+        },
+        watch:{
+            nowPosition(val){
+                this.showTop = val >= 200 ? true : false;
             }
         },
         methods: {
@@ -59,8 +64,8 @@
                 var list = document.getElementsByClassName('header-anchor');
                 this.positionList = this.positionList.concat(list);
                 window.onscroll = () => {
-                    var position = document.documentElement.scrollTop;
-                    this.showTop = position >= 200 ? true : false;
+                    var position = document.scrollingElement.scrollTop ;
+                    this.nowPosition=position;
                     var small = 100;
                     var titleId;
                     for (var i = 0; i < this.positionList[0].length; i++) {
@@ -118,10 +123,6 @@
         font-size 15px;
         background rgba(255, 255, 255, 0.95);
         //title
-        .catalog-img{
-            width 200px;
-            margin 5px auto;
-        }
         .article-time {
             max-height 100px;
             padding 5px;

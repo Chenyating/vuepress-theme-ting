@@ -96,7 +96,6 @@
         padding 0.5em;
         border-left: 5px solid #a8c4d4
         border-right: 5px solid #a8c4d4
-        border-bottom: 5px solid white !important;
         border-bottom 0;
         font-weight bold;
         font-size 1.5em;

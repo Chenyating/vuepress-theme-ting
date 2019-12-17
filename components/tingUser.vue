@@ -29,7 +29,7 @@ export default {
     },
     methods: {
         goCatalog(tagType) {
-            this.$router.push(`/config/catalog.html`);
+            this.$router.push(`/config/catalog.html?type=${tagType}`);
         },
         getTag() {
             var list = this.$site.pages;
