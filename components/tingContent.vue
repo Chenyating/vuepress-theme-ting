@@ -33,7 +33,7 @@
 
 <script>
     import tingGitalk from "../components/tingGitalk.vue";
-
+    import $ from 'jquery'
     export default {
         components: {
             tingGitalk
@@ -44,7 +44,7 @@
                 positionList: [],//锚点
                 selectTitle: '',
                 showTop: false,
-                nowPosition:0
+                nowPosition:0,
             }
         },
         watch:{
@@ -61,13 +61,14 @@
             },
             // 路由随鼠标滚动而改变，对应标题列表改变样式
             scrollTitle() {
-                var list = document.getElementsByClassName('header-anchor');
+                var list = $('.header-anchor');
                 this.positionList = this.positionList.concat(list);
                 window.onscroll = () => {
                     var position = document.scrollingElement.scrollTop ;
                     this.nowPosition=position;
                     var small = 100;
                     var titleId;
+                    // 滚动，url变化
                     for (var i = 0; i < this.positionList[0].length; i++) {
                         var now = this.positionList[0][i].offsetTop;
                         if (Math.abs(now - position) < small) {
@@ -88,7 +89,7 @@
                 }
             },
             backTop() {
-                document.documentElement.scrollTop = 0;
+                document.scrollingElement.scrollTop = 0;
             }
         },
         mounted() {
@@ -123,6 +124,12 @@
         font-size 15px;
         background rgba(255, 255, 255, 0.95);
         //title
+        .content-img{
+            width:100px;
+            height:100px;
+            margin 0 auto;
+            backgroud red !important;
+        }
         .article-time {
             max-height 100px;
             padding 5px;
@@ -174,7 +181,6 @@
             flex-wrap wrap;
             flex-flow 1
             max-width: 1024px;
-            margin: 0 auto
         }
 
         //code

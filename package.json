@@ -1,10 +1,11 @@
 {
   "name": "vuepress-theme-ting",
-  "version": "1.2.8",
-  "description": "vuepress主题，小清新",
+  "version": "1.3.1",
+  "description": "vuepress主题，小清新,small fresh vuepress theme vuepress theme Ting",
   "main": "./index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall":"node ./public/js/about.js"
   },
   "author": {
     "name": "chenyating",
@@ -14,6 +15,7 @@
   "license": "ISC",
   "keywords": [
     "vuepress",
+    "vuepressjs",
     "Theme",
     "vuepress-Theme"
   ],
@@ -26,6 +28,7 @@
     "url": "git@github.com:Chenyating/vuepress-theme-ting.git"
   },
   "dependencies": {
+    "consolecolors": "^0.33.2-b",
     "gitalk": "^1.5.0",
     "jquery": "^3.4.1"
   }
