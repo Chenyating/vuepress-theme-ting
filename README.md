@@ -1,3 +1,9 @@
+---
+layout: index
+title: Home
+showMessage: false
+---
+
 # vuepress-theme-ting
 
 - 这是一个vuepress主题，主要功能有博客归档分类，以及留言，个人展示等；
@@ -7,7 +13,7 @@
 ## 预览地址
 [预览地址](https://chenyating.github.io/)
 
-![img](./img/pc/index.png)
+![img](https://img-blog.csdnimg.cn/201912170013207.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)
 ## install
 ```cmd
 cd ting-Blog
@@ -39,6 +45,7 @@ module.exports = {
 }
 ```
 ## 所有配置
+如果你想要增加更多的配置，请参考以下：
 ```js
 // .vuepress/config.js
 module.exports = {
@@ -145,7 +152,7 @@ showMessage：是否显示留言栏，侧边栏；默认为true
 ```
 
 注意：文章的图片请保存在`.vuepress/public/img`路径下，对应图片将在目录中展示；
-- ![img](./img/other/explain.png)
+- ![img](https://img-blog.csdnimg.cn/20191217001346640.png)
 
 ## run
 ```
@@ -158,23 +165,19 @@ vuepress build docs
 ```
 
 ## 主页
-![img](./img/pc/index.png)
+![img](https://img-blog.csdnimg.cn/20191217001420498.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)
 ## 目录
-![img](./img/pc/catalog.png)
+![img](https://img-blog.csdnimg.cn/20191217001430110.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)
 ## 内容
-![img](./img/pc/article.png)
+![img](https://img-blog.csdnimg.cn/20191217001444829.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)
 ## 其他
-![img](./img/pc/other.png)
+![img](https://img-blog.csdnimg.cn/20191217001457886.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)
 
 ## 手机端预览效果
-- ![img](./img/phone/t-index.png)![img](./img/phone/t-catalog.png)![img](./img/phone/t-article.png)![img](./img/phone/t-other.png)
+- ![img](https://img-blog.csdnimg.cn/20191217001515195.png)![img](https://img-blog.csdnimg.cn/2019121700154317.png)![img](https://img-blog.csdnimg.cn/20191217001553253.png)![img](https://img-blog.csdnimg.cn/20191217001614921.png)
 
 ## 感谢使用ting主题，给我一个start
 [github主页](https://github.com/Chenyating)
 [github项目](https://github.com/Chenyating/Chenyating.github.io)
-### 当然我也不介意送我一杯咖啡(๑• . •๑)
-
-- ![img](./img/other/wx.png)
-
 
 
