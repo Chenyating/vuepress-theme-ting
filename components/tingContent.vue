@@ -5,7 +5,7 @@
                 <div class="catalog-item-big">
                     <div class="catalog-item">
                         <div class="title">
-                            {{$page.title}}
+                            {{nowTitle}}
                         </div>
                         <div class="article-time">
                             {{$page.lastUpdated}}
@@ -23,9 +23,11 @@
         </div>
         <div class="catalog " v-if="showMessage">
             <!-- 标题-->
-            <div class="level1" :href="'#'+$page.title.replace(/\s+/g,'-').toLowerCase()">{{$page.title}}</div>
+            <div v-if="preTitle.title" @click="goArticle(preTitle)" class="levelTitle">上一篇《{{preTitle.title}}》</div>
+            <div class="level1">{{nowTitle}}</div>
             <a :class="[item.level==2?'level2':'level3',{'select':item.slug==selectTitle}]"
                v-for="(item,index) in $page.headers" :key="index" :href="'#'+item.slug" nofollow>{{item.title}}</a>
+            <div v-if="nextTitle.title" @click="goArticle(nextTitle)" class="levelTitle">下一篇：《{{nextTitle.title}}》</div>
         </div>
         <img v-if="showTop" @click="backTop" class="top" src="../public/icon/top.png">
     </div>
@@ -45,11 +47,18 @@
                 selectTitle: '',
                 showTop: false,
                 nowPosition:0,
+                preTitle:{},
+                nextTitle:{},
+                nowTitle:null,
+                titleIndex:0
             }
         },
         watch:{
             nowPosition(val){
                 this.showTop = val >= 200 ? true : false;
+            },
+            titleIndex(val){
+                this.init();
             }
         },
         methods: {
@@ -90,7 +99,40 @@
             },
             backTop() {
                 document.scrollingElement.scrollTop = 0;
-            }
+            },
+            init() {
+                //获得所有文章
+                var pages = this.$site.pages;
+                this.preTitle={};
+                this.nextTitle={};
+                if(pages.length==1){
+                    return;
+                }else{
+                    for (let i = 0; i < pages.length; i++) {
+                        if(this.nowTitle==pages[i].title){
+                            this.titleIndex=i;
+                            break;
+                        }
+                    }
+                    if(this.titleIndex==0){
+                        this.nextTitle=pages[this.titleIndex+1];
+                        this.nextTitle.index=this.titleIndex+1;
+                    }else if(this.titleIndex==pages.length-1){
+                        this.preTitle=pages[this.titleIndex-1];
+                        this.preTitle.index=this.titleIndex-1;
+                    }else{
+                        this.nextTitle=pages[this.titleIndex+1];
+                        this.preTitle=pages[this.titleIndex-1];
+                        this.nextTitle.index=this.titleIndex+1;
+                        this.preTitle.index=this.titleIndex-1;
+                        }
+                }
+            },
+              goArticle(item) {
+                this.titleIndex=item.index;
+                 this.nowTitle=item.title;
+                this.$router.push(item.path);
+            },
         },
         mounted() {
             this.clickTitle();
@@ -99,6 +141,8 @@
             if (this.$page.frontmatter.showMessage==false) {
                 this.showMessage = this.$page.frontmatter.showMessage
             }
+            this.nowTitle=this.$page.title;
+            this.init();
         }
     }
 </script>
@@ -302,7 +346,7 @@
         position fixed;
         margin auto;
         top 12em;
-        transform translateX(690px);
+        transform translateX(700px);
         width 400px;
         height 600px;
         overflow-y auto
@@ -365,6 +409,16 @@
 
     .level1 {
         color: #88c1ea;
+        font-weight bold;
+    }
+
+    .levelTitle {
+        color: #2c3e50;
+        line-height 3em;
+        cursor pointer;
+        &:hover {
+        color: #88c1ea
+    }
     }
 
     a {
