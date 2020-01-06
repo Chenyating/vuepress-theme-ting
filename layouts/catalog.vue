@@ -183,7 +183,7 @@
         display flex;
         flex-wrap wrap;
         align-items center;
-        max-width 1024px;
+        max-width 900px;
         padding-top 20px;
         padding-left 20px;
         padding-bottom 10px;
@@ -235,7 +235,7 @@
         width 100%;
         align-items flex-start;
         justify-content space-between;
-        max-width 1024px;
+        max-width 900px;
     }
 
     .page {
@@ -341,7 +341,7 @@
         display flex;
         flex-wrap wrap;
         flex-grow 1
-        max-width: 1024px;
+        max-width: 900px;
         margin: 0 auto
     }
     @keyframes pageCart {

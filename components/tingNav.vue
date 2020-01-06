@@ -106,7 +106,7 @@
     .nav-box {
         z-index 4
         position relative;
-        max-width 1024px;
+        max-width 900px;
         height 196px;
         display: flex;
         justify-content: space-around;

@@ -88,7 +88,7 @@ export default {
 
 <style lang="stylus">
 .tag-box {
-    max-width 1024px;
+    max-width 900px;
     margin 0 auto;
     display flex;
     flex-wrap wrap;
@@ -169,7 +169,7 @@ export default {
 }
 
 .user-box {
-    max-width 1024px;
+    max-width 900px;
     margin 0 auto;
     background: rgba(255, 255, 255, 0.95);
 }

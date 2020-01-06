@@ -1,6 +1,6 @@
 {
   "name": "vuepress-theme-ting",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "vuepress主题，小清新,small fresh vuepress theme vuepress theme Ting",
   "main": "./index.js",
   "scripts": {

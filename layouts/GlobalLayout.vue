@@ -1,6 +1,6 @@
-<!-- themePath/layouts/GlobalLayout.vue -->
 <template>
     <div id="global-layout">
+        <live2d/>
         <div class="bg"></div>
         <tingNav class="nav"/>
         <component :is="layout"/>
@@ -10,9 +10,11 @@
 
 <script>
     import tingNav from "../components/tingNav.vue";
+    import live2d from "../components/live2d.vue";
     export default {
         components: {
-            tingNav
+            tingNav,
+            live2d
         },
         computed: {
             layout () {
@@ -45,7 +47,7 @@
         margin: 0.5em;
     }
     #global-layout{
-        max-width 1024px;
+        max-width 900px;
         margin 0 auto;
     }
 </style>

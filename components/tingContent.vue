@@ -159,7 +159,6 @@
         animation topShow 1s;
         left 0;
     }
-
     //conten
     .content {
         width 100%
@@ -187,7 +186,6 @@
             text-overflow: ellipsis; /* 超出部分显示省略号 */
             text-align right;
         }
-
         .title {
             text-align center;
             width inherit;
@@ -198,7 +196,6 @@
             overflow: hidden; /*超出部分隐藏*/
             text-overflow: ellipsis; /* 超出部分显示省略号 */
         }
-
         .text {
             height 50px;
             color #2c3e50
@@ -206,27 +203,23 @@
             overflow: hidden; /*超出部分隐藏*/
             text-overflow: ellipsis; /* 超出部分显示省略号 */
         }
-
         .catalog-item-big {
             height: auto;
             margin: 2%;
             padding: 2%;
             flex-grow 1;
         }
-
         .catalog-item {
             background: url("../public/icon/li.png") no-repeat;
             background-size: 50px 50px;
             background-position right top;
         }
-
         .catalog-box {
             display flex;
             flex-wrap wrap;
             flex-flow 1
-            max-width: 1024px;
+            max-width: 900px;
         }
-
         //code
         li {
             display flex;
@@ -241,7 +234,6 @@
                     margin-right 10px;
                 }
             }
-
             &:before {
                 content: " ";
                 width: 20px;
@@ -257,7 +249,6 @@
               margin 0 auto;
             }
         }
-
         hr {
             border 0;
             &:after {
@@ -271,15 +262,12 @@
                 margin 10px;
             }
         }
-
         .extra-class {
             margin 10px 0;
         }
-
         div[class*="language-"] {
             font-size 14px;
         }
-
         h2, h3, h4 {
             font-weight: normal;
             display flex;
@@ -302,7 +290,6 @@
                 text-shadow: 2px 2px 10px #7aaac6;
             }
         }
-
         h1 {
             font-weight: normal;
             color #2e5c77;
@@ -313,7 +300,6 @@
             max-width 80%;
             padding 10px;
             display none;
-
             &:after {
                 content: " ";
                 width: 26px;
@@ -321,7 +307,6 @@
                 background: url("../public/icon/flower-l.png") no-repeat;
                 background-size: 100% 100%;
             }
-
             &:before {
                 content: " ";
                 width: 26px;
@@ -336,7 +321,6 @@
             display block;
         }
     }
-
     // catalog
     .catalog {
         a{
@@ -345,31 +329,30 @@
         }
         position fixed;
         margin auto;
-        top 12em;
-        transform translateX(700px);
-        width 400px;
-        height 600px;
+        top 5em;
+        transform translateX(550px);
+        width 200px;
+        height 70%;
         overflow-y auto
         color #b6c3d0;
         padding-left 20px;
     }
-
+    .catalog::-webkit-scrollbar {
+        display: none;
+    }
     .level1 {
         font-size 1.5em
         padding-left 0.5em
     }
-
     .level2 {
         font-size 1em
         padding-left 1.5em;
     }
-
     .level3 {
         font-size 0.8em
         line-height 2em
         padding-left 3em
     }
-
     //over
     .over {
         width: 40px;
@@ -382,19 +365,15 @@
         line-height: 40px;
         margin-bottom: 5px;
     }
-
     .block {
         width: 10px;
         height: 10px;
         margin-top: -12px;
         background-color: rgb(255, 255, 255);
         left: 0;
-
     }
-
     .select {
         color: #2b89d4 !important;
-
         &:before {
             content: " ";
             display: block;
@@ -406,28 +385,23 @@
             left 0px;
         }
     }
-
     .level1 {
         color: #88c1ea;
         font-weight bold;
     }
-
     .levelTitle {
         color: #2c3e50;
-        line-height 3em;
+        line-height 2em;
         cursor pointer;
         &:hover {
         color: #88c1ea
     }
     }
-
     a {
         display: block;
         color: #2c3e50;
     }
-
     a:hover {
         color: #88c1ea
     }
-
 </style>
