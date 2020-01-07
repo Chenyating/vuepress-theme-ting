@@ -18,7 +18,7 @@
                      :key="index">
                     <div class="catalog-item">
                         <!-- 更新时间 -->
-                        <img v-if="item.frontmatter.img" class="catalog-icon" :src="'../img/'+item.frontmatter.img"/>
+                        <img v-if="item.frontmatter.img" class="catalog-icon" :src="item.frontmatter.img"/>
                         <div v-else class="article-time">
                             {{item.tag }}
                         </div>

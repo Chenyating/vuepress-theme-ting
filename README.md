@@ -1,7 +1,3 @@
----
-layout: index
-showMessage: false
----
 # vuepress-theme-ting
 
 - 这是一个vuepress主题，主要功能有博客归档分类，以及留言，个人展示等；
@@ -29,6 +25,7 @@ module.exports = {
     //head标签
     head: [
         ['link', { rel: 'icon', type:"image/x-icon", href: '/img/logo.ico' }],//注意"/"就是public资源目录。标签的logo
+        ['script', { src: 'https://cdn.bootcss.com/jquery/3.4.1/jquery.js' }]
     ],
     themeConfig: {
         author:'tinger',
@@ -43,40 +40,42 @@ module.exports = {
 }
 ```
 
-文档设置：
-```
-- config/catalog.md
-```yaml
----
-layout: catalog
----
-# 你的内容
-```
+### 文档设置
 
-- config/README.md
-
-```yaml
----
-layout: config
-showMessage: false
-title: 联系方式
----
-# 你的内容
-```
-
-- README.md
-
+md文档抬头以下列格式为例：
 ```yaml
 ---
 layout: index
-showMessage: false
-title: vuepress-theme-ting
+title: Home
+showMessage: false;
 ---
-# 你的内容
 ```
 
+layout：默认值为layout
+```yaml
+catalog：表示当前页为目录页面；
+index：表示为主页；
+layout：默认文章内容（无需设置）
+```
+
+当前文章属性
+```yaml
+---
+img:url
+title：文章标题
+showMessage：是否显示留言栏，侧边栏；默认为true
+---
+```
+
+注意：文章的图片若保存在`.vuepress/public/img/hello.jpg`路径下，对应图片将在目录中展示；
+则相应的，请将img的值设置为：`/img/hello.jpg`
+
+对应图片效果为：
+- ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191217001346640.png)
+
+
 ## 注意
-在根目录下新建config文件
+例如以下目录结构：
 ```
 docs
 │ 
@@ -91,37 +90,6 @@ docs
 ├─README.md
 └─words：您的文档
 ```
-
-### README.md抬头请写以下格式：
-
-```yaml
----
-layout: index
-title: Home
-showMessage: false;
----
-```
-
-layout：默认值为layout
-```yaml
----
-catalog：表示当前页为catalog页面；
-index：表示为主页；
-layout：默认文章内容（无需设置）
----
-```
-
-当前文章属性
-```yaml
----
-img:'tutu.jpg'
-title：文章标题
-showMessage：是否显示留言栏，侧边栏；默认为true
----
-```
-
-注意：文章的图片请保存在`.vuepress/public/img`路径下，对应图片将在目录中展示；
-- ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191217001346640.png)
 
 ## run
 ```
@@ -157,6 +125,7 @@ module.exports = {
     //head标签
     head: [
         ['link', { rel: 'stylesheet', href: '/img/logo.ico' }],//注意"/"就是public资源目录。标签的logo
+        ['script', { src: 'https://cdn.bootcss.com/jquery/3.4.1/jquery.js' }]
     ],
     themeConfig: {
         author:'tinger',
@@ -187,3 +156,13 @@ module.exports = {
 ## 感谢阅读
 如果你喜欢这个主题，请给我一个start，给予我一个鼓励吧~蟹蟹~
 [github主页](https://github.com/Chenyating)[github项目](https://github.com/Chenyating/Chenyating.github.io)
+
+
+## 其他
+如果你在使用过程中遇到什么问题，可以与我联系，记得给我个start哟~
+
+## FAQ
+- 看板娘问题：
+本主题支持看板娘，由于live2d读取模型文件，必须同源，你可以选择自己喜欢的看板娘，在配置时填写路径就可以了。
+
+- 其他待补充
