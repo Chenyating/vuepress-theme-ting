@@ -1,5 +1,12 @@
 <template>
     <div class="content-box">
+        <div class="phone-catalog">
+            <div class="phone-box">
+                <div v-if="preTitle.title" @click="goArticle(preTitle)" class="phone-pre">PRE</div>
+                <span></span>
+                <div v-if="nextTitle.title" @click="goArticle(nextTitle)" class="phone-next">NEXT</div>
+            </div>
+        </div>
         <div class="content">
             <div class="catalog-box">
                 <div class="catalog-item-big">
@@ -148,16 +155,45 @@
 </script>
 
 <style lang="stylus">
+.phone-catalog{
+    .phone-box{
+        display flex;
+        width 100%;
+        align-items: center;
+        justify-content space-between;
+    }
+    display none;
+    width 100%;
+    position fixed;
+    bottom :0;
+    text-align center;
+    line-height 30px;
+    font-size .5em;
+    z-index 111;
+    // color white;
+    .phone-pre{
+        background #c4deaa40;
+        padding 5px 10px;
+        border-top-right-radius 10px
+        border-bottom-right-radius 10px
+    }
+    .phone-next{
+        background #fda6bc40;
+        padding 5px 10px;
+        border-top-left-radius 10px
+        border-bottom-left-radius 10px
+    }
+}
     .top {
         position fixed;
-        bottom 100px;
+        bottom 40px;
         width 40px;
         height 40px;
         z-index 98;
         border-radius 50px;
         transition all;
         animation topShow 1s;
-        left 0;
+        right 0;
     }
     //conten
     .content {
