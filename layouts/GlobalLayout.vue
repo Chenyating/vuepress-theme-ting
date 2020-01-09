@@ -1,5 +1,6 @@
 <template>
     <div id="global-layout">
+        <loading v-show="isloading"/>
         <live2d/>
         <div class="bg"></div>
         <tingNav class="nav"/>
@@ -11,10 +12,20 @@
 <script>
     import tingNav from "../components/tingNav.vue";
     import live2d from "../components/live2d.vue";
+    import loading from "../components/loading.vue";
     export default {
+        data(){
+            return{
+                isloading:true
+            }
+        },
+        mounted(){
+            this.isloading=false
+        },
         components: {
+            loading,
             tingNav,
-            live2d
+            live2d,
         },
         computed: {
             layout () {
