@@ -11,8 +11,8 @@
 
 <script>
     import tingNav from "../components/tingNav.vue";
-    import live2d from "../components/live2d.vue";
-    import loading from "../components/loading.vue";
+    import live2d from "../components/tingLive2d.vue";
+    import loading from "../components/tingLoading.vue";
     export default {
         data(){
             return{

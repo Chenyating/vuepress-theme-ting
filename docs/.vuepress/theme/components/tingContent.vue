@@ -1,7 +1,7 @@
 <template>
     <div class="content-box">
         <div class="phone-catalog">
-            <div class="phone-box">
+            <div v-if="showCatalog" class="phone-box">
                 <div v-if="preTitle.title" @click="goArticle(preTitle)" class="phone-pre">PRE</div>
                 <span></span>
                 <div v-if="nextTitle.title" @click="goArticle(nextTitle)" class="phone-next">NEXT</div>
@@ -57,7 +57,7 @@
                 preTitle:{},
                 nextTitle:{},
                 nowTitle:null,
-                titleIndex:0
+                titleIndex:0,
             }
         },
         watch:{
@@ -66,6 +66,15 @@
             },
             titleIndex(val){
                 this.init();
+            }
+        },
+        computed:{
+            showCatalog(){
+                if(this.$page.path=='/'){
+                    return false
+                }else{
+                    return true
+                }
             }
         },
         methods: {
@@ -168,32 +177,32 @@
     bottom :0;
     text-align center;
     line-height 30px;
-    font-size .5em;
+    font-size 1em;
     z-index 111;
-    // color white;
+    color white;
     .phone-pre{
-        background #c4deaa40;
-        padding 5px 10px;
+        background #afcd50;
+        padding 2px 10px;
         border-top-right-radius 10px
         border-bottom-right-radius 10px
     }
     .phone-next{
-        background #fda6bc40;
-        padding 5px 10px;
+        background #fda6bc;
+        padding 2px 10px;
         border-top-left-radius 10px
         border-bottom-left-radius 10px
     }
 }
     .top {
         position fixed;
-        bottom 40px;
+        bottom 100px;
         width 40px;
         height 40px;
         z-index 98;
         border-radius 50px;
         transition all;
         animation topShow 1s;
-        right 0;
+        left 0;
     }
     //conten
     .content {
