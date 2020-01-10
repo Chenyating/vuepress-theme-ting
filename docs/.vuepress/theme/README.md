@@ -1,7 +1,3 @@
----
-layout: index
-showMessage: false
----
 # vuepress-theme-ting
 
 - 这是一个vuepress主题，主要功能有博客归档分类，以及留言，个人展示等；
