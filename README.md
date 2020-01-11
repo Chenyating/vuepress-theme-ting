@@ -39,6 +39,7 @@ module.exports = {
             { text: '目录',link:'/config/catalog'}
         ],
         lastUpdated: 'Last Updated',//必填：文章显示最新修改时间
+        pageNum:5,//必填：目录每页显示条数
     },
     theme:'ting'//必填：使用vuepress-theme-ting 主题
 }
@@ -145,7 +146,7 @@ module.exports = {
         smoothScroll: true,//选填
         //选填/live2d模型路径
         live2dModel:'/live2d/model/poi/poi.model.json',
-        pageNum:5,//选填：目录每页显示条数
+        pageNum:5,//必填：目录每页显示条数
         gitalk:{//选填：gitalk留言设置
             clientID: '5b8613cfe15e02db85b7',
             clientSecret: 'd4129094c33b8da73e873470fb89aea53dfaf396',

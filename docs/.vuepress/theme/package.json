@@ -1,6 +1,6 @@
 {
   "name": "vuepress-theme-ting",
-  "version": "1.3.7",
+  "version": "1.3.9",
   "description": "vuepress主题，看板娘live2d的小清新,small fresh vuepress theme vuepress theme Ting",
   "main": "./index.js",
   "scripts": {
@@ -19,7 +19,7 @@
     "Theme",
     "vuepress-Theme"
   ],
-  "homepage": "https://chenyating.github.io/",
+  "homepage": "https://www.yating.online/",
   "bugs": {
     "url": "https://github.com/Chenyating/vuepress-theme-ting/issues"
   },

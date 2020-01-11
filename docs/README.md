@@ -39,6 +39,7 @@ module.exports = {
             { text: '目录',link:'/config/catalog'}
         ],
         lastUpdated: 'Last Updated',//必填：文章显示最新修改时间
+        pageNum:5,//必填：目录每页显示条数
     },
     theme:'ting'//必填：使用vuepress-theme-ting 主题
 }
