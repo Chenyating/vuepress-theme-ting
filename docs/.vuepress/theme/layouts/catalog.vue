@@ -13,14 +13,14 @@
         </div>
         <div class="catalog-big">
             <div class="catalog-box">
-                <div class="catalog-item-big" @click="goArticle(item.path)" v-if="item"
+                <div v-if="item&&item.frontmatter.layout!='catalog'" class="catalog-item-big" @click="goArticle(item.path)"
                      v-for="(item,index) in list"
                      :key="index">
-                    <div class="catalog-item">
+                    <div  class="catalog-item">
                         <!-- 更新时间 -->
                         <img v-if="item.frontmatter.img" class="catalog-icon" :src="item.frontmatter.img"/>
                         <div v-else class="article-time">
-                            {{item.tag }}
+                            {{item.tag=='undefined'?'导航':item.tag}}
                         </div>
                         <!-- 标题 -->
                         <div class="title-box">
@@ -28,7 +28,7 @@
                             <div class="tag"> {{item.lastUpdated?item.lastUpdated:item.title}}</div>
                         </div>
                         <div v-if="item.frontmatter.img" class="article-time">
-                            {{item.tag }}
+                            {{item.tag=='undefined'?'导航':item.tag}}
                         </div>
                     </div>
                 </div>
@@ -86,7 +86,7 @@
                     var str = element.regularPath;
                     var taglist = str.split('/').reverse();
                     var l = decodeURIComponent(taglist[1]);
-                    if (l != '' && l != 'config') {
+                    if (l != '') {
                         this.tagList.push(l);
                     }
                 })
@@ -94,7 +94,6 @@
             },
             init(tagType) {
                 //获得所有文章
-                this.everyPageNumber = this.$site.themeConfig.pageNum;
                 var length = 0;//记录长度
                 var pages = this.$site.pages;
                 this.catalogList = pages.filter((element) => {
@@ -116,6 +115,7 @@
             }
         },
         mounted() {
+            this.everyPageNumber = this.$site.themeConfig.pageNum?this.$site.themeConfig.pageNum:10;
             this.nowTag = this.$route.query.type?this.$route.query.type:'all';
             this.init(this.nowTag);
             this.choosePage(0);

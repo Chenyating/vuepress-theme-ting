@@ -12,10 +12,11 @@ module.exports = {
         //导航栏
         nav: [
             { text: '魚兒', link: '/' },
-            { text: '目次',link:'/config/catalog'},
-            { text: '遨游太空', link: '/config/' },
+            { text: '目次',link:'/catalog'},
+            { text: '遨游太空', link: '/connect' },
             { text: 'Github',type:'url', link: 'https://github.com/Chenyating' },
         ],
+        catalogUrl:'/catalog',//必填
         lastUpdated: 'Last Updated',
         smoothScroll: true,
         pageNum:10,//目录每页显示条数

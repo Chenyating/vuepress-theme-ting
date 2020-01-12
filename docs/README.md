@@ -4,59 +4,165 @@ showMessage: false
 ---
 # vuepress-theme-ting
 
-- 这是一个vuepress主题，主要功能有博客归档分类，以及留言，个人展示等；
-  
-> 主题追求极简，根据 vuepress 的默认主题修改而成，官方的主题配置仍然适用；
+这是一个vuepress主题，主要功能有博客归档分类，以及留言，个人展示等；主题追求极简，根据 vuepress 的默认主题修改而成，官方的主题配置仍然适用；
 
-你是否喜欢这个vuepress主题呢？
 
-## install
-```cmd
-cd ting-Blog
-npm install vuepress-theme-ting
+## 导语
+> 你是否喜欢这个vuepress主题呢？`按照步骤来`，你也可以使用这样的主题哦。以下是具体的配置使用过程。
+
+---
+
+## 前期工作
+> 新建项目project，在project下新建一个docs文件夹和一个package.json文件
+
+- 文件目录
+```
+project
+│
+├─── docs
+│
+└─── package.json
 ```
 
-## 预览地址
-[预览地址](https://chenyating.github.io/)
+- package.json内容
+```json
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200106225330395.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)
-## 基础配置
+---
+
+## 下载主题
+
+```cmd
+npm i vuepress-theme-ting
+npm i
+```
+
+- 目录结构
+```
+project
+│ 
+├─ docs
+│
+├─ package.json
+│
+└─  node_modules
+```
+
+---
+
+## 配置
+> 在docs目录下新建README.md、catalog.md、.vuepress文件夹；在.vuepress文件下新建config.js文件；
+
+```
+project
+│ 
+├─ docs
+│   │
+│   ├─ README.md
+│   │
+│   ├─ catalog.md
+│   │
+│   └─.vuepress
+│       │
+│       └─config.js
+│
+├─ package.json
+│
+└─  node_modules
+```
+
+- config.js内容
 ```js
-// .vuepress/config.js
 module.exports = {
- title: 'YATING',//网站名称
+    title: 'YATING',//网站名称
     description: '用心写代码，不辜负程序员之名',//网站描述
-    //head标签
-    head: [
-        ['link', { rel: 'icon', type:"image/x-icon", href: '/img/logo.ico' }],//注意"/"就是public资源目录。标签的logo
-        ['script', { src: 'https://cdn.bootcss.com/jquery/3.4.1/jquery.js' }]
-    ],
     themeConfig: {
-        author:'tinger',
-        //导航栏
-        nav: [
+        nav: [//导航栏
             { text: '主页', link: '/' },
-            { text: '目录',link:'/config/catalog'}
+            { text: '目录',link:'/catalog'}
         ],
+        catalogUrl:'/catalog',//必填 目录路径
         lastUpdated: 'Last Updated',//必填：文章显示最新修改时间
-        pageNum:5,//必填：目录每页显示条数
     },
     theme:'ting'//必填：使用vuepress-theme-ting 主题
 }
 ```
 
-### 文档设置
+- README.md
+```yaml
+---
+layout: index
+title: Home
+showMessage: false
+---
+
+# vuepress-theme-ting
+
+> 如果你喜欢这个主题可以给我一个start，谢谢
+
+## 欢迎使用
+```
+
+- catalog.md
+```yaml
+---
+layout: catalog
+---
+layout:表示当前使用catalog页面；
+title：md文件标题，注意：命名为Home本主题均自动忽略；
+
+```
+
+## 指令操作
+
+- 本地预览
+```
+npm run dev
+```
+
+最终效果图如下：
+
+- ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200112231356298.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)![在这里插入图片描述](https://img-blog.csdnimg.cn/20200112231426474.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)
+
+- 打包
+```
+npm run build
+```
+
+
+## 预览地址
+[预览地址](https://www.yating.online/)
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200106225330395.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)
+
+## 文档设置
 
 md文档抬头以下列格式为例：
 ```yaml
 ---
 layout: index
 title: Home
-showMessage: false;
+showMessage: false
 ---
 ```
 
-layout：默认值为layout
+layout：默认值为空，为文章内容页
 ```yaml
 catalog：表示当前页为目录页面；
 index：表示为主页；
@@ -82,43 +188,38 @@ showMessage：是否显示留言栏，侧边栏；默认为true
 ## 注意
 例如以下目录结构：
 ```
-docs
+project
 │ 
-├─.vuepress
-│    ├─── public
-│    └─config.js
-│ 
-├─config
-│     ├─── catalog.md
-│     └─── README.md
-│ 
-├─README.md
-└─words：您的文档
+├─ docs
+│   │
+│   ├─ README.md
+│   │
+│   ├─ catalog.md
+│   │
+│   └─.vuepress
+│   │   │
+│   │   └─config.js
+│   └─ 你的文档
+│
+├─ package.json
+│
+└─  node_modules
 ```
 
-## run
-```
-vuepress dev docs
-```
-
-## build
-```
-vuepress build docs
-```
-
-## 主页
+## 效果图
+### 主页
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200106225330395.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)
 
-## 目录
+### 目录
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200106225600826.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)
 
-## 内容
+### 内容
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200106225521690.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)
 
-## 其他
+### 其他
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200106225644433.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)
 
-## 手机端预览效果
+### 手机端预览效果
 - ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191217001515195.png)![在这里插入图片描述](https://img-blog.csdnimg.cn/2019121700154317.png)![在这里插入图片描述](https://img-blog.csdnimg.cn/20191217001553253.png)![在这里插入图片描述](https://img-blog.csdnimg.cn/20191217001614921.png)
 
 ## 全部配置
@@ -142,6 +243,7 @@ module.exports = {
             { text: '项目列表', link: '/config/about' },
             { text: 'Github',type:'url', link: 'https://github.com/Chenyating' },
         ],
+        catalogUrl:'/catalog',//必填 目录路径
         lastUpdated: 'Last Updated',//必填：文章显示最新修改时间
         smoothScroll: true,//选填
         //选填/live2d模型路径
