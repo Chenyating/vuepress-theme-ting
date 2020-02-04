@@ -149,6 +149,7 @@
     }
 
     #stage {
+        max-width 900px;
         display block;
         margin 0 auto;
     }
