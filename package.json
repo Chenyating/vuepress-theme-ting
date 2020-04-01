@@ -1,18 +1,18 @@
 {
-  "name": "Chenyating.github.io",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "git@github.com:Chenyating/Chenyating.github.io.git",
-  "author": "Cyating <924471303@qq.com>",
-  "license": "MIT",
-  "scripts": {
-    "dev": "vuepress dev docs",
-    "build": "vuepress build docs",
-    "deploy": "bash deploy.sh"
-  },
-  "dependencies": {
-    "consolecolors": "^0.33.2-b",
-    "gitalk": "^1.5.0",
-    "jquery": "^3.4.1"
-  }
+    "name": "Chenyating.github.io",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "git@github.com:Chenyating/Chenyating.github.io.git",
+    "author": "Cyating <924471303@qq.com>",
+    "license": "MIT",
+    "scripts": {
+        "dev": "vuepress dev docs",
+        "build": "vuepress build docs",
+        "deploy": "bash deploy.sh"
+    },
+    "dependencies": {
+        "consolecolors": "^0.33.2-b",
+        "gitalk": "^1.5.0",
+        "jquery": "^3.4.1"
+    }
 }
