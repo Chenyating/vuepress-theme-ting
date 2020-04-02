@@ -1,6 +1,6 @@
 ---
 layout: index
-showMessage: false
+showMessage: true
 ---
 # vuepress-theme-ting
 

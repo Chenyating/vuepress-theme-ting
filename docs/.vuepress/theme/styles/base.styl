@@ -11,14 +11,17 @@
     width  100%
     height 100%
     }
-    .catalog,.select-box-top{
+    .catalog,.select-box-top,.nav-box{
     display  none !important;
     }
     .catalog-box{
         margin 15px 0;
     }
-    .fixed-box,.phone-catalog{
+    .fixed-box,{
     display block !important;;
+    }
+    .nav-box-phone{
+    visibility visible;
     }
 
 // wide mobile
@@ -28,7 +31,7 @@
     height 100%
     display  block
     }
-    .catalog,.select-box-top{
+    .catalog,.select-box-top,.nav-box{
     display  none !important;
     }
     .catalog-box{
@@ -40,8 +43,11 @@
     bottom 30px;
     right :0px;
     }
-    .fixed-box,.phone-catalog{
+    .fixed-box,{
     display block !important;;
+    }
+    .nav-box-phone{
+    visibility visible;
     }
 // narrow mobile
 @media (max-width  $MQMobileNarrow)
@@ -62,8 +68,11 @@
     bottom 30px
     right :0px;
     }
-    .fixed-box{
-    display block !important;;
+    .fixed-box,.nav-box-phone{
+    display block !important;
+    }
+    .nav-box-phone{
+    visibility visible;
     }
 
 

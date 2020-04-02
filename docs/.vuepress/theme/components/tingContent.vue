@@ -1,27 +1,18 @@
 <template>
     <div class="content-box">
-        <div class="phone-catalog">
-            <div v-if="showCatalog" class="phone-box">
-                <div v-if="preTitle.title" @click="goArticle(preTitle)" class="phone-pre">PRE</div>
-                <span></span>
-                <div v-if="nextTitle.title" @click="goArticle(nextTitle)" class="phone-next">NEXT</div>
-            </div>
-        </div>
         <div class="content">
-            <div class="catalog-box">
-                <div class="catalog-item-big">
-                    <div class="catalog-item">
-                        <div class="title">
-                            {{nowTitle}}
-                        </div>
-                        <div class="article-time">
-                            {{$page.lastUpdated}}
-                        </div>
+            <div class="catalog-item-big">
+                    <div class="title">
+                        {{nowTitle}}
                     </div>
-                </div>
+                    <div class="article-time">
+                        {{$page.lastUpdated}}
+                    </div>
             </div>
             <!--内容-->
             <Content/>
+            <div v-if="showCatalog&&preTitle.title" @click="goArticle(preTitle)" class="phone-pre">上一篇：《{{preTitle.title}}》</div>
+            <div v-if="showCatalog&&nextTitle.title" @click="goArticle(nextTitle)" class="phone-next">下一篇：《{{nextTitle.title}}》</div>
             <div class="over" v-if="showMessage">
                 完
                 <div class="block"></div>
@@ -30,7 +21,7 @@
         </div>
         <div class="catalog " v-if="showMessage">
             <!-- 标题-->
-            <div v-if="preTitle.title" @click="goArticle(preTitle)" class="levelTitle">上一篇《{{preTitle.title}}》</div>
+            <div v-if="preTitle.title" @click="goArticle(preTitle)" class="levelTitle">上一篇:《{{preTitle.title}}》</div>
             <div class="level1">{{nowTitle}}</div>
             <a :class="[item.level==2?'level2':'level3',{'select':item.slug==selectTitle}]"
                v-for="(item,index) in $page.headers" :key="index" :href="'#'+item.slug" nofollow>{{item.title}}</a>
@@ -164,35 +155,14 @@
 </script>
 
 <style lang="stylus">
-.phone-catalog{
-    .phone-box{
-        display flex;
-        width 100%;
-        align-items: center;
-        justify-content space-between;
-    }
-    display none;
-    width 100%;
-    position fixed;
-    bottom :0;
-    text-align center;
-    line-height 30px;
-    font-size 1em;
-    z-index 111;
-    color white;
     .phone-pre{
-        background #afcd50;
+        color #88c1ea;;
         padding 2px 10px;
-        border-top-right-radius 10px
-        border-bottom-right-radius 10px
     }
     .phone-next{
-        background #fda6bc;
+        color #88c1ea;;
         padding 2px 10px;
-        border-top-left-radius 10px
-        border-bottom-left-radius 10px
     }
-}
     .top {
         position fixed;
         bottom 100px;
@@ -249,21 +219,7 @@
             text-overflow: ellipsis; /* 超出部分显示省略号 */
         }
         .catalog-item-big {
-            height: auto;
-            margin: 2%;
-            padding: 2%;
-            flex-grow 1;
-        }
-        .catalog-item {
-            background: url("../public/icon/li.png") no-repeat;
-            background-size: 50px 50px;
-            background-position right top;
-        }
-        .catalog-box {
-            display flex;
-            flex-wrap wrap;
-            flex-flow 1
-            max-width: 900px;
+            margin-top 50px;
         }
         //code
         li {
@@ -336,29 +292,7 @@
             }
         }
         h1 {
-            font-weight: normal;
-            color #2e5c77;
-            justify-content center;
-            display flex;
-            white-space: nowrap;
-            align-items center;
-            max-width 80%;
-            padding 10px;
             display none;
-            &:after {
-                content: " ";
-                width: 26px;
-                height 46px;
-                background: url("../public/icon/flower-l.png") no-repeat;
-                background-size: 100% 100%;
-            }
-            &:before {
-                content: " ";
-                width: 26px;
-                height 46px;
-                background: url("../public/icon/flower-r.png") no-repeat;
-                background-size: 100% 100%;
-            }
         }
         img {
             box-shadow: 0px 0px 10px #ececec;
@@ -408,6 +342,7 @@
         margin-right: auto;
         text-align: center;
         line-height: 40px;
+        margin-top 20px;
         margin-bottom: 5px;
     }
     .block {

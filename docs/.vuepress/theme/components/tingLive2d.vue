@@ -1,6 +1,6 @@
 <template>
 <div v-if="url" id="landlord">
-    <div class="hide-button" @click="show">隐藏</div>
+    <div class="hide-button" @click="show">{{ifShow?"隐藏":"显示"}}</div>
     <div v-show="ifShow">
         <div class="message" id="live2deMessage" style="opacity:1">hello~</div>
         <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
