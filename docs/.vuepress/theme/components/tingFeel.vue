@@ -16,7 +16,8 @@
                     {{item.content}}
                 </div>
                 <div class="time">
-                    {{item.createTime}}
+                    
+                    
                 </div>
             </div>
         </div>
