@@ -8,7 +8,7 @@ module.exports = {
         ['script', { src: 'https://cdn.bootcss.com/jquery/3.4.1/jquery.js' }]
     ],
     themeConfig: {
-        author: 'tinger',
+        author: '雅婷',
         headImg: '/img/yating.jpg', //头像
         //导航栏
         nav: [

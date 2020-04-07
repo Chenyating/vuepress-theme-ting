@@ -3,14 +3,12 @@
         <loading v-show="isloading"/>
         <live2d/>
         <div class="bg"></div>
-        <tingNav class="nav"/>
         <component :is="layout"/>
         <div class="foot"> {{$site.themeConfig.footer?$site.themeConfig.footer:'@YATING vuepress-theme-ting'}}</div>
     </div>
 </template>
 
 <script>
-    import tingNav from "../components/tingNav.vue";
     import live2d from "../components/tingLive2d.vue";
     import loading from "../components/tingLoading.vue";
     export default {
@@ -24,7 +22,6 @@
         },
         components: {
             loading,
-            tingNav,
             live2d,
         },
         computed: {

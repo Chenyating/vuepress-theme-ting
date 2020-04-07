@@ -342,7 +342,8 @@
         flex-wrap wrap;
         flex-grow 1
         max-width: 900px;
-        margin: 0 auto
+        margin: 0 auto;
+        padding 30px 0;
     }
     @keyframes pageCart {
         from {

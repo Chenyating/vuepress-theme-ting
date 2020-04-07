@@ -1,26 +1,5 @@
 <template>
 <div>
-    <!-- pc导航 -->
-    <div class="nav-box">
-        <div class="search-box">
-            <input autofocus="autofocus" v-model="searchKey" placeholder="搜索"/>
-            <div v-if="searchKey" class="result-list">
-                <div class="result-item" v-for="(item,index) in searchTitles" @click="searchLink(item.road)"
-                     :key="index">
-                    <div class="title">《 {{item.title}} 》</div>
-                    <div class="search-header">{{item.header}}</div>
-                </div>
-            </div>
-        </div>
-        <div class="nav-name">{{$site.title}}</div>
-        <div  class="link-item"  v-for="(item,index) in navLinkList" :key="index">
-            <a :href="item.link" v-if="item.type=='url'">
-                {{item.text}}
-            </a>
-            <router-link tag="div" :to="item.link" v-else>{{item.text}}</router-link>
-        </div>
-    </div>
-    <!-- 手机导航 -->
     <div class="nav-box-phone">
         <div class="phone-nav">
             <div class="search-box">
