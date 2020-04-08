@@ -33,7 +33,7 @@ export default {
 .my-bg{
     background url('../public/img/my-bg.jpg');
     background-size cover;
-    padding-top 100px;
+    padding-top 120px;
 }
 .info-box {
     background #ffffff;

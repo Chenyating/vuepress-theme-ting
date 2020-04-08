@@ -1,19 +1,22 @@
 <template>
 <div class="index-box">
+    <ting-nav class='nav' />
     <ting-about />
     <ting-type />
 </div>
 </template>
 
 <script>
+import tingNav from "../components/tingNav.vue";
 import tingAbout from "../components/tingAbout.vue";
 import tingType from "../components/tingType.vue";
-import SearchBox from '@SearchBox'
+import tingSearch from '../components/tingSearch.vue'
 export default {
     components: {
         tingAbout,
         tingType,
-        SearchBox
+        tingNav,
+        tingSearch,
     },
     name: 'index'
 }
@@ -22,11 +25,13 @@ export default {
 <style lang="stylus" scoped>
 .index-box {
     background #ffffff;
-    .search {
-        position relative;
-        top 0;
+
+    .nav {
+        position absolute;
         right 0;
-        margin 0 10px;
+        left 0;
+        top 10px;
+        transparent 50%;
     }
 }
 </style>

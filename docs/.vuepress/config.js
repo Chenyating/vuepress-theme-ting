@@ -1,4 +1,5 @@
 var gitalkConfig = require('./config/gitalk.js')
+var navConfig = require('./config/nav.js')
 module.exports = {
     title: 'YATING', //网站名称
     description: '用心写代码，不辜负程序员之名', //网站描述
@@ -11,12 +12,7 @@ module.exports = {
         author: '雅婷',
         headImg: '/img/yating.jpg', //头像
         //导航栏
-        nav: [
-            { text: '魚兒', link: '/' },
-            { text: '目次', link: '/catalog' },
-            { text: '遨游太空', link: '/connect' },
-            { text: 'Github', type: 'url', link: 'https://github.com/Chenyating' },
-        ],
+        nav: navConfig,
         catalogUrl: '/catalog', //必填
         lastUpdated: 'Last Updated',
         smoothScroll: true,
