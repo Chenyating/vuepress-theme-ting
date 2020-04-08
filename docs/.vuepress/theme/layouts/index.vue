@@ -3,6 +3,7 @@
     <ting-nav class='nav' />
     <ting-about />
     <ting-type />
+    <tingContent/>
 </div>
 </template>
 
@@ -11,12 +12,14 @@ import tingNav from "../components/tingNav.vue";
 import tingAbout from "../components/tingAbout.vue";
 import tingType from "../components/tingType.vue";
 import tingSearch from '../components/tingSearch.vue'
+import tingContent from '../components/tingContent.vue'
 export default {
     components: {
         tingAbout,
         tingType,
         tingNav,
         tingSearch,
+        tingContent
     },
     name: 'index'
 }

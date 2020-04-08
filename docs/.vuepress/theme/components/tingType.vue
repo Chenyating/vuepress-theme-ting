@@ -87,7 +87,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 .box{
     background #fff;
     .tag-box {
