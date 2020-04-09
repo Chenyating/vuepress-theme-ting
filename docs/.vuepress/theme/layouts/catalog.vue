@@ -1,7 +1,6 @@
 <template>
 <div class="catalog-box">
     <div class="fixed-box">
-        <div class="fixed-catalog-menu" @click="ifshowCatalog">类别</div>
         <div class="my-tag" v-if="showCatalog">
             <div class="tag-box">
                 <div class="tag-item" @click="changeType('all')">
@@ -14,10 +13,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="select-box-top">
-        <div :class="nowTag=='all'?'select-type':'type-catalog'" @click="changeType('all')">全部</div>
-        <div :class="nowTag==item?'select-type':'type-catalog'" @click="changeType(item)" v-for="(item,index) in tags" :key="index">{{item.date}}</div>
     </div>
     <div class="catalog-big">
         <div class="catalog-box">
@@ -40,6 +35,7 @@
             </div>
         </div>
         <div class="page">
+            <div class="page-item" @click="ifshowCatalog">类别</div>
             <div @click="choosePage(item-1)" class="page-item" :class="{'page-select':pageId==item-1}" v-for="item in pageNum">{{item}}
             </div>
         </div>
@@ -154,12 +150,8 @@ export default {
 <style lang="stylus" scoped>
 .fixed-box {
     width 100%;
-    position: fixed;
     height 50px;
-    top: 0;
-    z-index 5;
-    display none;
-
+    z-index 9;
     .my-tag {
         background #fff;
         .tag-box {
@@ -261,7 +253,8 @@ export default {
 }
 
 .page {
-    // position fixed; 
+    position fixed; 
+    right 0;
     padding-top 2%;
     padding-left 5px;
     display flex;
