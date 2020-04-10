@@ -90,6 +90,7 @@ export default {
 <style lang="stylus" scoped>
 .box{
     background #fff;
+    padding-top 40px;
     .tag-box {
         padding-top 20px;
         background #ffffff;

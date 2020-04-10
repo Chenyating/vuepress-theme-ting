@@ -37,10 +37,9 @@ export default {
 <style lang="stylus" scoped>
 .info-box {
     background #ffffff;
-    margin 0 auto;
+    margin 0 20px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-
     .my-phone {
         transform translateY(-40px);
         width 80px;

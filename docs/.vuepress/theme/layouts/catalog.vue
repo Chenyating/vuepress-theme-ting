@@ -1,43 +1,37 @@
 <template>
-<div class="catalog-box">
-    <tingNav class="catalog-nav">
-    <div  slot="expand"  class="type-box">
-        <div class="page-item" @click="ifshowCatalog">类别</div>
-        <div class="my-tag" v-if="showCatalog">
-            <div class="tag-box">
-                <div class="tag-item" @click="changeType('all')">
-                    <div class="tag-name">全部</div>
-                    <div class="tag-num">{{tagList.length}}</div>
-                </div>
-                <div class="tag-item" @click="changeType(item.date)" v-for="(item,index) in tags" :key="index">
-                    <div class="tag-name">{{item.date}}</div>
-                    <div class="tag-num">{{item.count}}</div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </tingNav>
+<div>
+    <tingNav />
     <div class="catalog-big">
-        <div class="catalog-box">
+        <div class="catalog-list">
             <div v-if="item&&item.frontmatter.layout!='catalog'" class="catalog-item-big" @click="goArticle(item.path)" v-for="(item,index) in list" :key="index">
                 <div class="catalog-item">
                     <!-- 更新时间 -->
                     <img v-if="item.frontmatter.img" class="catalog-icon" :src="item.frontmatter.img" />
-                    <div v-else class="article-time">
-                        {{item.tag=='undefined'?'导航':item.tag}}
-                    </div>
-                    <!-- 标题 -->
-                    <div class="title-box">
-                        <div class="title">{{item.title?item.title:'未命名'}}</div>
-                        <div class="tag"> {{item.lastUpdated?item.lastUpdated:item.title}}</div>
-                    </div>
-                    <div v-if="item.frontmatter.img" class="article-time">
-                        {{item.tag=='undefined'?'导航':item.tag}}
+                    <div class="catalog-info">
+                        <!-- 标题 -->
+                        <span class="tag">{{item.tag=='undefined'?'导航':item.tag}}</span>
+                        <span class="title">{{item.title?item.title:'未命名'}}</span>
+                        <div class="time"> {{item.lastUpdated?item.lastUpdated:item.title}}</div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="page">
+            <div class="type-box">
+                <div class="my-tag" v-if="showCatalog">
+                    <div class="tag-box">
+                        <div class="tag-item" @click="changeType('all')">
+                            <div class="tag-name">全部</div>
+                            <div class="tag-num">{{tagList.length}}</div>
+                        </div>
+                        <div class="tag-item" @click="changeType(item.date)" v-for="(item,index) in tags" :key="index">
+                            <div class="tag-name">{{item.date}}</div>
+                            <div class="tag-num">{{item.count}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-item" @click="ifshowCatalog">类别</div>
             <div @click="choosePage(item-1)" class="page-item" :class="{'page-select':pageId==item-1}" v-for="item in pageNum">{{item}}
             </div>
         </div>
@@ -87,6 +81,11 @@ export default {
                     return element;
                 }
             })
+            this.list.sort((function (a, b) {
+                var x = new Date(a['lastUpdated']).valueOf();
+                var y = new Date(b['lastUpdated']).valueOf();
+                return x > y ? -1 : x < y ? 1 : 0;
+            }))
         },
         goArticle(link) {
             this.$router.push(link)
@@ -152,20 +151,84 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.catalog-nav{
+.catalog-list {
+    background #fff;
     width 100%;
+
+    .catalog-item-big {
+        height: auto;
+        box-shadow: 0px 0px 5px #ececec;
+        border-left 2px solid #c4deaa;
+        background white;
+        flex-grow 1;
+        cursor pointer;
+        display: flex;
+        // align-items center;
+        margin-left 1em;
+
+        .tag {
+            padding 4px;
+            color green;
+            font-size 0.8em;
+            color #fff;
+            font-weight bold;
+            background #c3dae4;
+            position relative;
+            left -1em;
+        }
+
+        &::before {
+            content "";
+            width 9px;
+            height 9px;
+            background #c4deaa;
+            border-radius 10px;
+            transform translateX(-5px) translateY(12px)
+        }
+
+        &:nth-child(2n) {
+            // animation moveing infinite 15s alternate;
+        }
+
+        &:hover {
+            background #f5f9fc;
+        }
+    }
+
+    .catalog-item {
+        display flex;
+        padding 1em;
+        padding-left 0;
+        width 100%;
+        background: url("../public/icon/li.png") no-repeat;
+        background-size: 50px 50px;
+        background-position right top;
+        justify-content flex-start;
+
+        &::before {
+            content "";
+            width 50px;
+            height 2px;
+            background #c4deaa;
+            border-radius 10px;
+            transform translateX(-5px)
+        }
+    }
 }
+
 .type-box {
     position absolute;
     max-width 500px;
     z-index 9;
+    right 35px;
+
     .my-tag {
         background #fff;
         box-shadow: 0 2px 7px rgba(0, 0, 0, .15);
 
         .tag-box {
             display grid;
-            grid-template-columns 1fr 1fr 1fr;
+            grid-template-columns 1fr 1fr 1fr 1fr;
             background: url("../public/icon/lo.png") no-repeat, url("../public/icon/nav.png") no-repeat;
             background-size: 40px 40px, 167px 196px;
             background-position left,
@@ -173,7 +236,8 @@ export default {
 
             .tag-item {
                 text-align center;
-                padding 10px;
+                padding .5em;
+                width 4em;
                 border: solid 1px #f1f2f450;
 
                 &:hover {
@@ -197,6 +261,7 @@ export default {
 .catalog-icon {
     height 120px;
     border-radius 5px;
+    margin-right 2em;
 }
 
 .select-box-top {
@@ -229,26 +294,6 @@ export default {
     justify-content: center;
 }
 
-.tag {
-    width 100%;
-    color green;
-    margin 10px;
-    font-size 0.8em;
-    display flex;
-
-    &:before {
-        content: " ";
-        display: block;
-        height 20px;
-        width 20px;
-        background: url("../public/icon/lo.png");
-        background-repeat repeat-x;
-        background-size 20px 20px;
-        bottom 0px;
-        margin-right 5px;
-    }
-}
-
 .page-select {
     font-weight bold;
     height 50px !important;
@@ -256,6 +301,7 @@ export default {
 
 .catalog-big {
     display flex;
+    position relative;
     width 100%;
     align-items flex-start;
     justify-content space-between;
@@ -264,7 +310,9 @@ export default {
 
 .page {
     position fixed;
+    z-index 9;
     right 0;
+    bottom 0;
     padding-top 2%;
     padding-left 5px;
     display flex;
@@ -322,71 +370,51 @@ export default {
 }
 
 .title {
+    font-weight bold;
     display block;
     width inherit;
-    font-size 25px;
+    font-size 1em;
     letter-spacing 3px;
     color #2e5c77 margin-left 10px;
     overflow: hidden;
     /*超出部分隐藏*/
     text-overflow: ellipsis;
+    display flex;
+    margin 1em 0;
+
     /* 超出部分显示省略号 */
+    &:after {
+        content: " ";
+        display: block;
+        height 20px;
+        width 20px;
+        background: url("../public/icon/lo.png");
+        background-repeat repeat-x;
+        background-size 20px 20px;
+        bottom 0px;
+        margin-right 5px;
+    }
 }
 
-.text {
+.time {
     height 50px;
     color #2c3e50 font-size 12px;
     overflow: hidden;
+    font-size 1em;
     /*超出部分隐藏*/
     text-overflow: ellipsis;
     /* 超出部分显示省略号 */
 }
 
-.catalog-item-big {
-    height: auto;
-    margin: 2%;
-    box-shadow: 0px 0px 5px #ececec;
-    padding: 2%;
-    background white;
-    flex-grow 1;
-    cursor pointer;
-    display: flex;
+// @keyframes pageCart {
+//     from {
+//         height 30px;
+//         transform scaleY(30px)
+//     }
 
-    &:nth-child(2n) {
-        animation moveing infinite 15s alternate;
-    }
-
-    &:hover {
-        background #f5f9fc;
-    }
-}
-
-.catalog-item {
-    background: url("../public/icon/li.png") no-repeat;
-    background-size: 50px 50px;
-    background-position right top;
-    display flex;
-    align-items stretch;
-    width 100%;
-}
-
-.catalog-box {
-    display flex;
-    flex-wrap wrap;
-    flex-grow 1;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-@keyframes pageCart {
-    from {
-        height 30px;
-        transform scaleY(30px)
-    }
-
-    to {
-        height 50px;
-        transform scaleY(50px)
-    }
-}
+//     to {
+//         height 50px;
+//         transform scaleY(50px)
+//     }
+// }
 </style>

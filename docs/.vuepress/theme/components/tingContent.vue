@@ -219,7 +219,7 @@
             text-overflow: ellipsis; /* 超出部分显示省略号 */
         }
         .catalog-item-big {
-            margin-top 50px;
+            padding-top 50px;
         }
         //code
         li {
