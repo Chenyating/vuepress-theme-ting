@@ -1,6 +1,6 @@
 <template>
 <div>
-    <tingNav />
+    <tingNav/>
     <div class="catalog-big">
         <div class="catalog-list">
             <div v-if="item&&item.frontmatter.layout!='catalog'" class="catalog-item-big" @click="goArticle(item.path)" v-for="(item,index) in list" :key="index">
@@ -11,7 +11,7 @@
                         <!-- 标题 -->
                         <span class="tag">{{item.tag=='undefined'?'导航':item.tag}}</span>
                         <span class="title">{{item.title?item.title:'未命名'}}</span>
-                        <div class="time"> {{item.lastUpdated?item.lastUpdated:item.title}}</div>
+                        <div class="time" v-if="item.lastUpdated"> {{new Date(item.lastUpdated).toLocaleString()}}</div>
                     </div>
                 </div>
             </div>
@@ -81,11 +81,13 @@ export default {
                     return element;
                 }
             })
-            this.list.sort((function (a, b) {
-                var x = new Date(a['lastUpdated']).valueOf();
-                var y = new Date(b['lastUpdated']).valueOf();
-                return x > y ? -1 : x < y ? 1 : 0;
-            }))
+            if(this.list[0].lastUpdated){
+                this.list.sort((function (a, b) {
+                    var x = new Date(a['lastUpdated']).valueOf();
+                    var y = new Date(b['lastUpdated']).valueOf();
+                    return x > y ? -1 : x < y ? 1 : 0;
+                }))
+            }
         },
         goArticle(link) {
             this.$router.push(link)
@@ -261,7 +263,9 @@ export default {
 .catalog-icon {
     height 120px;
     border-radius 5px;
-    margin-right 2em;
+    margin-right 1em;
+    transform translateX(-10px) translateY(-5px);
+    border 2px solid #f1f2f4;
 }
 
 .select-box-top {
@@ -348,7 +352,7 @@ export default {
 .article-time {
     -webkit-writing-mode: vertical-rl;
     writing-mode: vertical-rl;
-    max-height 100px;
+    max-height 120px;
     padding 10px;
     border: 1px solid green;
     border-bottom 0;
@@ -406,15 +410,15 @@ export default {
     /* 超出部分显示省略号 */
 }
 
-// @keyframes pageCart {
-//     from {
-//         height 30px;
-//         transform scaleY(30px)
-//     }
+@keyframes pageCart {
+    from {
+        height 30px;
+        transform scaleY(30px)
+    }
 
-//     to {
-//         height 50px;
-//         transform scaleY(50px)
-//     }
-// }
+    to {
+        height 50px;
+        transform scaleY(50px)
+    }
+}
 </style>
