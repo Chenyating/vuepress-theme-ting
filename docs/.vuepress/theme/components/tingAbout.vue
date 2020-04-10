@@ -1,17 +1,22 @@
 <template>
-<div class="my-bg">
-    <div class="info-box">
+<tingNav>
+    <div slot='expand' class="info-box">
         <img class="my-phone" :src="headImg" />
         <div class="info">
             <div class="my-name">{{$site.themeConfig.author}}</div>
             <div class="des">{{$site.description}}</div>
         </div>
     </div>
-</div>
+    </div>
+</tingNav>
 </template>
 
 <script>
+import tingNav from "../components/tingNav.vue";
 export default {
+    components: {
+        tingNav,
+    },
     data() {
         return {
             headImg: "https://yating.online/res/img/yating.jpg",
@@ -30,23 +35,18 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.my-bg{
-    background url('../public/img/my-bg.jpg');
-    background-size cover;
-    padding-top 120px;
-}
 .info-box {
     background #ffffff;
-    margin 0 30px;
+    margin 0 auto;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 
     .my-phone {
+        transform translateY(-40px);
         width 80px;
         height 80px;
         border solid 3px #ffffff;
         border-radius: 80px;
-        transform translateY(-40px);
         display block;
         margin 0 auto;
     }
@@ -65,5 +65,12 @@ export default {
             text-align center;
         }
     }
+}
+
+@media (max-width $MQNarrow) {
+    .info-box {
+        transform translateY(50px);
+    }
+
 }
 </style>

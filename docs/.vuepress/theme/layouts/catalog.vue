@@ -1,6 +1,8 @@
 <template>
 <div class="catalog-box">
-    <div class="fixed-box">
+    <tingNav class="catalog-nav">
+    <div  slot="expand"  class="type-box">
+        <div class="page-item" @click="ifshowCatalog">类别</div>
         <div class="my-tag" v-if="showCatalog">
             <div class="tag-box">
                 <div class="tag-item" @click="changeType('all')">
@@ -14,6 +16,7 @@
             </div>
         </div>
     </div>
+    </tingNav>
     <div class="catalog-big">
         <div class="catalog-box">
             <div v-if="item&&item.frontmatter.layout!='catalog'" class="catalog-item-big" @click="goArticle(item.path)" v-for="(item,index) in list" :key="index">
@@ -35,7 +38,6 @@
             </div>
         </div>
         <div class="page">
-            <div class="page-item" @click="ifshowCatalog">类别</div>
             <div @click="choosePage(item-1)" class="page-item" :class="{'page-select':pageId==item-1}" v-for="item in pageNum">{{item}}
             </div>
         </div>
@@ -45,8 +47,10 @@
 
 <script>
 import tingType from "../components/tingType.vue";
+import tingNav from "../components/tingNav.vue";
 export default {
     components: {
+        tingNav,
         tingType
     },
     name: 'catalog',
@@ -148,18 +152,24 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.fixed-box {
+.catalog-nav{
     width 100%;
-    height 50px;
+}
+.type-box {
+    position absolute;
+    max-width 500px;
     z-index 9;
     .my-tag {
         background #fff;
+        box-shadow: 0 2px 7px rgba(0, 0, 0, .15);
+
         .tag-box {
             display grid;
             grid-template-columns 1fr 1fr 1fr;
             background: url("../public/icon/lo.png") no-repeat, url("../public/icon/nav.png") no-repeat;
             background-size: 40px 40px, 167px 196px;
-            background-position left,right bottom;
+            background-position left,
+            right bottom;
 
             .tag-item {
                 text-align center;
@@ -253,7 +263,7 @@ export default {
 }
 
 .page {
-    position fixed; 
+    position fixed;
     right 0;
     padding-top 2%;
     padding-left 5px;
@@ -366,7 +376,6 @@ export default {
     flex-grow 1;
     max-width: 900px;
     margin: 0 auto;
-    padding 30px 0;
 }
 
 @keyframes pageCart {

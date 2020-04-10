@@ -1,11 +1,10 @@
 .content-box{
     margin  0 auto
-    position relative
     width  900px
     height 100%
-    display  flex
-    justify-content  center
 }
+
+// 窄屏
 @media (max-width  $MQNarrow)
   .content-box{
     width  100%
@@ -20,7 +19,7 @@
     .fixed-box,{
     display block !important;;
     }
-// wide mobile
+// 手机屏
 @media (max-width  $MQMobile)
    .content-box{
     width  100%
@@ -42,7 +41,7 @@
     .fixed-box,{
     display block !important;;
     }
-// narrow mobile
+// 手机屏
 @media (max-width  $MQMobileNarrow)
    .content-box{
     width  100%
@@ -64,6 +63,9 @@
     .fixed-box{
     display block !important;
     }
+  
+
+
   
 // layout 
 .all-box{

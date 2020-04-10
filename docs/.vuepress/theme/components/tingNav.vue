@@ -1,14 +1,17 @@
 <template>
 <div class="nav-box">
-    <tingSearch />
-    <div class="nav">
-        <div class="link-item" v-for="(item,index) in navLinkList" :key="index">
-            <a :href="item.link" v-if="item.type=='url'">
-                {{item.text}}
-            </a>
-            <router-link tag='a' v-else :to="item.link">{{item.text}}</router-link>
+    <div class="search-nav">
+        <tingSearch />
+        <div class="nav">
+            <div class="link-item" v-for="(item,index) in navLinkList" :key="index">
+                <a :href="item.link" v-if="item.type=='url'">
+                    {{item.text}}
+                </a>
+                <router-link tag='a' v-else :to="item.link">{{item.text}}</router-link>
+            </div>
         </div>
     </div>
+    <slot name="expand"></slot>
 </div>
 </template>
 
@@ -36,23 +39,45 @@ export default {
 
 <style lang="stylus">
 .nav-box {
-    display flex;
-    justify-content flex-end;
+    position relative;
     max-width 900px;
     margin 0 auto;
+    background url('../public/img/my-bg.jpg');
+    background-size cover;
+    padding 10px;
+    padding-bottom 0;
+
+    .search-nav {
+        display flex;
+        justify-content flex-end;
+        padding-bottom 10px;
+    }
 
     .nav {
         z-index 4;
         position relative;
         max-width 900px;
-        height 196px;
+        height auto;
         display: flex;
         justify-content: center;
         align-items: flex-start;
         font-weight bold;
 
         .link-item {
+            @media (max-width $MQNarrow) {
+                a {
+                    width 1em;
+                    height 1em;
+                }
+
+            }
+
             a {
+                width 1em;
+                overflow: hidden;
+                writing-mode: vertical-lr;
+                /*从左向右 从右向左是 writing-mode: vertical-rl;*/
+                writing-mode: tb-lr;
                 text-decoration: none;
                 font-weight bold;
                 out-line: none;
@@ -63,13 +88,10 @@ export default {
                     color #ffffff;
                 }
             }
-
             cursor pointer;
             font-size 1em;
             //文字垂直
             text-align center;
-            -webkit-writing-mode: vertical-rl;
-            writing-mode: vertical-rl;
             padding 0.5em;
             marigin 2em;
             border-top 0;
@@ -79,5 +101,7 @@ export default {
             font-weight bold;
         }
     }
+
+    .nav-expand {}
 }
 </style>

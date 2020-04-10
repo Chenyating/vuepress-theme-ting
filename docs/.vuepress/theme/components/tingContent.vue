@@ -309,7 +309,7 @@
         position fixed;
         margin auto;
         top 5em;
-        transform translateX(550px);
+        transform translateX(900px);
         width 200px;
         height 70%;
         overflow-y auto

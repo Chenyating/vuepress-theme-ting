@@ -1,6 +1,5 @@
 <template>
 <div class="index-box">
-    <ting-nav class='nav' />
     <ting-about />
     <ting-type />
     <tingContent/>
@@ -28,13 +27,5 @@ export default {
 <style lang="stylus" scoped>
 .index-box {
     background #ffffff;
-
-    .nav {
-        position absolute;
-        right 0;
-        left 0;
-        top 10px;
-        transparent 50%;
-    }
 }
 </style>
