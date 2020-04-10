@@ -3,8 +3,10 @@
     <div slot='expand' class="info-box">
         <img class="my-phone" :src="headImg" />
         <div class="info">
-            <div class="my-name">{{$site.themeConfig.author}}</div>
-            <div class="des">{{$site.description}}</div>
+            <div>
+                <div class="my-name">{{$site.themeConfig.author}}</div>
+                <div class="des">{{$site.description}}</div>
+            </div>
         </div>
     </div>
     </div>
@@ -40,6 +42,7 @@ export default {
     margin 0 20px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+
     .my-phone {
         transform translateY(-40px);
         width 80px;
@@ -47,22 +50,19 @@ export default {
         border solid 3px #ffffff;
         border-radius: 80px;
         display block;
-        margin 0 auto;
+        margin 0 50px;
     }
 
     .info {
+        padding-left 2em;
         transform translateY(-30px);
-
         .my-name {
             font-weight bold;
             font-size 20px;
-            text-align center;
             margin-bottom 10px;
         }
 
-        .des {
-            text-align center;
-        }
+        .des {}
     }
 }
 

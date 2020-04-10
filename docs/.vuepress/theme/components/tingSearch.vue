@@ -116,7 +116,6 @@ export default {
         padding-left 30px;
         outline none;
         border 1px solid #f1f2f4;
-        opacity: 80%;
     }
 
     .result-list {
