@@ -51,7 +51,7 @@
 
 <script>
 import $ from 'jQuery';
-import tingContent from "../components/tingContent.vue";
+import tingContent from "../components/ting-content.vue";
 
 export default {
     components: {

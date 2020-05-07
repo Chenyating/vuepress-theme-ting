@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import tingSearch from '../components/tingSearch.vue'
+import tingSearch from '../components/ting-search.vue'
 export default {
     components: {
         tingSearch,

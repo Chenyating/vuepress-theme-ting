@@ -1,6 +1,6 @@
 <template>
 <div class="notfound-box">
-    <tingNav />
+    <ting-nav />
     <div class="tip-info">
         <img class="notfound-icon" src="../public/icon/fish.png" />
         404 你想要的我给不了
@@ -99,7 +99,7 @@ mother.prototype = {
     }
 }
 
-import tingNav from "../components/tingNav.vue";
+import tingNav from "../components/ting-nav.vue";
 export default {
     components: {
         tingNav

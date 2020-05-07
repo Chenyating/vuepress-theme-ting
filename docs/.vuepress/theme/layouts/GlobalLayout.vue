@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import live2d from "../components/tingLive2d.vue";
-import loading from "../components/tingLoading.vue";
+import live2d from "../components/ting-live2d.vue";
+import loading from "../components/ting-loading.vue";
 export default {
     data() {
         return {

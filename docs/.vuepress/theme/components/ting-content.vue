@@ -32,7 +32,7 @@
 </template>
 
 <script>
-    import tingGitalk from "../components/tingGitalk.vue";
+    import tingGitalk from "../components/ting-gitalk.vue";
     import $ from 'jquery'
     export default {
         components: {

@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import tingNav from "../components/tingNav.vue";
+import tingNav from "../components/ting-nav.vue";
 export default {
     components: {
         tingNav,

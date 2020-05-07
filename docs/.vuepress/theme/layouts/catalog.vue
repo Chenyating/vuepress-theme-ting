@@ -1,6 +1,6 @@
 <template>
 <div>
-    <tingNav/>
+    <ting-nav/>
     <div class="catalog-big">
         <div class="catalog-list">
             <div v-if="item&&item.frontmatter.layout!='catalog'" class="catalog-item-big" @click="goArticle(item.path)" v-for="(item,index) in list" :key="index">
@@ -40,8 +40,8 @@
 </template>
 
 <script>
-import tingType from "../components/tingType.vue";
-import tingNav from "../components/tingNav.vue";
+import tingType from "../components/ting-type.vue";
+import tingNav from "../components/ting-nav.vue";
 export default {
     components: {
         tingNav,

@@ -15,7 +15,6 @@
 
 <script>
 import $ from 'jquery'
-
 export default {
     data() {
         return {
@@ -54,7 +53,6 @@ export default {
                 i += count;
             }
             this.tags = arr;
-
         },
         ajaxFun() {
             $.ajax({
@@ -102,20 +100,16 @@ export default {
         .tag-item {
             text-align center;
             padding 10px;
-
             &:hover {
                 box-shadow: 0 2px 7px rgba(0, 0, 0, .15);
             }
-
             .tag-name {
                 font-size 16px;
             }
-
             .tag-num {
                 font-weight bold;
                 font-size 30px;
             }
-
         }
     }
     .search-box {
