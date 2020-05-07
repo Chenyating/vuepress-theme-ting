@@ -6,6 +6,11 @@
 
 这是一个vuepress主题，主要功能有博客归档分类，以及留言，个人展示等；主题追求极简，根据 vuepress 的默认主题修改而成，官方的主题配置仍然适用；
 
+## 新增功能
+
+### 图灵对话机器人
+可以与机器人聊天，并且播放语音；
+- ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200507153334519.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)
 
 ## 导语
 > 你是否喜欢这个vuepress主题呢？`按照步骤来`，你也可以使用这样的主题哦。以下是具体的配置使用过程。
