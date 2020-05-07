@@ -1,10 +1,10 @@
 #landlord {
-    user-select: none;
+    /* user-select: none; */
     position: fixed;
     left: 30px;
     bottom: 0;
     width: 280px;
-    height: 250px;
+    /* height: 250px; */
     z-index: 10000;
     font-size: 0;
     transition: all .3s ease-in-out;
@@ -14,38 +14,12 @@
     position: relative;
 }
 
-.message {
-    opacity: 0;
-    width: 300px;
-    height: auto;
-    margin: auto;
-    padding: 7px;
-    top: -80px;
-    left: -10px;
-    text-align: center;
-    border: 1px solid white;
-    border-radius: 12px;
-    background-color: #c4deaa;
-    box-shadow: 0 3px 15px 2px #c4deaa;
-    font-size: 13px;
-    font-weight: 400;
-    text-overflow: ellipsis;
-    text-transform: uppercase;
-    overflow: hidden;
-    position: absolute;
-    animation-delay: 5s;
-    animation-duration: 50s;
-    animation-iteration-count: infinite;
-    animation-name: shake;
-    animation-timing-function: ease-in-out;
-}
-
 .hide-button {
     position: absolute;
     top: 10px;
-    left: 0;
+    right: 0;
     /* bottom: 30px; */
-    display: none;
+    /* display: none; */
     overflow: hidden;
     /* padding: 4px; */
     width: 60px;
