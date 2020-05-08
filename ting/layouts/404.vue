@@ -101,6 +101,7 @@ mother.prototype = {
 
 import tingNav from "../components/ting-nav.vue";
 export default {
+    name:'NotFound',
     components: {
         tingNav
     },
