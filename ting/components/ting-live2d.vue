@@ -31,7 +31,7 @@ export default {
         reciveResult(txt) {
             this.chatList.push(txt);
             var audio = document.getElementById('mp3');
-            audio.setAttribute("src", 'http://yating.online/mm/speech?text=' + txt.you);
+            audio.setAttribute("src", 'https://yating.online/mm/speech?text=' + txt.you);
             audio.play();
         },
         loadJs(url, callback) {

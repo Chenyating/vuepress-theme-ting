@@ -25,7 +25,7 @@ export default {
             }
             var that = this;
             $.ajax({
-                url: "http://yating.online/mm/dialogue",
+                url: "https://yating.online/mm/dialogue",
                 data: {
                     text: that.txt
                 },
