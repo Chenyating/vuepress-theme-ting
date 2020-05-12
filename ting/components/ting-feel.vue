@@ -50,7 +50,6 @@
 </template>
 
 <script>
-import $ from 'jQuery';
 import tingContent from "../components/ting-content.vue";
 
 export default {
@@ -80,6 +79,7 @@ export default {
         goMyweb(link) {
             // window.location.href = link;
         },
+        
         changeMessage() {
             this.getJson(`${this.webUrl}/messageList?num=10&page=${this.messageId}`, 'message').then(data => {
                 this.messageList = data;

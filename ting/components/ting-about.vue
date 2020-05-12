@@ -9,7 +9,6 @@
             </div>
         </div>
     </div>
-    </div>
 </tingNav>
 </template>
 
@@ -56,6 +55,7 @@ export default {
     .info {
         padding-left 2em;
         transform translateY(-30px);
+
         .my-name {
             font-weight bold;
             font-size 20px;

@@ -1,16 +1,68 @@
 # vuepress-theme-ting
+[github项目](https://github.com/Chenyating/vuepress-theme-ting)
+> 这是一个vuepress主题，主要功能有博客归档分类，以及留言，个人展示等；主题追求极简，根据 vuepress 的默认主题修改而成，官方的主题配置仍然适用；
+这是一个看板娘小清新vuepress主题，主要功能有博客归档分类，以及留言，个人展示等；主题追求极简，根据 vuepress 的默认主题修改而成，官方的主题配置仍然适用；
+
 ## 预览地址
 [预览地址](https://www.yating.online/)
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200106225330395.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200512101419420.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)
 
-这是一个vuepress主题，主要功能有博客归档分类，以及留言，个人展示等；主题追求极简，根据 vuepress 的默认主题修改而成，官方的主题配置仍然适用；
+## 版本
+### 第一版1.4.5
+看板娘需在配置目录下设置路径。
+- ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200106225330395.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)
+
+- 如果你喜欢最初风格的版本：为1.4.5
+```
+npm i vuepress-theme-ting@1.4.5
+```
+
+### 第二版2.x.x
+- 支持默认换装看板娘
+- 图灵对话机器人
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200512101419420.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)
+
+```
+npm i vuepress-theme-ting
+```
+UI风格我个人感觉还有待改进，我个人不是很喜欢哈哈哈~
+
+最近在致力于编写一个小清新风格的ui组件库要运用到本主题中，所以进度会比较慢。
+
 
 ## 新增功能
 
-### 图灵对话机器人
+### 默认换装看板娘2.x.x
+自动换装88套衣服，琳琅满目~，截图不过来了。
+- ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200512094327396.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)![在这里插入图片描述](https://img-blog.csdnimg.cn/20200512094251815.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)![在这里插入图片描述](https://img-blog.csdnimg.cn/20200512094223485.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)![在这里插入图片描述](https://img-blog.csdnimg.cn/20200512094104514.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)![在这里插入图片描述](https://img-blog.csdnimg.cn/20200512101028930.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)
+
+### 自定义看板娘
+- 本主题支持看板娘，由于live2d读取模型文件，你可以选择自己喜欢的看板娘，在配置时填写路径就可以了。
+如果你不喜欢默认的看板娘模型，可以在config.js里增加看板娘路径。
+```
+module.exports = {
+    ……
+    head: [
+    ……
+    ],
+    themeConfig: {
+ 		……
+        live2dModel: '/live2d/model/poi/poi.model.json', //live2d模型路径
+        ……
+    }
+}
+```
+- 其他待补充
+
+### 图灵对话机器人2.x.x
 可以与机器人聊天，并且播放语音；
-- ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200507153334519.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)
+- ![在这里插入图片描述](https://img-blog.csdnimg.cn/2020051210373373.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)
+#### 鸣谢
+|支持者|支持内容|
+|-|-|
+|[mumudadi](https://github.com/mumudadi)|提供图灵机器人后台技术支持。|
+
 
 ## 导语
 > 你是否喜欢这个vuepress主题呢？`按照步骤来`，你也可以使用这样的主题哦。以下是具体的配置使用过程。
@@ -150,6 +202,12 @@ npm run dev
 npm run build
 ```
 
+
+## 预览地址
+[预览地址](https://www.yating.online/)
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200106225330395.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)
+
 ## 文档设置
 
 md文档抬头以下列格式为例：
@@ -251,7 +309,10 @@ module.exports = {
         gitalk:{//选填：gitalk留言设置
             clientID: '5b8613cfe15e02db85b7',
             clientSecret: 'd4129094c33b8da73e873470fb89aea53dfaf396',
-            githubName:'Chenyating'
+            repo: 'Chenyating.github.io',
+            owner: 'chenyating',
+            admin: ['Chenyating'],
+            distractionFreeMode: false // Facebook-like distraction free mode
         },
         footer:'粤ICP备案号：18150247号'//选填
     },
@@ -261,14 +322,8 @@ module.exports = {
 
 ## 感谢阅读
 如果你喜欢这个主题，请给我一个start，给予我一个鼓励吧~蟹蟹~
-[github主页](https://github.com/Chenyating)[github项目](https://github.com/Chenyating/Chenyating.github.io)
+[github项目](https://github.com/Chenyating/vuepress-theme-ting)
 
 
 ## 其他
 如果你在使用过程中遇到什么问题，可以与我联系，记得给我个start哟~
-
-## FAQ
-- 看板娘问题：
-本主题支持看板娘，由于live2d读取模型文件，必须同源，你可以选择自己喜欢的看板娘，在配置时填写路径就可以了。
-
-- 其他待补充

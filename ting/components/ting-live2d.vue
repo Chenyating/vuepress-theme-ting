@@ -1,5 +1,5 @@
 <template>
-<div v-if="url" id="landlord">
+<div id="landlord">
     <div class="chat-box">
         <div v-for="(item,index) in chatList" :key="index">
             <div class="me">我：{{item.me}}</div><br />
@@ -31,7 +31,7 @@ export default {
         reciveResult(txt) {
             this.chatList.push(txt);
             var audio = document.getElementById('mp3');
-            audio.setAttribute("src", 'http://212.64.92.148:9991/speech?text=' + txt.you);
+            audio.setAttribute("src", 'http://yating.online/mm/speech?text=' + txt.you);
             audio.play();
         },
         loadJs(url, callback) {
@@ -61,13 +61,21 @@ export default {
     },
     mounted() {
         this.url = this.$site.themeConfig.live2dModel
-        if (this.url) {
-            // this.loadJs("https://www.yating.online/res/js/message.js")
+        // console.log(this.url, "???????")
+        // if (this.url != undefined) {
+        //     // this.loadJs("https://www.yating.online/res/js/message.js")
+        //     this.loadJs("https://www.yating.online/res/js/live2d.js")
+        //     window.onload = () => {
+        //         loadlive2d("live2d", this.url);
+        //     }
+        // } else {
             this.loadJs("https://www.yating.online/res/js/live2d.js")
+            // this.loadJs("/live2d/live2d.js")
             window.onload = () => {
-                loadlive2d("live2d", this.url);
+                let r = Math.floor(Math.random() * 88);
+                loadlive2d("live2d", "https://cdn.jsdelivr.net/gh/mumudadi/live2dw@latest/assets/live2d-widget-model-Pio/assets/" + r + ".json");
             };
-        }
+        // }
     }
 
 };
