@@ -1,6 +1,6 @@
 {
     "name": "vuepress-theme-ting",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "description": "小清新看板娘主题,small fresh vuepress theme vuepress theme Ting",
     "main": "./index.js",
     "scripts": {
