@@ -1,5 +1,8 @@
+// 注册组件库
+import VueHighlightJS from 'vue-highlightjs'
 import ifresh from 'ifresh-ui';
 import 'ifresh-ui/lib/ifresh-ui.css'
+
 
 export default ({
     Vue, // VuePress 正在使用的 Vue 构造函数
@@ -8,4 +11,5 @@ export default ({
     siteData // 站点元数据
 }) => {
     Vue.use(ifresh)
+    Vue.use(VueHighlightJS)
 }

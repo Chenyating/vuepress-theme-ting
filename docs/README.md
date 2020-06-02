@@ -2,6 +2,7 @@
 layout: index
 showMessage: true
 ---
+
 # vuepress-theme-ting
 [github项目](https://github.com/Chenyating/vuepress-theme-ting)
 > 这是一个vuepress主题，主要功能有博客归档分类，以及留言，个人展示等；主题追求极简，根据 vuepress 的默认主题修改而成，官方的主题配置仍然适用；
@@ -327,6 +328,8 @@ module.exports = {
 ## 感谢阅读
 如果你喜欢这个主题，请给我一个start，给予我一个鼓励吧~蟹蟹~
 [github项目](https://github.com/Chenyating/vuepress-theme-ting)
+
+最后，我正在找适合的工作岗位，意向深圳。如果你的团队正在招人，可以考虑下我咩？
 
 
 ## 其他
