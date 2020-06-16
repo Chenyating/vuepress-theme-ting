@@ -9,7 +9,7 @@
                     <img v-if="item.frontmatter.img" class="catalog-icon" :src="item.frontmatter.img" />
                     <div class="catalog-info">
                         <!-- 标题 -->
-                        <span class="tag">{{item.tag=='undefined'?'导航':item.tag}}</span>
+                        <if-tag>{{item.tag=='undefined'?'导航':item.tag}}</if-tag>
                         <span class="title">{{item.title?item.title:'未命名'}}</span>
                         <div class="time" v-if="item.lastUpdated"> {{new Date(item.lastUpdated).toLocaleString()}}</div>
                     </div>
@@ -32,10 +32,9 @@
                 </div>
             </div>
             <div class="page-item" @click="ifshowCatalog">类别</div>
-            <div @click="choosePage(item-1)" class="page-item" :class="{'page-select':pageId==item-1}" v-for="item in pageNum">{{item}}
-            </div>
         </div>
     </div>
+    <if-page class="catalog-page" :every='everyPageNumber' :total='catalogList.length' @change="choosePage" simple show-total show-sizer/>
 </div>
 </template>
 
@@ -312,41 +311,13 @@ export default {
     max-width 900px;
 }
 
-.page {
-    position fixed;
-    z-index 9;
-    right 0;
-    bottom 0;
-    padding-top 2%;
-    padding-left 5px;
-    display flex;
-    flex-direction column;
-    justify-content flex-end;
-    flex-wrap wrap;
-
-    .page-item {
-        width 30px;
-        background #c3dae4;
-        text-align center;
-        line-height 30px;
-        color white;
-        margin-bottom 5px;
-        transition: all 1s;
-        cursor pointer;
-
-        &:hover {
-            height 50px;
-            animation pageCart 1s;
-        }
-
-        &:nth-child(2n) {
-            background #c4deaa;
-        }
-
-        &:nth-child(3n) {
-            background #fda6bc;
-        }
-    }
+.catalog-page{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    right: 0;
+    bottom: 150px;
 }
 
 .article-time {

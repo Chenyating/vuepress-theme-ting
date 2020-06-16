@@ -1,6 +1,6 @@
 <template>
 <div class="search-box">
-    <input autofocus="autofocus" v-model="searchKey" placeholder="搜索" />
+    <if-input icon="apple" autofocus="autofocus" v-model="searchKey" placeholder="搜索"/>
     <div v-if="searchKey&&searchTitles.length" class="result-list">
         <div class="result-item" v-for="(item,index) in searchTitles" @click="searchLink(item.road)" :key="index">
             <span class="title">{{item.title}} </span>
