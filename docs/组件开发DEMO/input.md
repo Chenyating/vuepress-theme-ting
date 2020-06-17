@@ -89,3 +89,13 @@
 <if-input type="password"/>
 </f-demo>
 </ClientOnly >
+
+## 数字 长度限制
+<ClientOnly>
+<f-demo code='
+   <if-input maxlength="20"/>'>
+<if-number maxlength="2"  disabled/>
+<if-number maxlength="2"  />
+<if-number />
+</f-demo>
+</ClientOnly >

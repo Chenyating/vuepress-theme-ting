@@ -3,6 +3,16 @@
 思路：单选跟多选，就是radio跟checkbox的结合体；
 
 条件判断，是否可以多选。
+## z-index 
+
+失效的原因：
+1. 父级元素position可能是relative，或者是没有position；
+2. 元素存在float属性
+
+解决办法：
+1. position设置部位relative
+2. 去掉float，清除浮动，浮动元素设置position；
+3. overflow设置为auto；
 
 ## tabindex 
 按tab建的时候顺序触发,可以有blur事件跟focus事件；
