@@ -2,6 +2,7 @@ const path = require('path')
 var gitalkConfig = require('./config/gitalk.js')
 var navConfig = require('./config/nav.js')
 module.exports = {
+    port: '1234',
     theme: path.resolve(__dirname, '../../ting/'),
     title: 'YATING', //网站名称
     description: '用心写代码，不辜负程序员之名', //网站描述
