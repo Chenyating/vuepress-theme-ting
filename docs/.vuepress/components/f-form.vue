@@ -32,7 +32,6 @@
     </if-form-item>
     <if-form-item>
         <if-button type="primary" @click="handleSubmit('formValidate')">Submit</if-button>
-        <if-button @click="handleReset('formValidate')" style="margin-left: 8px">Reset</if-button>
     </if-form-item>
     {{formValidate}}
 </if-form>
