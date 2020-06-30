@@ -2,7 +2,7 @@
 <div class="index-box">
     <ting-about />
     <ting-type />
-    <ting-content/>
+    <!-- <ting-content/> -->
 </div>
 </template>
 

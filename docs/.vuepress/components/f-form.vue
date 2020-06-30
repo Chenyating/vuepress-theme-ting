@@ -6,13 +6,6 @@
     <if-form-item label="E-mail" prop="mail">
         <if-input v-model="formValidate.mail" placeholder="Enter your e-mail"></if-input>
     </if-form-item>
-    <if-form-item label="City" prop="city">
-        <if-select v-model="formValidate.city" placeholder="Select your city">
-            <if-option value="beijing">New York</if-option>
-            <if-option value="shanghai">London</if-option>
-            <if-option value="shenzhen">Sydney</if-option>
-        </if-select>
-    </if-form-item>
     <if-form-item label="Gender" prop="gender">
         <if-radio-group v-model="formValidate.gender">
             <if-radio label="male">Male</if-radio>

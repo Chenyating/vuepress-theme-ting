@@ -1,10 +1,6 @@
 <template>
 <div class="box">
     <div class="tag-box">
-        <div class="tag-item" @click="goCatalog('all')">
-            <div class="tag-name">全部</div>
-            <div class="tag-num">{{tagList.length}}</div>
-        </div>
         <div class="tag-item" @click="goCatalog(item.date)" v-for="(item,index) in tags" :key="index">
             <div class="tag-name">{{item.date}}</div>
             <div class="tag-num">{{item.count}}</div>

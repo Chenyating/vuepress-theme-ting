@@ -3,8 +3,20 @@
     <ting-nav />
     <!-- <if-page class="catalog-page" :every='everyPageNumber' :total='catalogList.length' @change="choosePage" verySimple show-sizer /> -->
     <if-timeAxis :show="nowTag==item.date?true:false" @click="changeType(item.date)" v-for="(item,index) in tags" :key="index" :title="item.date+'('+item.count+')'">
-        <if-timeAxis-item @click="goArticle(item.path)" v-if="item&&item.frontmatter.layout!='catalog'" v-for="(item,index) in list" :key="index" :title="item.title?item.title:'未命名'" :time="new Date(item.lastUpdated).toLocaleString()">
-            <!-- <if-image fit='fill' src='https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg' style="width: 100px; height: 100px"></if-image> -->
+        <if-timeAxis-item @click="goArticle(item.path)" v-if="item&&item.frontmatter.layout!='catalog'" v-for="(item,index) in list" :key="index" :time="new Date(item.lastUpdated).toLocaleString()">
+            <div class="info-box">
+                <div v-if="item.frontmatter.img" class="img-box">
+                    <img class="catalog-img" :src="item.frontmatter.img" />
+                </div>
+                <div>
+                    <div>
+                        《 {{item.title?item.title:'未命名' }} 》
+                    </div>
+                    <div>
+                        可能有介绍的话之类的；
+                    </div>
+                </div>
+            </div>
         </if-timeAxis-item>
     </if-timeAxis>
 
@@ -113,7 +125,7 @@ export default {
         }
     },
     mounted() {
-        this.everyPageNumber =30;
+        this.everyPageNumber = 30;
         this.nowTag = this.$route.query.type ? this.$route.query.type : 'all';
         this.init(this.nowTag);
         this.choosePage(0);
@@ -123,4 +135,20 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.info-box {
+    display flex;
+    flex-wrap wrap;
+
+    .img-box {
+        text-align center;
+        width 100px;
+
+        .catalog-img {
+            object-fit fill;
+            width 100%;
+            height auto;
+
+        }
+    }
+}
 </style>
