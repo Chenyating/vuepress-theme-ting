@@ -4,6 +4,7 @@
     <br/>
     <br/>
     <div>{{msg}}</div>
+    <if-button @click="bey">ddd</if-button>
 </div>
 </template>
 <script>
@@ -16,6 +17,11 @@ export default {
     computed:{
         msg(){
             return this.ms
+        }
+    },
+    methods:{
+        bey(){
+            this.ms=''
         }
     }
 }
