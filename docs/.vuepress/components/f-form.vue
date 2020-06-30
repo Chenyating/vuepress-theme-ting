@@ -1,5 +1,13 @@
 <template>
 <if-form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
+    <!-- <if-form-item label="Hobby" prop="interest">
+        <if-checkbox-group v-model="formValidate.interest">
+            <if-checkbox label="Eat"></if-checkbox>
+            <if-checkbox label="Sleep"></if-checkbox>
+            <if-checkbox label="Run"></if-checkbox>
+            <if-checkbox label="Movie"></if-checkbox>
+        </if-checkbox-group>
+    </if-form-item> -->
     <if-form-item label="Name" prop="name">
         <if-input v-model="formValidate.name" placeholder="Enter your name"></if-input>
     </if-form-item>
@@ -19,19 +27,12 @@
             <if-radio label="female">Female</if-radio>
         </if-radio-group>
     </if-form-item>
-    <if-form-item label="Hobby" prop="interest">
-        <if-checkbox-group v-model="formValidate.interest">
-            <if-checkbox label="Eat"></if-checkbox>
-            <if-checkbox label="Sleep"></if-checkbox>
-            <if-checkbox label="Run"></if-checkbox>
-            <if-checkbox label="Movie"></if-checkbox>
-        </if-checkbox-group>
-    </if-form-item>
     <if-form-item label="Desc" prop="desc">
         <if-input v-model="formValidate.desc" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter something..."></if-input>
     </if-form-item>
     <if-form-item>
         <if-button type="primary" @click="handleSubmit('formValidate')">Submit</if-button>
+        <if-button @click="handleReset('formValidate')" style="margin-left: 8px">Reset</if-button>
     </if-form-item>
     {{formValidate}}
 </if-form>
@@ -123,16 +124,8 @@ export default {
             })
         },
         handleReset(name) {
-            this.$nextTick(()=>{
-                this.formValidate = {
-                    name: '',
-                    mail: '',
-                    city: '',
-                    gender: '',
-                    interest: [],
-                    time: '',
-                    desc: ''
-                }
+            this.$refs[name].reset((valid) => {
+
             })
         }
     }

@@ -27,5 +27,6 @@ module.exports = {
     markdown: {
         lineNumbers: true
     },
-    // theme: 'ting'
+    // theme: 'ting',
+    port: 1234
 }
