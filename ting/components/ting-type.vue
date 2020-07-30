@@ -84,12 +84,10 @@ export default {
 <style lang="stylus" scoped>
 .box{
     background #fff;
-    padding-top 40px;
     .tag-box {
-        padding-top 20px;
         background #ffffff;
         display grid;
-        grid-template-columns 1fr 1fr 1fr;
+        grid-template-columns:1fr 1fr minmax(300px, 1fr);
         background: url("../public/icon/lo.png") no-repeat, url("../public/icon/nav.png") no-repeat;
         background-size: 40px 40px, 167px 196px;
         background-position left,right bottom;

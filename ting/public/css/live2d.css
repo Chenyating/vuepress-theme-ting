@@ -1,17 +1,16 @@
 #landlord {
-    /* user-select: none; */
-    position: fixed;
-    left: 30px;
-    bottom: 0;
-    width: 280px;
-    /* height: 250px; */
-    z-index: 10000;
+    width: 300px;
+    height: 250px;
     font-size: 0;
     transition: all .3s ease-in-out;
+    position: relative;
+    margin: 0 auto;
 }
 
 #live2d {
     position: relative;
+    margin: 0 auto;
+    display: block;
 }
 
 .hide-button {
@@ -39,12 +38,6 @@
 .hide-button:hover {
     border: 1px solid #c4deaa;
     background: #f4f6f8;
-}
-
-@media (max-width: 860px) {
-    #landlord {
-        display: none;
-    }
 }
 
 @keyframes shake {

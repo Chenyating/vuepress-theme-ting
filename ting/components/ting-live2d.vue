@@ -1,16 +1,16 @@
 <template>
 <div id="landlord">
-    <div class="chat-box">
-        <div v-for="(item,index) in chatList" :key="index">
-            <div class="me">我：{{item.me}}</div><br />
-            <div class="robot">机器人：{{item.you}}</div>
-        </div>
-    </div>
     <audio id="mp3" controls="controls" controlsList="nodownload" hidden>
         <source type="audio/mp3"></audio>
     <robot class="robot" @getResult='reciveResult($event)' />
-    <!-- <div class="message" id="live2deMessage" style="opacity:1">hello~</div> -->
     <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
+    <div class="chat-box">
+        <!-- <div v-for="(item,index) in chatList" :key="index">
+            <div class="me">我：{{item.me}}</div><br /> -->
+        <!-- <div class="robot">机器人：{{item.you}}</div> -->
+        <!-- </div> -->
+        <div class="robot" v-if="content">{{content}}</div>
+    </div>
 </div>
 </template>
 
@@ -24,11 +24,13 @@ export default {
     data() {
         return {
             url: null,
-            chatList: []
+            chatList: [],
+            content: ''
         }
     },
     methods: {
         reciveResult(txt) {
+            this.content = txt.you;
             this.chatList.push(txt);
             var audio = document.getElementById('mp3');
             audio.setAttribute("src", 'https://yating.online/mm/speech?text=' + txt.you);
@@ -56,26 +58,16 @@ export default {
         },
         show() {
             this.ifShow = !this.ifShow;
-            console.log(this.ifShow)
         }
     },
     mounted() {
         this.url = this.$site.themeConfig.live2dModel
-        // console.log(this.url, "???????")
-        // if (this.url != undefined) {
-        //     // this.loadJs("https://www.yating.online/res/js/message.js")
-        //     this.loadJs("https://www.yating.online/res/js/live2d.js")
-        //     window.onload = () => {
-        //         loadlive2d("live2d", this.url);
-        //     }
-        // } else {
+        if (this.url != undefined) {
             this.loadJs("https://www.yating.online/res/js/live2d.js")
-            // this.loadJs("/live2d/live2d.js")
             window.onload = () => {
-                let r = Math.floor(Math.random() * 88);
-                loadlive2d("live2d", "https://cdn.jsdelivr.net/gh/mumudadi/live2dw@latest/assets/live2d-widget-model-Pio/assets/" + r + ".json");
-            };
-        // }
+                loadlive2d("live2d", this.url);
+            }
+        }
     }
 
 };
@@ -84,13 +76,7 @@ export default {
 <style lang="stylus" scoped>
 @import url("../public/css/live2d.css");
 
-.live-2d-box {
-    position: fixed;
-    z-index: 9999;
-}
-
 .chat-box {
-    position relative;
     font-size 13px;
     line-height 20px;
 
@@ -104,11 +90,23 @@ export default {
 
     .robot {
         display inline-block;
-        margin 10px 0;
+        margin 10px auto;
         border-radius 10px;
         padding 10px;
         background #0000000d;
         color black;
+        position absolute;
+        top 40px;
+        display flex;
+        &::after {
+            margin-left 10px;
+            content: "";
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-left-color: #0000000d;
+            z-index: 1;
+        }
     }
 }
 

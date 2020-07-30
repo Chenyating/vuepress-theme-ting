@@ -46,11 +46,11 @@ export default {
 
 <style lang="stylus" scoped>
 .robot-box {
-    position fixed;
     z-index 99;
     display flex;
     align-content center;
     justify-content center;
+    width 100%;
 
     input {
         border-radius 5px;

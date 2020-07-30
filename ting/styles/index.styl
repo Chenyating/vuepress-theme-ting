@@ -1,12 +1,13 @@
-@require './tingAnimation'
 
-html, body
-  padding 0
+html, body, #app{
+  width 100%;
+  height 100%;
+    padding 0
   margin 0
   background-color #fff
-
-@require './base'
-@require './tingCode'
+  // 解决vue高度100%无效问题
+  overflow-x: hidden
+}
 
 ::-webkit-scrollbar {
   width: 3px;
@@ -19,4 +20,9 @@ html, body
   background-color: #88c1ea;
   background linear-gradient(#88c1ea, white)
 }
+
+
+@require './tingAnimation'
+@require './base'
+@require './tingCode'
 

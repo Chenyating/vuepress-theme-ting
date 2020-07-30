@@ -1,23 +1,13 @@
 <template>
-<tingNav>
-    <div slot='expand' class="info-box">
-        <img class="my-phone" :src="headImg" />
-        <div class="info">
-            <div>
-                <div class="my-name">{{$site.themeConfig.author}}</div>
-                <div class="des">{{$site.description}}</div>
-            </div>
-        </div>
-    </div>
-</tingNav>
+<div class="info-box">
+    <img class="my-phone" :src="headImg" />
+    <div class="my-name">{{$site.themeConfig.author}}</div>
+    <div class="des">{{$site.description}}</div>
+</div>
 </template>
 
 <script>
-import tingNav from "../components/ting-nav.vue";
 export default {
-    components: {
-        tingNav,
-    },
     data() {
         return {
             headImg: "https://yating.online/res/img/yating.jpg",
@@ -37,39 +27,30 @@ export default {
 
 <style lang="stylus" scoped>
 .info-box {
-    background #ffffff;
-    margin 0 20px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    width 100%;
+    background #d7e2d2;
+    padding 50px 0;
+    text-align center;
+    box-sizing border-box;
+    border solid 3px #ffffff;
 
     .my-phone {
-        transform translateY(-40px);
-        width 80px;
-        height 80px;
+        width 200px;
+        height 200px;
         border solid 3px #ffffff;
-        border-radius: 80px;
-        display block;
-        margin 0 50px;
+        border-radius: 200px;
     }
 
-    .info {
-        padding-left 2em;
-        transform translateY(-30px);
-
-        .my-name {
-            font-weight bold;
-            font-size 20px;
-            margin-bottom 10px;
-        }
-
-        .des {}
-    }
-}
-
-@media (max-width $MQNarrow) {
-    .info-box {
-        transform translateY(50px);
+    .my-name {
+        margin-top 30px;
+        font-weight bold;
+        font-size 60px;
+        margin-bottom 10px;
     }
 
+    .des {
+        font-size 16px;
+        font-weight lighter;
+    }
 }
 </style>

@@ -35,7 +35,7 @@ export default {
             catalogList: [],
             pageId: 1,
             pageNum: null, //分页
-            list: [],
+            list: [],//该分类下的文章列表
             nowList: [],
             everyPageNumber: 30, //每页多少个
             tagList: [],

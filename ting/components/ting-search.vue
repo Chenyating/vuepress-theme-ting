@@ -98,12 +98,8 @@ export default {
 
 <style lang="stylus" scoped>
 .search-box {
-    display flex;
-    height 2em;
-    flex-wrap wrap;
-    justify-content center;
     position relative;
-
+    margin 0 auto;
     input {
         border-radius 20px;
         padding 5px 10px;
@@ -120,6 +116,7 @@ export default {
 
     .result-list {
         position absolute;
+        top 0px;
         left  0;
         margin 0 auto;
         margin-top 40px;
