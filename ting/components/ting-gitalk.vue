@@ -24,4 +24,9 @@
         }
     }
 </script>
+<style lang="stylus" scoped>
+#gitalk-container{
+    padding 20px 0;
+}
+</style>
  

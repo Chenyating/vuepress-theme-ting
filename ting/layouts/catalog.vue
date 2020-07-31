@@ -1,63 +1,52 @@
 <template>
 <div>
-    <ting-nav />
-    <!-- <if-page class="catalog-page" :every='everyPageNumber' :total='catalogList.length' @change="choosePage" verySimple show-sizer /> -->
-    <if-timeAxis left :show="nowTag==item.date?true:false" @click="changeType(item.date)" v-for="(item,index) in tags" :key="index" :title="item.date+'('+item.count+')'">
-        <if-timeAxis-item @click="goArticle(item.path)" v-if="item&&item.frontmatter.layout!='catalog'" v-for="(item,index) in list" :key="index" :time="new Date(item.lastUpdated).toLocaleString()">
-            <div class="info-box">
-                <div v-if="item.frontmatter.img" class="img-box">
-                    <img class="catalog-img" :src="item.frontmatter.img" />
-                </div>
-                <div v-else class="img-box">
-                    <img class="catalog-img" src="item.frontmatter.img" />
-                </div>
-                <div>
-                    <div class="title">
-                        {{item.title?item.title:'未命名' }}
-                    </div>
-                    <div>
-                        可能有介绍的话之类的；
-                    </div>
-                </div>
-            </div>
-        </if-timeAxis-item>
-    </if-timeAxis>
-
+    <div class="select-box">
+        <div class="select-tip">类别:</div>
+        <div :class="nowTag=='all'?'select-type':'type-catalog'" @click="changeType('all')">全部</div>
+        <div :class="nowTag==item?'select-type':'type-catalog'" @click="changeType(item)" v-for="item in tagList" :key="item">{{item}}</div>
+    </div>
+    <div class="catalog-box">
+        <if-card v-if="item" class="catalog-item-big" @click="goArticle(item.path)" v-for="(item,index) in list" :key="index">
+            <!-- 更新时间 -->
+            <div class="title">{{item.title?item.title:'未命名'}}</div>
+            <if-divider dashed />
+            <div class="tag"> {{item.lastUpdated?item.lastUpdated:item.title}}</div>
+            <if-tag dot fill>
+                {{item.tag }}
+            </if-tag>
+            <!-- 标题 -->
+        </if-card>
+    </div>
+    <if-page class="page-box" @change="haha" :every='everyPageNumber' showTotal :total='catalogList.length' />
 </div>
 </template>
 
 <script>
-import tingNav from "../components/ting-nav.vue";
 export default {
-    components: {
-        tingNav,
-    },
     name: 'catalog',
     data() {
         return {
             catalogList: [],
             pageId: 1,
             pageNum: null, //分页
-            list: [], //该分类下的文章列表
+            list: [],
             nowList: [],
-            everyPageNumber: 30, //每页多少个
+            everyPageNumber: 10, //每页多少个
             tagList: [],
-            tags: [],
-            nowTag: 'Blogs',
-            showCatalog: false,
+            nowTag: 'all'
         }
     },
     methods: {
-        ifshowCatalog() {
-            this.showCatalog = !this.showCatalog;
+        haha(i) {
+            this.choosePage(i - 1)
         },
         changeType(val) {
             this.nowTag = val;
             this.init(val);
             this.choosePage(0);
-            this.showCatalog = false;
         },
         choosePage(num) {
+            console.log(num)
             this.pageId = num;
             var startIndex = this.pageId * this.everyPageNumber;
             var endIndex = startIndex + this.everyPageNumber - 1;
@@ -66,13 +55,6 @@ export default {
                     return element;
                 }
             })
-            if (this.list[0].lastUpdated) {
-                this.list.sort((function (a, b) {
-                    var x = new Date(a['lastUpdated']).valueOf();
-                    var y = new Date(b['lastUpdated']).valueOf();
-                    return x > y ? -1 : x < y ? 1 : 0;
-                }))
-            }
         },
         goArticle(link) {
             this.$router.push(link)
@@ -83,27 +65,11 @@ export default {
                 var str = element.regularPath;
                 var taglist = str.split('/').reverse();
                 var l = decodeURIComponent(taglist[1]);
-                if (l != '') {
+                if (l != '' && l != 'config') {
                     this.tagList.push(l);
                 }
             })
-            var arr = [];
-            this.tagList.sort()
-            for (var i = 0; i < this.tagList.length;) {
-                var count = 0;
-                for (var j = i; j < this.tagList.length; j++) {
-                    if (this.tagList[i] === this.tagList[j]) {
-                        count++;
-                    }
-                }
-                arr.push({
-                    date: this.tagList[i],
-                    count: count
-                })
-                i += count;
-            }
-            this.tags = arr;
-
+            this.tagList = new Set(this.tagList);
         },
         init(tagType) {
             //获得所有文章
@@ -128,8 +94,7 @@ export default {
         }
     },
     mounted() {
-        this.everyPageNumber = 30;
-        this.nowTag = this.$route.query.type ? this.$route.query.type : 'all';
+        this.nowTag = 'all';
         this.init(this.nowTag);
         this.choosePage(0);
         this.getTag();
@@ -138,24 +103,160 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.info-box {
+.page-box {
+    display flex;
+    margin 0 auto;
+    justify-content center;
+}
+
+.select-box {
     display flex;
     flex-wrap wrap;
-    padding 5%;
-    .title {
-        font: 700 2em/1 "Oswald", sans-serif;
+    align-items center;
+    max-width 1024px;
+    margin 0 auto;
+    padding-top 20px;
+    padding-left 20px;
+    padding-bottom 10px;
+
+    .select-tip {
+        margin-right 5px;
+        font-size 1em;
+        font-weight bold;
+        color #6aa57b;
     }
 
-    .img-box {
-        text-align center;
-        width 100px;
+    .select-type {
+        padding 5px 10px;
+        color #2e5c77;
+        text-shadow 1px 1px 10px #2e5c77;
+        cursor: pointer;
+    }
 
-        .catalog-img {
-            object-fit fill;
-            width 100%;
-            height auto;
+    .type-catalog {
+        text-shadow 1px 1px 10px white;
+        padding 5px 10px;
+        cursor: pointer;
+    }
+}
 
-        }
+.tag {
+    width 100%;
+    color green;
+    margin 10px;
+    font-size 0.8em;
+    display flex;
+
+    &:before {
+        content: " ";
+        display: block;
+        height 20px;
+        width 20px;
+        background: url("../public/icon/lo.png");
+        background-repeat repeat-x;
+        background-size 20px 20px;
+        bottom 0px;
+        margin-right 5px;
+    }
+}
+
+.page-select {
+    font-weight bold;
+    height 50px !important;
+}
+
+.catalog-big {
+    display flex;
+    align-items flex-start;
+    max-width 1024px;
+    margin 0 auto;
+}
+
+.article-time {
+    -webkit-writing-mode: vertical-rl;
+    writing-mode: vertical-rl;
+    max-height 100px;
+    padding 10px;
+    border: 1px solid green border-bottom 0;
+    border-top 0;
+    vertical-align bottom;
+    margin 5px;
+    margin-bottom 0;
+    letter-spacing 5px;
+    /*color #a8c4d4;*/
+    color green;
+    display flex;
+    font-size 12px;
+    justify-content center;
+    overflow: hidden;
+    /*超出部分隐藏*/
+    text-overflow: ellipsis;
+    /* 超出部分显示省略号 */
+}
+
+.title {
+    display block;
+    width inherit;
+    font-size 25px;
+    letter-spacing 3px;
+    color #2e5c77 margin-left 10px;
+    overflow: hidden;
+    /*超出部分隐藏*/
+    text-overflow: ellipsis;
+    /* 超出部分显示省略号 */
+}
+
+.text {
+    height 50px;
+    color #2c3e50 font-size 12px;
+    overflow: hidden;
+    /*超出部分隐藏*/
+    text-overflow: ellipsis;
+    /* 超出部分显示省略号 */
+}
+
+.catalog-item-big {
+    height: auto;
+    margin: 2%;
+    padding: 2%;
+    background white;
+    flex-grow 1;
+    cursor pointer;
+
+    &:nth-child(2n) {
+        animation moveing infinite 15s alternate;
+    }
+
+    &:hover {
+        background #f5f9fc;
+    }
+}
+
+.catalog-item {
+    background: url("../public/icon/li.png") no-repeat;
+    background-size: 50px 50px;
+    background-position right top;
+    display flex;
+    align-items stretch;
+}
+
+.catalog-box {
+    display flex;
+    flex-wrap wrap;
+    flex-grow 1;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+@keyframes pageCart {
+    from {
+        height 30px;
+        transform scaleY(30px)
+    }
+
+    to {
+        height 50px;
+        transform scaleY(50px)
     }
 }
 </style>

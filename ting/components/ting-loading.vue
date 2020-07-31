@@ -1,13 +1,83 @@
 <template>
-<div class="loading">
-    <div>
-        <div class="loader"></div>
-        <div class="text">正在加载中~</div>
+<transition name="fade">
+    <div class="loading">
+        <p class="my-name ">
+            <span>
+                {{$site.themeConfig.author}}
+            </span><br />
+        </p>
+        <span class="text">正在加载中~</span>
     </div>
-</div>
+</transition>
 </template>
 
-<style>
+<style lang="stylus" scoped>
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity .5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.my-name {
+    position: absolute;
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+    padding: 1.5em 0em;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    text-align: center;
+    z-index -1;
+    font-size 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+
+        font: 700 4em/1 "Oswald", sans-serif;
+        letter-spacing: 0;
+        padding: .25em 0 .325em;
+        display: block;
+        margin: 0 auto;
+        text-shadow: 0 0 80px rgba(255, 255, 255, .5);
+
+        /* Clip Background Image */
+
+        background: url(http://f.cl.ly/items/010q3E1u3p2Q0j1L1S1o/animated_text_fill.png) repeat-y;
+        -webkit-background-clip: text;
+        background-clip: text;
+
+        /* Animate Background Image */
+
+        -webkit-text-fill-color: transparent;
+        -webkit-animation: aitf 80s linear infinite;
+
+        /* Activate hardware acceleration for smoother animations */
+
+        -webkit-transform: translate3d(0, 0, 0);
+        -webkit-backface-visibility: hidden;
+    }
+}
+
+/* Animate Background Image */
+
+@-webkit-keyframes aitf {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
 @keyframes typing {
     from {
         width: 0;
@@ -15,7 +85,7 @@
 }
 
 .text {
-    margin-top:2em;
+    margin-top: 2em;
     width: 7em;
     position: absolute;
     font-weight: bold;
@@ -23,89 +93,18 @@
     white-space: nowrap;
     border-right: 0.1em solid;
     animation: typing 5s steps(16) infinite;
+    margin-top 100px;
 }
 
 .loading {
     width: 100%;
     height: 100%;
     left: 0;
-    background: #c4deaa;
+    background: #d7e2d2;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 11111;
     position: fixed;
 }
-
-.loader {
-    position: relative;
-    width: 5em;
-    height: 5em;
-    transform: rotate(165deg);
-}
-
-.loader:before,
-.loader:after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    display: block;
-    width: 1em;
-    height: 1em;
-    border-radius: 0.25em;
-    transform: translate(-50%, -50%);
-}
-
-.loader:before {
-    animation: before 2s infinite;
-}
-
-.loader:after {
-    animation: after 2s infinite;
-}
-
-@keyframes before {
-    0% {
-        width: 1em;
-        box-shadow: 2em -1em rgba(225, 20, 98, 0.75), -2em 1em rgba(111, 202, 220, 0.75);
-    }
-
-    35% {
-        width: 5em;
-        box-shadow: 0 -1em rgba(225, 20, 98, 0.75), 0 1em rgba(111, 202, 220, 0.75);
-    }
-
-    70% {
-        width: 1em;
-        box-shadow: -2em -1em rgba(225, 20, 98, 0.75), 2em 1em rgba(111, 202, 220, 0.75);
-    }
-
-    100% {
-        box-shadow: 2em -1em rgba(225, 20, 98, 0.75), -2em 1em rgba(111, 202, 220, 0.75);
-    }
-}
-
-@keyframes after {
-    0% {
-        height: 1em;
-        box-shadow: 1em 2em rgba(61, 184, 143, 0.75), -1em -2em rgba(233, 169, 32, 0.75);
-    }
-
-    35% {
-        height: 5em;
-        box-shadow: 1em 0 rgba(61, 184, 143, 0.75), -1em 0 rgba(233, 169, 32, 0.75);
-    }
-
-    70% {
-        height: 1em;
-        box-shadow: 1em -2em rgba(61, 184, 143, 0.75), -1em 2em rgba(233, 169, 32, 0.75);
-    }
-
-    100% {
-        box-shadow: 1em 2em rgba(61, 184, 143, 0.75), -1em -2em rgba(233, 169, 32, 0.75);
-    }
-}
-
-.loader {}
 </style>

@@ -57,7 +57,6 @@ export default {
         padding-bottom: 60px;
         box-sizing: border-box;
         background #d7e2d2;
-
         .container-inner {
             margin: 0 auto;
             min-height: 100%;
@@ -73,7 +72,8 @@ export default {
         text-align center;
         line-height 60px;
         margin-top: -60px;
-        font-size 1em;
+        font-weight light;
+        font-size 12px;
     }
 }
 </style>
