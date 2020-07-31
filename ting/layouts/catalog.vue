@@ -2,15 +2,18 @@
 <div>
     <ting-nav />
     <!-- <if-page class="catalog-page" :every='everyPageNumber' :total='catalogList.length' @change="choosePage" verySimple show-sizer /> -->
-    <if-timeAxis :show="nowTag==item.date?true:false" @click="changeType(item.date)" v-for="(item,index) in tags" :key="index" :title="item.date+'('+item.count+')'">
+    <if-timeAxis left :show="nowTag==item.date?true:false" @click="changeType(item.date)" v-for="(item,index) in tags" :key="index" :title="item.date+'('+item.count+')'">
         <if-timeAxis-item @click="goArticle(item.path)" v-if="item&&item.frontmatter.layout!='catalog'" v-for="(item,index) in list" :key="index" :time="new Date(item.lastUpdated).toLocaleString()">
             <div class="info-box">
                 <div v-if="item.frontmatter.img" class="img-box">
                     <img class="catalog-img" :src="item.frontmatter.img" />
                 </div>
+                <div v-else class="img-box">
+                    <img class="catalog-img" src="item.frontmatter.img" />
+                </div>
                 <div>
-                    <div>
-                        《 {{item.title?item.title:'未命名' }} 》
+                    <div class="title">
+                        {{item.title?item.title:'未命名' }}
                     </div>
                     <div>
                         可能有介绍的话之类的；
@@ -35,7 +38,7 @@ export default {
             catalogList: [],
             pageId: 1,
             pageNum: null, //分页
-            list: [],//该分类下的文章列表
+            list: [], //该分类下的文章列表
             nowList: [],
             everyPageNumber: 30, //每页多少个
             tagList: [],
@@ -138,6 +141,10 @@ export default {
 .info-box {
     display flex;
     flex-wrap wrap;
+    padding 5%;
+    .title {
+        font: 700 2em/1 "Oswald", sans-serif;
+    }
 
     .img-box {
         text-align center;

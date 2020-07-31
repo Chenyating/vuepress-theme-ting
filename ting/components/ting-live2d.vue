@@ -2,24 +2,25 @@
 <div id="landlord">
     <audio id="mp3" controls="controls" controlsList="nodownload" hidden>
         <source type="audio/mp3"></audio>
-    <robot class="robot" @getResult='reciveResult($event)' />
+    <tingSearch class="robot" @getResult='reciveResult($event)' />
     <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
-    <div class="chat-box">
-        <!-- <div v-for="(item,index) in chatList" :key="index">
-            <div class="me">我：{{item.me}}</div><br /> -->
-        <!-- <div class="robot">机器人：{{item.you}}</div> -->
-        <!-- </div> -->
-        <div class="robot" v-if="content">{{content}}</div>
-    </div>
+    <!-- <div class="chat-box">
+        <div v-for="(item,index) in chatList" :key="index">
+            <div class="me">我：{{item.me}}</div>
+            <div class="robot">机器人：{{item.you}}</div>
+        </div>
+    </div> -->
 </div>
 </template>
 
 <script>
 import $ from 'jQuery';
 import robot from "../components/ting-robot.vue";
+import tingSearch from "../components/ting-search.vue";
 export default {
     components: {
-        robot
+        robot,
+        tingSearch
     },
     data() {
         return {
@@ -79,6 +80,8 @@ export default {
 .chat-box {
     font-size 13px;
     line-height 20px;
+    position fixed;
+    height 100%;
 
     .me {
         color #949593;
@@ -86,32 +89,20 @@ export default {
         padding 10px;
         border-radius 10px;
         display inline-block;
+        white-space nowrap;
     }
 
     .robot {
         display inline-block;
         margin 10px auto;
+        white-space nowrap;
         border-radius 10px;
         padding 10px;
         background #0000000d;
         color black;
         position absolute;
-        top 40px;
+        top 50px;
         display flex;
-        &::after {
-            margin-left 10px;
-            content: "";
-            width: 0;
-            height: 0;
-            border: 10px solid transparent;
-            border-left-color: #0000000d;
-            z-index: 1;
-        }
     }
-}
-
-.robot {
-    z-index: 99;
-    margin: 0 auto;
 }
 </style>

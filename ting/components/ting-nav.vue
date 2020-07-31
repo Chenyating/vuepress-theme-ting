@@ -1,6 +1,6 @@
 <template>
 <div class="nav">
-    <div class="link-item" v-for="(item,index) in navLinkList" :key="index">
+    <div class="link-item btn-4" @mouseenter="changeText(item.text)" v-for="(item,index) in navLinkList" :key="index">
         <a :href="item.link" v-if="item.type=='url'">
             {{item.text}}
         </a>
@@ -23,6 +23,13 @@ export default {
     methods: {
         goCatalog(tagType) {
             this.$router.push(`${this.$site.themeConfig.catalogUrl}.html?type=${tagType}`);
+        },
+        changeText(txt) {
+            console.log()
+            var text = document.getElementById('bgText');
+            if (text) {
+                text.innerText = txt;
+            }
         }
     },
     mounted() {
@@ -43,22 +50,14 @@ export default {
     font-weight bold;
 
     .link-item {
-        a {
-            overflow: hidden;
-            writing-mode: vertical-lr;
-            /*从左向右 从右向左是 writing-mode: vertical-rl;*/
-            writing-mode: tb-lr;
-            text-decoration: none;
-            font-weight bold;
-            out-line: none;
-            // color #fff;
-            // text-shadow 1px 1px #000;
+        border-radius 20px;
 
-            &:hover {
-                color #ffffff;
-            }
+        a {
+            color white;
+            text-decoration: shade;
         }
 
+        text-align center;
         cursor pointer;
         font-size 1em;
         //文字垂直
@@ -69,6 +68,8 @@ export default {
         margin-bottom 0;
         letter-spacing 5px;
         font-weight bold;
+        margin 5px;
     }
+
 }
 </style>

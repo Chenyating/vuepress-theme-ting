@@ -73,6 +73,7 @@ export default {
         text-align center;
         line-height 60px;
         margin-top: -60px;
+        font-size 1em;
     }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
 <div class="search-box">
-    <if-input icon="apple" autofocus="autofocus" v-model="searchKey" placeholder="搜索"/>
+    <if-input icon="fish" @blur="hiddent" autofocus="autofocus" v-model="searchKey" placeholder="搜索" />
     <div v-if="searchKey&&searchTitles.length" class="result-list">
         <div class="result-item" v-for="(item,index) in searchTitles" @click="searchLink(item.road)" :key="index">
             <span class="title">{{item.title}} </span>
@@ -84,7 +84,10 @@ export default {
                     })
                 }
             })
-        }
+        },
+        hiddent() {
+            this.searchKey = '';
+        },
     },
     mounted() {
         if (this.$site.themeConfig.headImg) {
@@ -100,6 +103,12 @@ export default {
 .search-box {
     position relative;
     margin 0 auto;
+    width 100%;
+
+    .if-input {
+        width 100%;
+    }
+
     input {
         border-radius 20px;
         padding 5px 10px;
@@ -117,13 +126,14 @@ export default {
     .result-list {
         position absolute;
         top 0px;
-        left  0;
+        left 0;
         margin 0 auto;
         margin-top 40px;
         background #ffffff;
         border solid 1px #f1f2f4;
         z-index 9;
-        box-shadow:0 2px 7px rgba(0,0,0,.15);
+        box-shadow: 0 2px 7px rgba(0, 0, 0, .15);
+        width 100%;
 
         .result-item {
             border-bottom solid 1px #f1f2f4;
@@ -133,6 +143,7 @@ export default {
                 font-weight bold;
                 max-width 50%
             }
+
             .to {
                 color #3eaf7c;
                 margin 0 10px;
@@ -143,5 +154,6 @@ export default {
             }
         }
     }
+
 }
 </style>
