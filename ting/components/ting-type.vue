@@ -82,30 +82,38 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.box{
+.box {
+    display block;
     background #fff;
+
     .tag-box {
         background #ffffff;
         display grid;
-        grid-template-columns:1fr 1fr minmax(300px, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(16.4rem, 1fr));
         background: url("../public/icon/lo.png") no-repeat, url("../public/icon/nav.png") no-repeat;
         background-size: 40px 40px, 167px 196px;
-        background-position left,right bottom;
+        background-position left,
+        right bottom;
+
         .tag-item {
             text-align center;
             padding 10px;
+
             &:hover {
                 box-shadow: 0 2px 7px rgba(0, 0, 0, .15);
             }
+
             .tag-name {
                 font-size 16px;
             }
+
             .tag-num {
                 font-weight bold;
                 font-size 30px;
             }
         }
     }
+
     .search-box {
         margin 0 atuo;
     }

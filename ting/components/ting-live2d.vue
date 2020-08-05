@@ -1,8 +1,8 @@
 <template>
 <div id="landlord">
+    <robot/>
     <audio id="mp3" controls="controls" controlsList="nodownload" hidden>
         <source type="audio/mp3"></audio>
-    <tingSearch class="robot" @getResult='reciveResult($event)' />
     <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
     <!-- <div class="chat-box">
         <div v-for="(item,index) in chatList" :key="index">
@@ -16,11 +16,9 @@
 <script>
 import $ from 'jQuery';
 import robot from "../components/ting-robot.vue";
-import tingSearch from "../components/ting-search.vue";
 export default {
     components: {
         robot,
-        tingSearch
     },
     data() {
         return {

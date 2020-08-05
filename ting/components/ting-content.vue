@@ -1,12 +1,12 @@
 <template>
 <div class="content-box">
-    <div class="catalog " v-if="showMessage">
+    <!-- <div class="catalog " v-if="showMessage"> -->
         <!-- 标题-->
-        <div v-if="preTitle.title" @click="goArticle(preTitle)" class="levelTitle">上一篇:《{{preTitle.title}}》</div>
+        <!-- <div v-if="preTitle.title" @click="goArticle(preTitle)" class="levelTitle">上一篇:《{{preTitle.title}}》</div>
         <div class="level1">{{nowTitle}}</div>
         <a :class="[item.level==2?'level2':'level3',{'select':item.slug==selectTitle}]" v-for="(item,index) in $page.headers" :key="index" :href="'#'+item.slug" nofollow>{{item.title}}</a>
         <div v-if="nextTitle.title" @click="goArticle(nextTitle)" class="levelTitle">下一篇：《{{nextTitle.title}}》</div>
-    </div>
+    </div> -->
     <div class="content-all">
         <div class="title">
             {{nowTitle}}
@@ -177,7 +177,7 @@ export default {
     width 100%;
     box-sizing border-box;
     font-size 15px;
-    background rgba(255, 255, 255, 0.75);
+    background white;
     box-shadow 0 1px 1px 0 rgba(0, 0, 0, .1);
     padding 1em;
 }

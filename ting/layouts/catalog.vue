@@ -1,12 +1,11 @@
 <template>
 <div>
-    <div class="select-box">
-        <div class="select-tip">类别:</div>
-        <div :class="nowTag=='all'?'select-type':'type-catalog'" @click="changeType('all')">全部</div>
-        <div :class="nowTag==item?'select-type':'type-catalog'" @click="changeType(item)" v-for="item in tagList" :key="item">{{item}}</div>
-    </div>
+    <!-- <div class="select-box nav-links can-hide">
+        <if-tag :fill="nowTag=='all'?false:true" dot @click="changeType('all')">全部</if-tag>
+        <if-tag :fill="nowTag==item?false:true" dot @click="changeType(item)" v-for="item in tagList" :key="item">{{item}}</if-tag>
+    </div> -->
     <div class="catalog-box">
-        <if-card v-if="item" class="catalog-item-big" @click="goArticle(item.path)" v-for="(item,index) in list" :key="index">
+        <if-card v-show="item" class="catalog-item-big" @click="goArticle(item.path)" v-for="(item,index) in list" :key="index">
             <!-- 更新时间 -->
             <div class="title">{{item.title?item.title:'未命名'}}</div>
             <if-divider dashed />
@@ -22,8 +21,13 @@
 </template>
 
 <script>
+import tingNav from '../components/ting-nav.vue'
+
 export default {
     name: 'catalog',
+    components:{
+tingNav
+    },
     data() {
         return {
             catalogList: [],
@@ -110,33 +114,9 @@ export default {
 }
 
 .select-box {
-    display flex;
-    flex-wrap wrap;
-    align-items center;
-    max-width 1024px;
-    margin 0 auto;
-    padding-top 20px;
-    padding-left 20px;
-    padding-bottom 10px;
-
-    .select-tip {
-        margin-right 5px;
-        font-size 1em;
-        font-weight bold;
-        color #6aa57b;
-    }
-
-    .select-type {
-        padding 5px 10px;
-        color #2e5c77;
-        text-shadow 1px 1px 10px #2e5c77;
-        cursor: pointer;
-    }
-
-    .type-catalog {
-        text-shadow 1px 1px 10px white;
-        padding 5px 10px;
-        cursor: pointer;
+    .if-tag{
+        cursor pointer;
+        margin 5px;
     }
 }
 

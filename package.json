@@ -20,5 +20,8 @@
         "jquery": "^3.4.1",
         "vuepress": "^1.2.0",
         "vuepress-theme-ting": "^2.0.2"
+    },
+    "devDependencies": {
+        "@vuepress/plugin-blog": "^1.9.2"
     }
 }

@@ -23,7 +23,7 @@ module.exports = {
         live2dModel: '/live2d/model/tororo/tororo.model.json', //live2d模型路径
         //gitalk留言设置
         gitalk: gitalkConfig,
-        footer: '粤ICP备案号：18150247号'
+        footer: '粤ICP备案号：18150247号',
     },
     markdown: {
         lineNumbers: true

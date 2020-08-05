@@ -1,13 +1,13 @@
 <template>
 <div class="search-box">
-    <if-input icon="fish" @blur="hiddent" autofocus="autofocus" v-model="searchKey" placeholder="搜索" />
+    <!-- <if-input icon="fish" @blur="hiddent" autofocus="autofocus" v-model="searchKey" placeholder="搜索" />
     <div v-if="searchKey&&searchTitles.length" class="result-list">
         <div class="result-item" v-for="(item,index) in searchTitles" @click="searchLink(item.road)" :key="index">
             <span class="title">{{item.title}} </span>
             <span class="to" v-if="item.header">></span>
             <span class="search-header">{{item.header}}</span>
         </div>
-    </div>
+    </div> -->
 </div>
 </template>
 

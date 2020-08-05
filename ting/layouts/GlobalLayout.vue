@@ -2,9 +2,9 @@
 <div id="global-layout" v-cloak>
     <div class="container">
         <div class="container-inner">
-            <loading v-show="isloading" />
+            <tingNav />
             <keep-alive>
-                <component :is="layout" />
+                <component class="page" :is="layout" />
             </keep-alive>
         </div>
     </div>
@@ -13,18 +13,17 @@
 </template>
 
 <script>
-import loading from "../components/ting-loading.vue";
+import tingNav from '../components/ting-nav.vue'
+
 export default {
     data() {
         return {
-            isloading: true
         }
     },
     mounted() {
-        this.isloading = false
     },
     components: {
-        loading,
+        tingNav
     },
     computed: {
         layout() {
@@ -56,24 +55,22 @@ export default {
         width: 100%;
         padding-bottom: 60px;
         box-sizing: border-box;
-        background #d7e2d2;
         .container-inner {
+            padding-top 60px;
             margin: 0 auto;
-            min-height: 100%;
             width: 100%;
-            max-width 1024px;
             box-sizing: border-box;
-
         }
     }
 
     .foot {
         height: 60px;
-        text-align center;
+        text-align right;
         line-height 60px;
         margin-top: -60px;
         font-weight light;
         font-size 12px;
+        padding-right 2em;
     }
 }
 </style>
