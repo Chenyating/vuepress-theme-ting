@@ -1,56 +1,37 @@
 <template>
-<div>
-    <Navbar class="nav-top " @toggle-sidebar='showLink()' />
-    <div class="sidebar" :class="className">
-        <NavLinks />
-        <div>
-            <!-- <div v-if="preTitle.title" @click="goArticle(preTitle)" class="levelTitle">上一篇:《{{preTitle.title}}》</div>
-            <div class="level1">{{nowTitle}}</div> -->
-            <a v-for="(item,index) in $page.headers" :key="index" :href="'#'+item.slug" nofollow>{{item.title}}</a>
-            <!-- <div v-if="nextTitle.title" @click="goArticle(nextTitle)" class="levelTitle">下一篇：《{{nextTitle.title}}》</div> -->
-            <tingType/>
+<div class="nav-box">
+    <SidebarButton @toggle-sidebar="$emit('click-menu')"/>
+    <div class="nav">
+        <div class="link-item" v-for="(item,index) in navLinkList" :key="index">
+            <a :href="item.link" v-if="item.type=='url'">
+                {{item.text}}
+            </a>
+            <router-link tag='a' v-else :to="item.link">{{item.text}}</router-link>
         </div>
     </div>
+    <SearchBox class="search-box"/>
 </div>
 </template>
 
 <script>
-import Navbar from '@theme/components/Navbar.vue'
+import SidebarButton from '@theme/components/SidebarButton.vue'
 import NavLinks from '@theme/components/NavLinks.vue'
-import tingType from "../components/ting-type.vue";
-
+import SearchBox from '@SearchBox'
 
 export default {
     components: {
-        Navbar,
+        SidebarButton,
         NavLinks,
-        tingType
+        SearchBox
     },
     data() {
         return {
-            navLinkList: [],
-            ifshow: false,
-        }
-    },
-    computed: {
-          className() {
-            return [ {
-                [`sider-hide`]: this.ifshow,
-            }]
-        },
-        showCondition(){
-            return false
+            navLinkList: []
         }
     },
     methods: {
-        showLink() {
-            this.ifshow = !this.ifshow;
-        },
         goCatalog(tagType) {
             this.$router.push(`${this.$site.themeConfig.catalogUrl}.html?type=${tagType}`);
-        },
-        changeLink() {
-            this.ifshow = false;
         }
     },
     mounted() {
@@ -59,27 +40,53 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
-.sider-hide{
-    transform translateX(0);
+<style lang="stylus">
+.search-box{
+    z-index 999;
 }
 .nav-box {
-    .nav-top {
-        z-index 99;
-
+    position relative;
+    margin 0 auto;
+    background url('../public/img/my-bg.jpg');
+    background-size cover;
+    padding 10px;
+    padding-bottom 0;
+    display flex;
+    align-items center;
+    justify-content flex-end;
+    .sidebar-button{
+        color white !important;
     }
-
-    .link-list {
-
+    .nav {
+        z-index 4;
+        position relative;
+        max-width 900px;
+        height auto;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        font-weight bold;
         .link-item {
-            border-radius 20px;
-
-            a {
-                color white;
-                text-decoration: shade;
+            @media (max-width $MQNarrow) {
+                a {
+                    width 1.2em;
+                    height 1.2em;
+                }
             }
-
-            text-align center;
+            a {
+                overflow: hidden;
+                writing-mode: vertical-lr;
+                /*从左向右 从右向左是 writing-mode: vertical-rl;*/
+                writing-mode: tb-lr;
+                text-decoration: none;
+                font-weight bold;
+                out-line: none;
+                color #fff;
+                text-shadow 1px 1px #000;
+                &:hover {
+                    color #ffffff;
+                }
+            }
             cursor pointer;
             font-size 1em;
             //文字垂直
@@ -90,9 +97,7 @@ export default {
             margin-bottom 0;
             letter-spacing 5px;
             font-weight bold;
-            margin 5px;
         }
     }
-
 }
 </style>

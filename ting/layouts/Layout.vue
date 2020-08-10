@@ -1,5 +1,6 @@
 <template>
 <div class="all-box">
+    <tingNav/>
     <ting-content/>
 </div>
 </template>

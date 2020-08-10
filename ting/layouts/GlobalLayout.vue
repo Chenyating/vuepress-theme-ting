@@ -2,9 +2,8 @@
 <div id="global-layout" v-cloak>
     <div class="container">
         <div class="container-inner">
-            <tingNav />
             <keep-alive>
-                <component class="page" :is="layout" />
+                <component :is="layout" />
             </keep-alive>
         </div>
     </div>
@@ -55,10 +54,10 @@ export default {
         width: 100%;
         padding-bottom: 60px;
         box-sizing: border-box;
+        background #d7e2d2;
         .container-inner {
-            padding-top 60px;
             margin: 0 auto;
-            width: 100%;
+            max-width : 1024px;
             box-sizing: border-box;
         }
     }

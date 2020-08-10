@@ -1,6 +1,6 @@
 <template>
 <div class="index-box">
-    <tingType/>
+    <!-- <tingType/> -->
     <live2d class="sidebar-link" />
     <!-- <p class="my-name ">
         <span id='bgText'>

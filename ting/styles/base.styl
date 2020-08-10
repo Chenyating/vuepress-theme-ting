@@ -1,15 +1,42 @@
 
+.slider-box{
+    transform: translateX(0);
+    opacity 1;
+    transition all .3s ;
+}
+
+.slider-box-show{
+    transform: translateX(0);
+    opacity 1;
+    position static;
+    transition all .3s ;
+}
 // // 窄屏
-// @media (max-width  $MQNarrow)
-
+@media (max-width  $MQNarrow)
+    .slider-box{
+    transform: translateX(-100%);
+    opacity 0;
+    position absolute;
+    transition all .3s ;
+    }
 
 // // 手机屏
-// @media (max-width  $MQMobile)
-
+@media (max-width  $MQMobile)
+    .slider-box{
+    transform: translateX(-100%);
+    opacity 0;
+    position absolute;
+    transition all .3s ;
+    }
 
 // // 手机屏
-// @media (max-width  $MQMobileNarrow)
-
+@media (max-width  $MQMobileNarrow)
+    .slider-box{
+    transform: translateX(-100%);
+    opacity 0;
+    position absolute;
+    transition all .3s ;
+    }
 
 
  

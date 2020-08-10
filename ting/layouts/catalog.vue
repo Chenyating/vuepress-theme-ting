@@ -1,19 +1,22 @@
 <template>
 <div>
-    <!-- <div class="select-box nav-links can-hide">
-        <if-tag :fill="nowTag=='all'?false:true" dot @click="changeType('all')">全部</if-tag>
-        <if-tag :fill="nowTag==item?false:true" dot @click="changeType(item)" v-for="item in tagList" :key="item">{{item}}</if-tag>
-    </div> -->
+    <tingNav @click-menu="showTag" />
+    <div class="tag-list " :class="tagClass">
+        <if-tag :fill="nowTag=='all'?false:true" dot color="#7aaac6" @click="changeType('all')">全部</if-tag>
+        <if-tag :fill="nowTag==item?false:true" dot color="#7aaac6" @click="changeType(item)" v-for="item in tagList" :key="item">{{item}}</if-tag>
+    </div>
     <div class="catalog-box">
         <if-card v-show="item" class="catalog-item-big" @click="goArticle(item.path)" v-for="(item,index) in list" :key="index">
-            <!-- 更新时间 -->
-            <div class="title">{{item.title?item.title:'未命名'}}</div>
-            <if-divider dashed />
-            <div class="tag"> {{item.lastUpdated?item.lastUpdated:item.title}}</div>
-            <if-tag dot fill>
-                {{item.tag }}
-            </if-tag>
-            <!-- 标题 -->
+            <div>
+                <!-- 更新时间 -->
+                <div class="title">{{item.title?item.title:'未命名'}}</div>
+                <if-divider dashed />
+                <div class="tag"> {{item.lastUpdated?item.lastUpdated:item.title}}</div>
+                <if-tag dot fill>
+                    {{item.tag }}
+                </if-tag>
+                <!-- 标题 -->
+            </div>
         </if-card>
     </div>
     <if-page class="page-box" @change="haha" :every='everyPageNumber' showTotal :total='catalogList.length' />
@@ -25,8 +28,8 @@ import tingNav from '../components/ting-nav.vue'
 
 export default {
     name: 'catalog',
-    components:{
-tingNav
+    components: {
+        tingNav
     },
     data() {
         return {
@@ -37,10 +40,22 @@ tingNav
             nowList: [],
             everyPageNumber: 10, //每页多少个
             tagList: [],
-            nowTag: 'all'
+            nowTag: 'all',
+            showTagList: false
+        }
+    },
+    computed: {
+        tagClass() {
+            return [{
+                [`slider-box-show`]: this.showTagList,
+                [`slider-box`]: !this.showTagList,
+            }]
         }
     },
     methods: {
+        showTag() {
+            this.showTagList = !this.showTagList;
+        },
         haha(i) {
             this.choosePage(i - 1)
         },
@@ -113,8 +128,8 @@ tingNav
     justify-content center;
 }
 
-.select-box {
-    .if-tag{
+.tag-list {
+    .if-tag {
         cursor pointer;
         margin 5px;
     }
@@ -221,11 +236,23 @@ tingNav
 }
 
 .catalog-box {
+    z-index 0;
     display flex;
     flex-wrap wrap;
     flex-grow 1;
-    max-width: 1024px;
     margin: 0 auto;
+    transition all .3s;
+
+    .if-card {
+        height: auto;
+        background: #fff;
+        flex-grow: 1;
+        margin: 10px;
+        cursor: pointer;
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+    }
 }
 
 @keyframes pageCart {
