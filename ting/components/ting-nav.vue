@@ -1,6 +1,6 @@
 <template>
 <div class="nav-box">
-    <SidebarButton @toggle-sidebar="$emit('click-menu')"/>
+    <SidebarButton @toggle-sidebar="$emit('click-menu')" />
     <div class="nav">
         <div class="link-item" v-for="(item,index) in navLinkList" :key="index">
             <a :href="item.link" v-if="item.type=='url'">
@@ -9,19 +9,17 @@
             <router-link tag='a' v-else :to="item.link">{{item.text}}</router-link>
         </div>
     </div>
-    <SearchBox class="search-box"/>
+    <SearchBox class="search-box" />
 </div>
 </template>
 
 <script>
 import SidebarButton from '@theme/components/SidebarButton.vue'
-import NavLinks from '@theme/components/NavLinks.vue'
 import SearchBox from '@SearchBox'
 
 export default {
     components: {
         SidebarButton,
-        NavLinks,
         SearchBox
     },
     data() {
@@ -41,11 +39,12 @@ export default {
 </script>
 
 <style lang="stylus">
-.search-box{
-    z-index 999;
-}
 .nav-box {
-    position relative;
+    position fixed;
+    width 100%;
+    max-width 1024px;
+    box-sizing border-box;
+    z-index 99;
     margin 0 auto;
     background url('../public/img/my-bg.jpg');
     background-size cover;
@@ -54,9 +53,11 @@ export default {
     display flex;
     align-items center;
     justify-content flex-end;
-    .sidebar-button{
+
+    .sidebar-button {
         color white !important;
     }
+
     .nav {
         z-index 4;
         position relative;
@@ -66,6 +67,7 @@ export default {
         justify-content: center;
         align-items: flex-start;
         font-weight bold;
+
         .link-item {
             @media (max-width $MQNarrow) {
                 a {
@@ -73,6 +75,7 @@ export default {
                     height 1.2em;
                 }
             }
+
             a {
                 overflow: hidden;
                 writing-mode: vertical-lr;
@@ -83,10 +86,12 @@ export default {
                 out-line: none;
                 color #fff;
                 text-shadow 1px 1px #000;
+
                 &:hover {
                     color #ffffff;
                 }
             }
+
             cursor pointer;
             font-size 1em;
             //文字垂直
@@ -98,6 +103,10 @@ export default {
             letter-spacing 5px;
             font-weight bold;
         }
+    }
+
+    .search-box {
+        z-index 999;
     }
 }
 </style>

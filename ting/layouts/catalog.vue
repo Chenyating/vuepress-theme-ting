@@ -1,23 +1,25 @@
 <template>
-<div>
+<div class="catalog-page">
     <tingNav @click-menu="showTag" />
-    <div class="tag-list " :class="tagClass">
-        <if-tag :fill="nowTag=='all'?false:true" dot color="#7aaac6" @click="changeType('all')">全部</if-tag>
-        <if-tag :fill="nowTag==item?false:true" dot color="#7aaac6" @click="changeType(item)" v-for="item in tagList" :key="item">{{item}}</if-tag>
-    </div>
-    <div class="catalog-box">
-        <if-card v-show="item" class="catalog-item-big" @click="goArticle(item.path)" v-for="(item,index) in list" :key="index">
-            <div>
-                <!-- 更新时间 -->
-                <div class="title">{{item.title?item.title:'未命名'}}</div>
-                <if-divider dashed />
-                <div class="tag"> {{item.lastUpdated?item.lastUpdated:item.title}}</div>
-                <if-tag dot fill>
-                    {{item.tag }}
-                </if-tag>
-                <!-- 标题 -->
-            </div>
-        </if-card>
+    <div style="padding-top:70px;">
+        <div class="tag-list " :class="tagClass">
+            <if-tag :fill="nowTag=='all'?false:true" dot color="#7aaac6" @click="changeType('all')">全部</if-tag>
+            <if-tag :fill="nowTag==item?false:true" dot color="#7aaac6" @click="changeType(item)" v-for="item in tagList" :key="item">{{item}}</if-tag>
+        </div>
+        <div class="catalog-box">
+            <if-card v-show="item" class="catalog-item" @click="goArticle(item.path)" v-for="(item,index) in list" :key="index">
+                <div>
+                    <div class="title">{{item.title?item.title:'未命名'}}</div>
+                    <if-divider dashed />
+                    <div class="time"> {{item.lastUpdated?item.lastUpdated:item.title}}</div>
+                    <if-tag dot fill>
+                        {{item.tag }}
+                    </if-tag>
+                </div>
+
+                <img v-if="item.frontmatter.img" class="catalog-img" :src="item.frontmatter.img" />
+            </if-card>
+        </div>
     </div>
     <if-page class="page-box" @change="haha" :every='everyPageNumber' showTotal :total='catalogList.length' />
 </div>
@@ -117,153 +119,92 @@ export default {
         this.init(this.nowTag);
         this.choosePage(0);
         this.getTag();
+        console.log(this.$page)
     }
 }
 </script>
 
 <style lang="stylus" scoped>
-.page-box {
-    display flex;
-    margin 0 auto;
-    justify-content center;
-}
+.catalog-page {
 
-.tag-list {
-    .if-tag {
-        cursor pointer;
-        margin 5px;
-    }
-}
+    .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 10px;
 
-.tag {
-    width 100%;
-    color green;
-    margin 10px;
-    font-size 0.8em;
-    display flex;
-
-    &:before {
-        content: " ";
-        display: block;
-        height 20px;
-        width 20px;
-        background: url("../public/icon/lo.png");
-        background-repeat repeat-x;
-        background-size 20px 20px;
-        bottom 0px;
-        margin-right 5px;
-    }
-}
-
-.page-select {
-    font-weight bold;
-    height 50px !important;
-}
-
-.catalog-big {
-    display flex;
-    align-items flex-start;
-    max-width 1024px;
-    margin 0 auto;
-}
-
-.article-time {
-    -webkit-writing-mode: vertical-rl;
-    writing-mode: vertical-rl;
-    max-height 100px;
-    padding 10px;
-    border: 1px solid green border-bottom 0;
-    border-top 0;
-    vertical-align bottom;
-    margin 5px;
-    margin-bottom 0;
-    letter-spacing 5px;
-    /*color #a8c4d4;*/
-    color green;
-    display flex;
-    font-size 12px;
-    justify-content center;
-    overflow: hidden;
-    /*超出部分隐藏*/
-    text-overflow: ellipsis;
-    /* 超出部分显示省略号 */
-}
-
-.title {
-    display block;
-    width inherit;
-    font-size 25px;
-    letter-spacing 3px;
-    color #2e5c77 margin-left 10px;
-    overflow: hidden;
-    /*超出部分隐藏*/
-    text-overflow: ellipsis;
-    /* 超出部分显示省略号 */
-}
-
-.text {
-    height 50px;
-    color #2c3e50 font-size 12px;
-    overflow: hidden;
-    /*超出部分隐藏*/
-    text-overflow: ellipsis;
-    /* 超出部分显示省略号 */
-}
-
-.catalog-item-big {
-    height: auto;
-    margin: 2%;
-    padding: 2%;
-    background white;
-    flex-grow 1;
-    cursor pointer;
-
-    &:nth-child(2n) {
-        animation moveing infinite 15s alternate;
+        .if-tag {
+            cursor pointer;
+            margin 5px;
+        }
     }
 
-    &:hover {
-        background #f5f9fc;
-    }
-}
-
-.catalog-item {
-    background: url("../public/icon/li.png") no-repeat;
-    background-size: 50px 50px;
-    background-position right top;
-    display flex;
-    align-items stretch;
-}
-
-.catalog-box {
-    z-index 0;
-    display flex;
-    flex-wrap wrap;
-    flex-grow 1;
-    margin: 0 auto;
-    transition all .3s;
-
-    .if-card {
-        height: auto;
-        background: #fff;
+    .catalog-box {
+        display: flex;
+        flex-wrap: wrap;
         flex-grow: 1;
-        margin: 10px;
-        cursor: pointer;
-        display: grid;
-        grid-gap: 10px;
-        grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
-    }
-}
+        max-width: 1024px;
+        margin: 0 auto;
 
-@keyframes pageCart {
-    from {
-        height 30px;
-        transform scaleY(30px)
+        .catalog-item {
+            flex-grow: 1;
+            max-width 100%;
+            background: #fff;
+            margin: 10px;
+            cursor: pointer;
+            display: grid;
+            grid-gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+
+            .title {
+                display: block;
+                width: inherit;
+                font-size: 25px;
+                letter-spacing: 3px;
+                color: #2e5c77;
+                margin-left: 10px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space nowrap;
+            }
+
+            .time {
+                width: 100%;
+                color: green;
+                margin: 10px;
+                font-size: .8em;
+                display: flex;
+
+                &:before {
+                    content: " ";
+                    display: block;
+                    height 20px;
+                    width 20px;
+                    background: url("../public/icon/lo.png");
+                    background-repeat repeat-x;
+                    background-size 20px 20px;
+                    bottom 0px;
+                    margin-right 5px;
+                }
+            }
+
+            .catalog-img {
+                width: 100%;
+                height: 100%;
+                min-height: 100px;
+                -o-object-fit: cover;
+                object-fit: cover;
+            }
+
+        }
     }
 
-    to {
-        height 50px;
-        transform scaleY(50px)
+    .page-box {
+        display flex;
+        margin 0 auto;
+        justify-content center;
     }
 }
 </style>

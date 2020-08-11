@@ -84,16 +84,15 @@ export default {
 <style lang="stylus" scoped>
 .box {
     display block;
-    background #fff;
+    width 100%;
 
     .tag-box {
-        background #ffffff;
+        width 100%;
         display grid;
-        grid-template-columns: repeat(auto-fit, minmax(16.4rem, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
         background: url("../public/icon/lo.png") no-repeat, url("../public/icon/nav.png") no-repeat;
         background-size: 40px 40px, 167px 196px;
-        background-position left,
-        right bottom;
+        background-position left, right bottom;
 
         .tag-item {
             text-align center;

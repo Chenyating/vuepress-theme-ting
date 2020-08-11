@@ -1,42 +1,73 @@
 
 .slider-box{
-    transform: translateX(0);
+    transform: translateX(0) !important;
     opacity 1;
     transition all .3s ;
 }
 
 .slider-box-show{
-    transform: translateX(0);
+    transform: translateX(0) !important;
     opacity 1;
     position static;
     transition all .3s ;
 }
+.pc-box{
+    display block;
+}
+.m-box{
+    display none;
+}
 // // 窄屏
 @media (max-width  $MQNarrow)
+    .pc-box{
+        display block;
+    }
+    .m-box{
+        display none;
+    }
     .slider-box{
-    transform: translateX(-100%);
-    opacity 0;
-    position absolute;
-    transition all .3s ;
+        transform: translateX(0) !important;
+        opacity 1;
+        transition all .3s ;
+    }
+    .catalog-item {
+        width 100%
     }
 
 // // 手机屏
 @media (max-width  $MQMobile)
+    .pc-box{
+        display none;
+    }
+    .m-box{
+        display block;
+    }
     .slider-box{
-    transform: translateX(-100%);
+    transform: translateX(-100%) !important;
     opacity 0;
     position absolute;
     transition all .3s ;
     }
-
+    .catalog-item {
+        width 100%
+    }
+    
 // // 手机屏
 @media (max-width  $MQMobileNarrow)
+    .pc-box{
+        display none;
+    }
+    .m-box{
+        display block;
+    }
     .slider-box{
-    transform: translateX(-100%);
+    transform: translateX(-100%) !important;
     opacity 0;
     position absolute;
     transition all .3s ;
     }
-
+    .catalog-item {
+        width 100%
+    }
 
  
