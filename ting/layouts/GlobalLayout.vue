@@ -1,7 +1,8 @@
 <template>
 <div id="global-layout" v-cloak>
     <div class="container">
-        <div class="container-inner">
+        <div class="container-inner" ref="content">
+            <tingLoading v-show='isok' />
             <keep-alive>
                 <component :is="layout" />
             </keep-alive>
@@ -13,16 +14,20 @@
 
 <script>
 import tingNav from '../components/ting-nav.vue'
+import tingLoading from '../components/ting-loading.vue'
 
 export default {
     data() {
         return {
+            isok: true
         }
     },
     mounted() {
+        this.isok = false;
     },
     components: {
-        tingNav
+        tingNav,
+        tingLoading
     },
     computed: {
         layout() {
@@ -55,21 +60,29 @@ export default {
         padding-bottom: 60px;
         box-sizing: border-box;
         background #d7e2d2;
+
         .container-inner {
             margin: 0 auto;
-            max-width : 1024px;
+            max-width: 1024px;
             box-sizing: border-box;
         }
     }
 
     .foot {
         height: 60px;
-        text-align right;
+        text-align center;
         line-height 60px;
         margin-top: -60px;
         font-weight light;
         font-size 12px;
         padding-right 2em;
+        color white;
+        /*从左向右 从右向左是 writing-mode: vertical-rl;*/
+        text-decoration: none;
+        letter-spacing 2px;
+        out-line: none;
+        color #fff;
+        text-shadow 1px 1px #000;
     }
 }
 </style>

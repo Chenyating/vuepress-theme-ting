@@ -1,11 +1,11 @@
 <template>
-<div class="content-box">
+<div class="content-box" >
     <div tabindex="0" style="outline:0" @blur="ifshowCatalog=false">
         <tingNav @click-menu="ClickshowCatalog" />
         <div :class="className" class="m-box m-catalog-sider">
             <!-- 标题-->
             <div v-if="preTitle.title" @click="goArticle(preTitle)" class="levelTitle">上一篇:《{{preTitle.title}}》</div>
-            <div class="level1">{{nowTitle}}</div>
+            <div class="level1">{{$page.title}}</div>
             <a :class="[item.level==2?'level2':'level3',{'select':item.slug==selectTitle}]" v-for="(item,index) in $page.headers" :key="index" :href="'#'+item.slug" nofollow>{{item.title}}</a>
             <div v-if="nextTitle.title" @click="goArticle(nextTitle)" class="levelTitle">下一篇：《{{nextTitle.title}}》</div>
         </div>
@@ -13,18 +13,18 @@
     <div class="pc-box pc-catalog-sider">
         <!-- 标题-->
         <div v-if="preTitle.title" @click="goArticle(preTitle)" class="levelTitle">上一篇:《{{preTitle.title}}》</div>
-        <div class="level1">{{nowTitle}}</div>
+        <div class="level1">{{$page.title}}</div>
         <a :class="[item.level==2?'level2':'level3',{'select':item.slug==selectTitle}]" v-for="(item,index) in $page.headers" :key="index" :href="'#'+item.slug" nofollow>{{item.title}}</a>
         <div v-if="nextTitle.title" @click="goArticle(nextTitle)" class="levelTitle">下一篇：《{{nextTitle.title}}》</div>
     </div>
     <div class="content-all">
         <div class="title">
-            {{nowTitle}}
+            {{$page.title}}
         </div>
-        <if-divider dashed />
         <div class="article-time">
             {{$page.lastUpdated}}
         </div>
+        <if-divider dashed />
         <!--内容-->
         <div class="content">
             <Content />
@@ -55,7 +55,6 @@ export default {
             nowPosition: 0,
             preTitle: {},
             nextTitle: {},
-            nowTitle: null,
             titleIndex: 0,
         }
     },
@@ -96,7 +95,7 @@ export default {
         scrollTitle() {
             var list = $('.header-anchor');
             this.positionList = this.positionList.concat(list);
-            window.onscroll = () => {
+            this.$refs.content.addEventListener('scroll', () => {
                 var position = document.scrollingElement.scrollTop;
                 this.nowPosition = position;
                 var small = 100;
@@ -113,7 +112,7 @@ export default {
                     this.selectTitle = decodeURIComponent(this.positionList[0][titleId].hash).replace('#', '');
                     window.history.replaceState({}, " ", this.positionList[0][titleId]);
                 }
-            }
+            })
         },
         styleOperation() {
             var allTitle = document.getElementsByClassName('header-anchor')
@@ -133,7 +132,7 @@ export default {
                 return;
             } else {
                 for (let i = 0; i < pages.length; i++) {
-                    if (this.nowTitle == pages[i].title) {
+                    if (this.$page.title == pages[i].title) {
                         this.titleIndex = i;
                         break;
                     }
@@ -154,7 +153,6 @@ export default {
         },
         goArticle(item) {
             this.titleIndex = item.index;
-            this.nowTitle = item.title;
             this.$router.push(item.path);
         },
     },
@@ -162,14 +160,15 @@ export default {
         this.clickTitle();
         this.scrollTitle();
         this.styleOperation();
-        this.nowTitle = this.$page.title;
         this.init();
     }
 }
 </script>
 
 <style lang="stylus">
-.content-box {}
+.content-box {
+    overflow scroll;
+}
 
 .arcticle-catalog {
     float: right;
@@ -211,6 +210,8 @@ export default {
         color: green;
         font-size: 1em;
         display: flex;
+        justify-content flex-end;
+
         &:before {
             content: " ";
             display: block;
@@ -230,23 +231,6 @@ export default {
         padding 0 1em;
         box-sizing border-box;
 
-        //title
-        .content-img {
-            width: 100px;
-            height: 100px;
-            margin 0 auto;
-            backgroud red !important;
-        }
-
-        .text {
-            height 50px;
-            color #2c3e50 font-size 12px;
-            overflow: hidden;
-            /*超出部分隐藏*/
-            text-overflow: ellipsis;
-            /* 超出部分显示省略号 */
-        }
-
         .catalog-item-big {
             padding-top 50px;
         }
@@ -254,8 +238,7 @@ export default {
         //code
         li {
             img {
-                max-height 300px;
-                width auto;
+                width 100%;
                 padding 0 5px;
                 margin 0 auto;
             }
@@ -316,9 +299,7 @@ export default {
         }
 
         img {
-            box-shadow: 0px 0px 10px #ececec;
             width: 100%;
-            display block;
         }
     }
 
@@ -348,6 +329,7 @@ export default {
     line-height 2em;
     padding-left 3em
 }
+
 //m-box catalog 
 .m-catalog-sider {
     a {

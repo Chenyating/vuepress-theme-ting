@@ -49,7 +49,6 @@ export default {
     background url('../public/img/my-bg.jpg');
     background-size cover;
     padding 10px;
-    padding-bottom 0;
     display flex;
     align-items center;
     justify-content flex-end;
