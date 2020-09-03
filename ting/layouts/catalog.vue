@@ -3,8 +3,8 @@
     <tingNav @click-menu="showTag" />
     <div style="padding-top:70px;">
         <div class="tag-list " :class="tagClass">
-            <if-tag :fill="nowTag=='all'?false:true" dot color="#7aaac6" @click="changeType('all')">全部</if-tag>
-            <if-tag :fill="nowTag==item?false:true" dot color="#7aaac6" @click="changeType(item)" v-for="item in tagList" :key="item">{{item}}</if-tag>
+            <if-tag :fill="nowTag=='all'?false:true" dot color="#24292E" @click="changeType('all')">全部</if-tag>
+            <if-tag :fill="nowTag==item?false:true" dot color="#24292E" @click="changeType(item)" v-for="item in tagList" :key="item">{{item}}</if-tag>
         </div>
         <div class="catalog-box">
             <if-card v-show="item" class="catalog-item" @click="goArticle(item.path)" v-for="(item,index) in list" :key="index">
@@ -138,6 +138,8 @@ export default {
         .if-tag {
             cursor pointer;
             margin 5px;
+            border: 1px solid #24292E;
+            
         }
     }
 

@@ -1,21 +1,24 @@
 <template>
 <div class="index-box">
-    <tingType />
-    <live2d class="live2d pc-box" />
+    <tingNav />
+    <div>
+        <div></div>
+        <div></div>
+    </div>
 </div>
 </template>
 
 <script>
 import live2d from "../components/ting-live2d.vue";
 import tingType from "../components/ting-type.vue";
-import tingAbout from "../components/ting-about.vue";
+import tingNav from "../components/ting-nav.vue";
 import SearchBox from '@SearchBox'
 
 export default {
     components: {
         live2d,
         tingType,
-        tingAbout,
+        tingNav,
         SearchBox
     },
     name: 'index',

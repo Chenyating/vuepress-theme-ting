@@ -2,7 +2,7 @@
 <div id="global-layout" v-cloak>
     <div class="container">
         <div class="container-inner" ref="content">
-            <tingLoading v-show='isok' />
+            <!-- <tingLoading v-show='isok' /> -->
             <keep-alive>
                 <component :is="layout" />
             </keep-alive>
@@ -59,11 +59,10 @@ export default {
         width: 100%;
         padding-bottom: 60px;
         box-sizing: border-box;
-        background #d7e2d2;
 
         .container-inner {
             margin: 0 auto;
-            max-width: 1024px;
+            width 100%
             box-sizing: border-box;
         }
     }
@@ -81,7 +80,6 @@ export default {
         text-decoration: none;
         letter-spacing 2px;
         out-line: none;
-        color #fff;
         text-shadow 1px 1px #000;
     }
 }
