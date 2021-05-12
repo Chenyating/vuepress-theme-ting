@@ -61,21 +61,13 @@ export default {
     },
     mounted() {
         this.url = this.$site.themeConfig.live2dModel
-        // console.log(this.url, "???????")
-        // if (this.url != undefined) {
-        //     // this.loadJs("https://www.yating.online/res/js/message.js")
-        //     this.loadJs("https://www.yating.online/res/js/live2d.js")
-        //     window.onload = () => {
-        //         loadlive2d("live2d", this.url);
-        //     }
-        // } else {
-            this.loadJs("https://www.yating.online/res/js/live2d.js")
-            // this.loadJs("/live2d/live2d.js")
+         this.url = this.$site.themeConfig.live2dModel
+        if (this.url != undefined) {
+            this.loadJs("https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget/autoload.js")
             window.onload = () => {
-                let r = Math.floor(Math.random() * 88);
-                loadlive2d("live2d", "https://cdn.jsdelivr.net/gh/mumudadi/live2dw@latest/assets/live2d-widget-model-Pio/assets/" + r + ".json");
-            };
-        // }
+                loadlive2d("live2d", this.url);
+            }
+        }
     }
 
 };

@@ -19,7 +19,7 @@ module.exports = {
         lastUpdated: 'Last Updated',
         smoothScroll: true,
         pageNum: 10, //目录每页显示条数
-        // live2dModel: '/live2d/model/poi/poi.model.json', //live2d模型路径
+        live2dModel: '/live2d/model/poi/poi.model.json', //live2d模型路径
         //gitalk留言设置
         gitalk: gitalkConfig,
         footer: '粤ICP备案号：18150247号'
