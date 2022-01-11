@@ -344,7 +344,6 @@ export default {
       transform: translateX(-20px);
 
       &-select {
-        line-height: 20px;
         transform: translateX(30px);
         position: relative;
         text-align: left;
@@ -414,6 +413,7 @@ export default {
         background: #fff;
         box-sizing: border-box;
         text-align: left;
+        padding-top 40px;
 
         &:nth-child(odd) {
           position: absolute;
