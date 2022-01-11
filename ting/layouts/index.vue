@@ -1,8 +1,7 @@
 <template>
   <div class="index-page">
-    <SearchBox />
+    <!-- <SearchBox /> -->
     <tingcatalog />
-    <ting-type />
   </div>
 </template>
 

@@ -12,7 +12,7 @@ module.exports = {
     ],
     themeConfig: {
         author: '雅婷',
-        headImg: '/img/yating.jpg', //头像
+        headImg: '/img/yating.jpeg', //头像
         //导航栏
         nav: navConfig,
         catalogUrl: '/catalog', //必填
