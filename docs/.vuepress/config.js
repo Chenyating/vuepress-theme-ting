@@ -3,7 +3,7 @@ var gitalkConfig = require('./config/gitalk.js')
 var navConfig = require('./config/nav.js')
 module.exports = {
     theme: path.resolve(__dirname, '../../ting/'),
-    title: 'YATING', //网站名称
+    title: '雅婷的世界哦～', //网站名称
     description: '用心写代码，不辜负程序员之名', //网站描述
     //head标签
     head: [
@@ -22,7 +22,6 @@ module.exports = {
         live2dModel: '/live2d/model/poi/poi.model.json', //live2d模型路径
         //gitalk留言设置
         gitalk: gitalkConfig,
-        footer: '粤ICP备案号：18150247号'
     },
     markdown: {
         lineNumbers: true

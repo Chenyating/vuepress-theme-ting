@@ -1,60 +1,3 @@
-.content-box{
-    margin  0 auto
-    width  900px
-    height 100%
-}
-
-// 窄屏
-@media (max-width  $MQNarrow)
-  .content-box{
-    width  100%
-    height 100%
-    }
-    .catalog,.select-box-top{
-    display  none !important;
-    }
-    .fixed-box,{
-    display block !important;;
-    }
-// 手机屏
-@media (max-width  $MQMobile)
-   .content-box{
-    width  100%
-    height 100%
-    display  block
-    }
-    .catalog,.select-box-top{
-    display  none !important;
-    }
-    .page {
-    position fixed; 
-    bottom 30px;
-    right :0px;
-    }
-    .fixed-box,{
-    display block !important;;
-    }
-// 手机屏
-@media (max-width  $MQMobileNarrow)
-   .content-box{
-    width  100%
-    height 100%
-    display  block
-   }
-   .catalog{
-    display  none
-    }
-    .page {
-    position fixed; 
-    bottom 30px
-    right :0px;
-    }
-    .fixed-box{
-    display block !important;
-    }
-  
-
-
   
 // layout 
 .all-box{
@@ -74,3 +17,34 @@ body{
 html{
 height 100%
 }
+
+.h5-book{
+  display: none !important;
+  }
+
+// 窄屏
+@media (max-width  $MQNarrow)
+    .pc-book{
+    display  none !important;
+    }
+    .h5-book{
+    display block !important;;
+    }
+// 手机屏
+@media (max-width  $MQMobile)
+    .pc-book{
+    display  none !important;
+    }
+    .h5-book{
+    display block !important;;
+    }
+// 手机屏
+@media (max-width  $MQMobileNarrow)
+    .pc-book{
+    display  none !important;
+    }
+    .h5-book{
+    display block !important;;
+    }
+
+

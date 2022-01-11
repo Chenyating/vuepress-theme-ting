@@ -1,4 +1,4 @@
-var home_Path = 'https://yating.online/'
+var home_Path = 'https://yating.world/'
 var result = {
     mouseover: [{
             selector: ".link-item",

@@ -1,25 +1,13 @@
 <template>
 <div id="landlord">
-    <div class="chat-box">
-        <div v-for="(item,index) in chatList" :key="index">
-            <div class="me">我：{{item.me}}</div><br />
-            <div class="robot">机器人：{{item.you}}</div>
-        </div>
-    </div>
-    <audio id="mp3" controls="controls" controlsList="nodownload" hidden>
-        <source type="audio/mp3"></audio>
-    <robot class="robot" @getResult='reciveResult($event)' />
-    <!-- <div class="message" id="live2deMessage" style="opacity:1">hello~</div> -->
     <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
 </div>
 </template>
 
 <script>
 import $ from 'jQuery';
-import robot from "../components/ting-robot.vue";
 export default {
     components: {
-        robot
     },
     data() {
         return {
@@ -28,12 +16,6 @@ export default {
         }
     },
     methods: {
-        reciveResult(txt) {
-            this.chatList.push(txt);
-            var audio = document.getElementById('mp3');
-            audio.setAttribute("src", 'https://yating.online/mm/speech?text=' + txt.you);
-            audio.play();
-        },
         loadJs(url, callback) {
             var script = document.createElement('script');
             script.type = "text/javascript";
@@ -61,7 +43,6 @@ export default {
     },
     mounted() {
         this.url = this.$site.themeConfig.live2dModel
-         this.url = this.$site.themeConfig.live2dModel
         if (this.url != undefined) {
             this.loadJs("https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget/autoload.js")
             window.onload = () => {

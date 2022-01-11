@@ -1,38 +1,21 @@
 <template>
     <div class="content-box">
-        <div class="content">
-            <div class="catalog-item-big">
-                    <div class="title">
-                        {{nowTitle}}
-                    </div>
-                    <div class="article-time">
-                        {{$page.lastUpdated}}
-                    </div>
-            </div>
-            <!--内容-->
-            <Content/>
-            <div v-if="showCatalog&&preTitle.title" @click="goArticle(preTitle)" class="phone-pre">上一篇：《{{preTitle.title}}》</div>
-            <div v-if="showCatalog&&nextTitle.title" @click="goArticle(nextTitle)" class="phone-next">下一篇：《{{nextTitle.title}}》</div>
-            <div class="over" v-if="showMessage">
-                完
-                <div class="block"></div>
-            </div>
-            <tingGitalk v-if="showMessage"/>
+        <div class="catalog ">
+            <!-- 标题-->
+            <div v-if="preTitle.title" @click="goArticle(preTitle)" class="levelTitle">上一篇:《{{preTitle.title}}》</div>
+            <div class="level1">{{nowTitle}}</div>
+            <a :class="[item.level==2?'level2':'level3',{'select':item.slug==selectTitle}]"
+               v-for="(item,index) in $page.headers" :key="index" :href="'#'+item.slug" nofollow>{{item.title}}</a>
+            <div v-if="nextTitle.title" @click="goArticle(nextTitle)" class="levelTitle">下一篇：《{{nextTitle.title}}》</div>
         </div>
-        <img @click="backTop" class="top" src="../public/icon/top.png">
     </div>
 </template>
 
 <script>
-    import tingGitalk from "../components/ting-gitalk.vue";
     import $ from 'jquery'
     export default {
-        components: {
-            tingGitalk
-        },
         data() {
             return {
-                showMessage: true,
                 positionList: [],//锚点
                 selectTitle: '',
                 showTop: false,
@@ -137,9 +120,6 @@
             this.clickTitle();
             this.scrollTitle();
             this.styleOperation();
-            if (this.$page.frontmatter.showMessage==false) {
-                this.showMessage = this.$page.frontmatter.showMessage
-            }
             this.nowTitle=this.$page.title;
             this.init();
         }
@@ -147,151 +127,6 @@
 </script>
 
 <style lang="stylus" scoped>
-    .phone-pre{
-        color #88c1ea;;
-        padding 2px 10px;
-    }
-    .phone-next{
-        color #88c1ea;;
-        padding 2px 10px;
-    }
-    .top {
-        position fixed;
-        bottom 100px;
-        width 40px;
-        height 40px;
-        z-index 98;
-        border-radius 50px;
-        transition all;
-        animation topShow 1s;
-        left 0;
-    }
-    //conten
-    .content {
-        width 100%
-        padding 0 1em;
-        box-sizing border-box;
-        font-size 15px;
-        background rgba(255, 255, 255, 0.95);
-        //title
-        .content-img{
-            width:100px;
-            height:100px;
-            margin 0 auto;
-            backgroud red !important;
-        }
-        .article-time {
-            max-height 100px;
-            padding 5px;
-            border-right: 1px solid green
-            vertical-align bottom;
-            letter-spacing 5px;
-            /*color #a8c4d4;*/
-            color green;
-            font-size 12px;
-            overflow: hidden; /*超出部分隐藏*/
-            text-overflow: ellipsis; /* 超出部分显示省略号 */
-            text-align right;
-        }
-        .title {
-            text-align center;
-            width inherit;
-            font-size 30px;
-            letter-spacing 3px;
-            color #2e5c77
-            margin-left 10px;
-            overflow: hidden; /*超出部分隐藏*/
-            text-overflow: ellipsis; /* 超出部分显示省略号 */
-        }
-        .text {
-            height 50px;
-            color #2c3e50
-            font-size 12px;
-            overflow: hidden; /*超出部分隐藏*/
-            text-overflow: ellipsis; /* 超出部分显示省略号 */
-        }
-        .catalog-item-big {
-            padding-top 50px;
-        }
-        //code
-        li {
-            display flex;
-            overflow-x scroll;
-            &:nth-child(2n) {
-                &:before {
-                    content: " ";
-                    width: 20px;
-                    height 20px;
-                    background: url("../public/icon/li.png") no-repeat;
-                    background-size: 100% 100%;
-                    margin-right 10px;
-                }
-            }
-            &:before {
-                content: " ";
-                width: 20px;
-                height 20px;
-                background: url("../public/icon/lo.png") no-repeat;
-                background-size: 100% 100%;
-                margin-right 10px;
-            }
-            img{
-              max-height 300px;
-              width auto;
-              padding 0 5px;
-              margin 0 auto;
-            }
-        }
-        hr {
-            border 0;
-            &:after {
-                content: " ";
-                display: block;
-                height 20px;
-                width 100%
-                background: url("../public/icon/line.png");
-                background-repeat repeat-x;
-                background-size 300px 20px;
-                margin 10px;
-            }
-        }
-        .extra-class {
-            margin 10px 0;
-        }
-        div[class*="language-"] {
-            font-size 14px;
-        }
-        h2, h3, h4 {
-            font-weight: normal;
-            display flex;
-            color:#7aaac6;
-            border-bottom: 0px solid #eaecef;
-            padding-bottom 10px;
-            cursor pointer;
-            &:before {
-                content: " ";
-                display: block;
-                width: 20px;
-                height 20px;
-                background: url("../public/icon/flower.gif") no-repeat;
-                background-size: 100% 100%;
-                margin-right 20px;
-                margin-top 5px;
-            }
-            &:hover{
-                color #2e5c77;
-                text-shadow: 2px 2px 10px #7aaac6;
-            }
-        }
-        h1 {
-            display none;
-        }
-        img {
-            box-shadow: 0px 0px 10px #ececec;
-            width:100%;
-            display block;
-        }
-    }
     // catalog
     .catalog {
         a{
