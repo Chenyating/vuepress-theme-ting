@@ -1,39 +1,22 @@
 <template>
-  <div>
-    <div
-      id="carousel"
-      class="carousel"
-      @touchstart="touchstart"
-      @touchend="touchend"
-    >
-      <div class="Carousel-bd" v-if="tags.length > 0">
-        <div
-          v-for="(item, index) in list"
-          :key="index"
-          class="item"
-          :class="item.class"
-        >
-          <div class="tag-name" @click="goCatalog(item.date)">
-            {{ index }}
-            {{ item.date }}
-          </div>
-          <div class="tag-num">{{ item.count }}</div>
-        </div>
-      </div>
-    </div>
-    <div class="box">
-      <div class="tag-box">
-        <div class="tag-item" @click="goCatalog('all')">
-          <div class="tag-name">全部</div>
-          <div class="tag-num">{{ tagList.length }}</div>
-        </div>
-      </div>
+  <div
+    id="carousel"
+    class="carousel"
+    @touchstart="touchstart"
+    @touchend="touchend"
+  >
+    <div class="Carousel-bd" v-if="tags.length > 0">
+      <div
+        v-for="(item, index) in list"
+        :key="index"
+        class="item"
+        :class="item.class"
+      ></div>
     </div>
   </div>
 </template>
 
 <script>
-import $ from "jquery";
 export default {
   data() {
     return {
@@ -230,7 +213,7 @@ export default {
       display: block;
       transform: scale(0.8) rotate(30deg) translate3d(170%, 0, 0);
       z-index: 7;
-      border:solid 2px #c4deaa;
+      border: solid 2px #c4deaa;
     }
 
     // 当前样式前面弟1个
@@ -238,7 +221,7 @@ export default {
       display: block;
       transform: scale(0.9) rotate(15deg) translate3d(100%, 0, 0);
       z-index: 8;
-      border:solid 2px  #fda6bc;
+      border: solid 2px #fda6bc;
     }
 
     // 当前样式
@@ -247,7 +230,7 @@ export default {
       z-index: 999;
       transform: scale(1) rotate(0) translate3d(0, 0, 0);
       z-index: 9;
-     border:solid 2px  #c4deaa;
+      border: solid 2px #c4deaa;
     }
 
     // 当前样式后面第1个
@@ -255,7 +238,7 @@ export default {
       display: block;
       transform: scale(0.9) rotate(-15deg) translate3d(-100%, 0, 0);
       z-index: 8;
-      border:solid 2px #c3dae4;
+      border: solid 2px #c3dae4;
     }
 
     // 当前样式后面第2个
@@ -263,7 +246,7 @@ export default {
       display: block;
       transform: scale(0.8) rotate(-30deg) translate3d(-170%, 0, 0);
       z-index: 7;
-      border:solid 2px #fda6bc;
+      border: solid 2px #fda6bc;
     }
   }
 }

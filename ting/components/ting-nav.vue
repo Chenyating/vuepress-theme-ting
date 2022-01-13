@@ -25,7 +25,7 @@ export default {
     },
   },
   mounted() {
-    this.navLinkList = this.$site.themeConfig.nav;
+    // this.navLinkList = this.$site.themeConfig.nav;
   },
 };
 </script>

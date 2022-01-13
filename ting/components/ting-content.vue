@@ -1,13 +1,18 @@
 <template>
-  <div class="content-box">
+  <div class="article">
+    <div id="top"></div>
     <Content />
-    <div v-if="preTitle" @click="goArticle(preTitle)" class="phone-pre">
+    <a class="gotop" href="#top">回到顶部</a>
+    <div v-if="preTitle.title" @click="goArticle(preTitle)" class="article-pre">
       上一篇：《{{ preTitle.title }}》
     </div>
-    <div v-if="nextTitle" @click="goArticle(nextTitle)" class="phone-next">
+    <div
+      v-if="nextTitle.title"
+      @click="goArticle(nextTitle)"
+      class="article-next"
+    >
       下一篇：《{{ nextTitle.title }}》
     </div>
-    <a></a>
   </div>
 </template>
 
@@ -20,6 +25,11 @@ export default {
       nowTitle: null,
       titleIndex: 0,
     };
+  },
+  watch: {
+    titleIndex(val) {
+      this.init();
+    },
   },
   methods: {
     init() {
@@ -52,12 +62,12 @@ export default {
           this.preTitle.index = this.titleIndex - 1;
         }
       }
-      console.log(this.preTitle.index, this.nextTitle.index);
+      console.log(this.preTitle, this.nextTitle);
     },
     goArticle(item) {
-      this.$router.push(item.path);
       this.titleIndex = item.index;
-      this.init();
+      this.nowTitle = item.title;
+      this.$router.push(item.path);
     },
   },
   mounted() {
@@ -67,8 +77,52 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.content-box {
-  background: #fff;
+.gotop {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+}
+
+.article {
+  background: rgba(255, 255, 255, 0.8);
   padding: 1em;
+  padding-bottom: 6em;
+  position: relative;
+
+  &-pre {
+    bottom: 3em;
+    position: absolute;
+    left: 1em;
+    background: #c3dae4;
+    line-height: 1.5em;
+    border-radius: 1em;
+    padding-right: 1em;
+
+    &:before {
+      content: '';
+      width: 0;
+      height: 0;
+      border: solid 0.5em #c3dae4;
+      border-left: transparent 0.5em solid;
+    }
+  }
+
+  &-next {
+    line-height: 1.5em;
+    bottom: 1em;
+    padding-left: 1em;
+    position: absolute;
+    right: 1em;
+    border-radius: 1em;
+    background: #c4deaa;
+
+    &:after {
+      content: '';
+      width: 0;
+      height: 0;
+      border: solid 0.5em #c4deaa;
+      border-right: transparent 0.5em solid;
+    }
+  }
 }
 </style>

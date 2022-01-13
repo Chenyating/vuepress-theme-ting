@@ -1,7 +1,7 @@
 <template>
   <div class="index-page">
-    <!-- <tingType /> -->
-    <!-- <tingabout/> -->
+    <tingType />
+    <tingabout/>
     <tingcatalog />
   </div>
 </template>

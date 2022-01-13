@@ -1,9 +1,10 @@
 <template>
-  <div id="global-layout">
+  <div class="global-layout">
+    <tingBg />
     <tingNav />
-    <!-- <loading v-show="isloading" />
-    <live2d /> -->
     <component :is="layout" />
+    <div>
+    </div>
   </div>
 </template>
 
@@ -11,6 +12,7 @@
 import tingNav from "../components/ting-nav.vue";
 import live2d from "../components/ting-live2d.vue";
 import loading from "../components/ting-loading.vue";
+import tingBg from "../components/ting-bg.vue";
 export default {
   data() {
     return {
@@ -24,6 +26,7 @@ export default {
     loading,
     live2d,
     tingNav,
+    tingBg,
   },
   computed: {
     layout() {
@@ -40,30 +43,9 @@ export default {
 };
 </script>
 
-<style lang="stylus">
-.foot {
-  text-align: center;
-  font-size: 0.8em;
-  margin: 0.5em;
-}
-
-#global-layout {
-  width: 100vw;
-  height: 100vh;
-  position: relative;
-
-  &:before {
-    content: '';
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: -8;
-    background: url('../public/img/bg.jpg');
-    background-size: cover;
-    background-position: center center;
-    transform: rotateY(180deg);
-  }
+<style lang="stylus" scoped>
+.global-layout {
+  max-width: 900px;
+  margin: 0 auto;
 }
 </style>
