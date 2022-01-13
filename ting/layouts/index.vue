@@ -1,6 +1,6 @@
 <template>
   <div class="index-page">
-    <!-- <tingType /> -->
+    <tingType />
     <tingabout/>
     <tingcatalog />
   </div>
