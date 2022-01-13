@@ -214,7 +214,7 @@ export default {
     font-family: n-txt;
     font-size: 14px;
     color: #2c3e50;
-    width: 70%;
+    width: 100%;
     height: 300px;
     box-sizing: border-box;
     display: none;
@@ -228,7 +228,7 @@ export default {
     // 当前样式前面弟2个
     &-current-before2 {
       display: block;
-      transform: scale(0.8) rotate(30deg) translate3d(140%, 0, 0);
+      transform: scale(0.8) rotate(30deg) translate3d(170%, 0, 0);
       z-index: 7;
       border:solid 2px #c4deaa;
     }
@@ -236,7 +236,7 @@ export default {
     // 当前样式前面弟1个
     &-current-before1 {
       display: block;
-      transform: scale(0.9) rotate(15deg) translate3d(70%, 0, 0);
+      transform: scale(0.9) rotate(15deg) translate3d(100%, 0, 0);
       z-index: 8;
       border:solid 2px  #fda6bc;
     }
@@ -253,7 +253,7 @@ export default {
     // 当前样式后面第1个
     &-current-next1 {
       display: block;
-      transform: scale(0.9) rotate(-15deg) translate3d(-70%, 0, 0);
+      transform: scale(0.9) rotate(-15deg) translate3d(-100%, 0, 0);
       z-index: 8;
       border:solid 2px #c3dae4;
     }
@@ -261,7 +261,7 @@ export default {
     // 当前样式后面第2个
     &-current-next2 {
       display: block;
-      transform: scale(0.8) rotate(-30deg) translate3d(-140%, 0, 0);
+      transform: scale(0.8) rotate(-30deg) translate3d(-170%, 0, 0);
       z-index: 7;
       border:solid 2px #fda6bc;
     }

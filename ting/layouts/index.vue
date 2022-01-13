@@ -1,6 +1,7 @@
 <template>
   <div class="index-page">
-    <!-- <SearchBox /> -->
+    <!-- <tingType /> -->
+    <!-- <tingabout/> -->
     <tingcatalog />
   </div>
 </template>
@@ -9,9 +10,11 @@
 import SearchBox from "@SearchBox";
 import tingcatalog from "../components/ting-catalog.vue";
 import tingType from "../components/ting-type.vue";
+import tingabout from "../components/ting-about.vue";
 import tingContent from "../components/ting-content.vue";
 export default {
   components: {
+    tingabout,
     tingcatalog,
     tingType,
     tingContent,

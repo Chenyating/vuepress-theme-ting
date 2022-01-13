@@ -345,9 +345,7 @@ export default {
 
       &-select {
         transform: translateX(30px);
-        position: relative;
         text-align: left;
-        z-index: 10;
       }
 
       &:nth-child(2n) {
@@ -402,7 +400,6 @@ export default {
     z-index: 2;
     display: flex;
     box-sizing: border-box;
-    border: 2px solid #c4deaa;
     background: #fff;
 
     &.pc-book {
@@ -413,7 +410,8 @@ export default {
         background: #fff;
         box-sizing: border-box;
         text-align: left;
-        padding-top 40px;
+        padding-top: 40px;
+        border: 2px solid #c4deaa;
 
         &:nth-child(odd) {
           position: absolute;
@@ -423,7 +421,6 @@ export default {
           transform-origin: right;
           transform: rotateY(90deg);
           text-align: right;
-          border-right: 2px solid #c4deaa;
         }
 
         &:nth-child(even) {

@@ -1,8 +1,8 @@
 <template>
 <div class="all-box">
-    <ting-nav/>
-    <pagecatalog/>
-    <!-- <ting-content/> -->
+    <!-- <ting-nav/>
+    <pagecatalog/> -->
+    <ting-content/>
 </div>
 </template>
 <script>
