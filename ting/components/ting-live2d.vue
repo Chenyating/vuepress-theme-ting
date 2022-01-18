@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import $ from 'jQuery';
 export default {
     components: {
     },
