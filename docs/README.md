@@ -1,6 +1,5 @@
 ---
 layout: index
-showMessage: true
 ---
 # vuepress-theme-ting
 [github项目](https://github.com/Chenyating/vuepress-theme-ting)

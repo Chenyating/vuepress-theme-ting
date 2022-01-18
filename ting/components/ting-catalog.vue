@@ -400,7 +400,6 @@ export default {
     z-index: 2;
     display: flex;
     box-sizing: border-box;
-    background: #fff;
 
     &.pc-book {
       .book-page {

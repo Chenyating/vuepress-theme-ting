@@ -1,12 +1,18 @@
 <template>
   <div class="taglist">
-    <div class="tag" v-for="(item, index) in tags">
-      <div class="tag-front">
+    <div class="tag">
+      <div class="tag-name">全部</div>
+      <div class="tag-count">{{ tagList.length }}</div>
+    </div>
+    <div
+      class="tag"
+      v-for="(item, index) in tags"
+      :key="index"
+    >
+      <div class="tag-name">
         {{ item.tagname }}
       </div>
-      <div class="tag-back">
-        {{ item.count }}
-      </div>
+      <div class="tag-count">{{ item.count }}</div>
     </div>
   </div>
 </template>
@@ -47,7 +53,6 @@ export default {
       }
       this.tags = arr;
       this.init(this.tags[1].date);
-      console.log(this.tags, "???");
     },
     init(tagType) {
       //获得所有文章
@@ -78,25 +83,89 @@ export default {
 .taglist {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
 
   .tag {
-    width: 100px;
-    height: 100px;
+    margin: 0em;
+    padding: 1.5em;
+    font-weight: bold;
     position: relative;
+    white-space: nowrap;
+    border-radius: 100%;
+    background: transparent;
+    transform: skewX(0deg) scale(0.7);
+    border: 2px dashed #c4deaa;
+    transition: all ease-in 0.3s;
+    background: #fff;
 
-    &:before {
-      content: '';
-      width: 100px;
-      height: 100px;
+    &-name {
+      font-size: 1em;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+    }
+
+    &-count {
+      position: absolute;
+      font-size: 1.5em;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      z-index :20;
+    }
+
+    &:after {
       position: absolute;
       left: 0;
-      top: 0;
       right: 0;
+      top: 0;
       bottom: 0;
       margin: auto;
-      background: #c3dae4;
-      transform: rotateZ(45deg);
-      z-index: -1;
+      content: '';
+      width: 100%;
+      height: 100%;
+      border: 2px dashed #c4deaa;
+      box-sizing: border-box;
+      border-radius: 100%;
+      transform: skewX(30deg);
+      transition: all ease-in 0.3s;
+    }
+
+    &:before {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      content: '';
+      width: 100%;
+      height: 100%;
+      border: 2px dashed #c4deaa;
+      transform: skewX(-30deg);
+      transition: all ease-in 0.3s;
+      border-radius: 100%;
+      box-sizing: border-box;
+    }
+
+    &:hover{
+      border-color: #fda6bc;
+      transition: all ease-in 0.3s;
+      transform: skewX(0deg) scale(1);
+
+      &:after {
+        transform: skewX(30deg) scale(0.8);
+        transition: all ease-in 0.3s;
+        border-color: #fda6bc;
+      }
+
+      &:before {
+        transform: skewX(-30deg) scale(0.9);
+        transition: all ease-in 0.3s;
+        border-color: #fda6bc;
+      }
     }
   }
 }

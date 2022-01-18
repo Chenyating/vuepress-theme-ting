@@ -1,10 +1,9 @@
 <template>
   <div class="global-layout">
-    <tingBg />
-    <tingNav />
+    <div id="top"></div>
+    <loading v-show="isloading"/>
+    <ting-bg />
     <component :is="layout" />
-    <div>
-    </div>
   </div>
 </template>
 
@@ -18,6 +17,8 @@ export default {
     return {
       isloading: true,
     };
+  },
+  methods:{
   },
   mounted() {
     this.isloading = false;

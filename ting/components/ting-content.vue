@@ -1,6 +1,5 @@
 <template>
   <div class="article">
-    <div id="top"></div>
     <Content />
     <a class="gotop" href="#top">回到顶部</a>
     <div v-if="preTitle.title" @click="goArticle(preTitle)" class="article-pre">

@@ -1,80 +1,156 @@
 <template>
   <div class="nav-list">
-    <div class="nav" v-for="(item, index) in navLinkList" :key="index">
-      <a :href="item.link" v-if="item.type == 'url'">
-        {{ item.text }}
-      </a>
-      <router-link tag="a" v-else :to="item.link">{{ item.text }}</router-link>
+    <div
+      class="nav"
+      v-for="(item, index) in navlist"
+      :key="index"
+      @click="changenav(index)"
+    >
+      <div class="nav-pre" :class="curindex == index ? 'rightout' : 'leftin'">
+        {{ item }}
+      </div>
+      <div class="nav-next" :class="curindex == index ? 'rightin' : 'leftout'">
+        {{ item }}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  components: {},
+  props: {
+    curid: {
+      type: String,
+      default: "0",
+    },
+  },
   data() {
     return {
-      navLinkList: [],
+      navlist: ["首页", "文章目录", "关于我"],
+      curindex: 0,
     };
   },
   methods: {
-    goCatalog(tagType) {
-      this.$router.push(
-        `${this.$site.themeConfig.catalogUrl}.html?type=${tagType}`
-      );
+    changenav(index) {
+      this.curindex = index;
+      // 把值传给父组件去。
+      this.$emit("changenav", index);
     },
   },
-  mounted() {
-    // this.navLinkList = this.$site.themeConfig.nav;
-  },
+  mounted() {},
 };
 </script>
 
 <style lang="stylus" scoped>
 .nav-list {
-  position: relative;
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-weight: bold;
+  justify-content: flex-end;
+  padding: 1em 0.5em;
+  background: url(/assets/img/my-bg.jpg);
 
   .nav {
-    width: 100px;
-    height: 50px;
-    background: #c3dae4;
-    border-top-right-radius: 50px;
-    border-top-left-radius: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 20px;
-    &:nth-child(2n) {
-      background: #c4deaa;
-    }
+    margin-right: 7%;
+    padding: 8%;
+    box-sizing: border-box;
+    position: relative;
+    text-align: center;
 
-    &:nth-child(3n) {
-      background: #fda6bc;
-    }
+    &:hover {
+      .nav-pre {
+        transition: all ease-in 0.3s;
+        transform-origin: center center;
+        transform: rotateY(90deg) !important;
+        z-index: 10;
+      }
 
-    a {
-      overflow: hidden;
-      text-decoration: none;
-      font-weight: bold;
-      out-line: none;
-      color: #fff;
-
-      &:hover {
-        color: #ffffff;
+      .nav-next {
+        transition: all ease-in 0.3s 0.3s;
+        transform-origin: center center;
+        transform: rotateY(0deg) !important;
+        z-index: 10;
       }
     }
 
-    font-size: 1em;
-    // 文字垂直
-    text-align: center;
-    border-top: 0;
-    vertical-align: bottom;
-    margin-bottom: 0;
-    font-weight: bold;
+    &-pre {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      transform: rotateY(0deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1em;
+      font-weight: bold;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #c3dae4;
+        transform: rotateZ(45deg);
+        z-index: -1;
+        border-radius: 10px;
+      }
+    }
+
+    &-next {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      transform: rotateY(90deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1em;
+      font-weight: bold;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #c4deaa;
+        transform: rotateZ(45deg);
+        z-index: -1;
+        border-radius: 10px;
+      }
+    }
+
+    .leftin {
+      transition: all ease-in 0.3s 0.3s;
+      transform-origin: center center;
+      transform: rotateY(0deg) !important;
+      z-index: 10;
+    }
+
+    .leftout {
+      transition: all ease-in 0.3s;
+      transform-origin: center center;
+      transform: rotateY(90deg);
+    }
+
+    .rightout {
+      transition: all ease-in 0.3s;
+      transform: rotateY(-90deg);
+      transform-origin: center center;
+    }
+
+    .rightin {
+      z-index: 10;
+      transform: rotateY(0deg);
+      transition: all ease-in 0.3s 0.3s;
+      transform-origin: center center;
+    }
   }
 }
 </style>
