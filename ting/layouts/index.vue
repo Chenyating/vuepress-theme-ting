@@ -5,17 +5,22 @@
       <div class="cont" v-show="contid == 0">
         <!-- <tingabout /> -->
         <tingType />
-        <tingGitalk />
       </div>
       <div class="cont" v-show="contid == 1">
         <tingcatalog />
       </div>
-      <div class="cont" v-show="contid == 2"></div>
+      <div class="cont" v-show="contid == 2">
+        <tingcontent />
+      </div>
+      <div class="cont" v-show="contid == 3">
+        <tingGitalk />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import tingcontent from "../components/ting-content.vue";
 import tingNav from "../components/ting-nav.vue";
 import tingGitalk from "../components/ting-gitalk.vue";
 // import SearchBox from "@SearchBox";
@@ -26,6 +31,7 @@ import tingContent from "../components/ting-content.vue";
 export default {
   components: {
     tingNav,
+    tingcontent,
     tingGitalk,
     tingabout,
     tingcatalog,

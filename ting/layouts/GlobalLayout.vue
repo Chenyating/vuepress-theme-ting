@@ -2,7 +2,8 @@
   <div class="global-layout">
     <div id="top"></div>
     <loading v-show="isloading"/>
-    <ting-bg />
+    <live2d/>
+    <!-- <ting-bg /> -->
     <component :is="layout" />
   </div>
 </template>

@@ -18,7 +18,7 @@ module.exports = {
         smoothScroll: true,
         author: '雅婷',
         headImg: '/img/yating.jpeg', //头像
-        live2dModel: '/live2d/model/poi/poi.model.json', //live2d模型路径
+        live2dModel: '/live2d/tororo/tororo.model.json', //live2d模型路径
         gitalk:gitalkConfig,
     },
     markdown: {

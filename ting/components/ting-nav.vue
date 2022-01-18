@@ -26,7 +26,7 @@ export default {
   },
   data() {
     return {
-      navlist: ["首页", "文章目录", "关于我"],
+      navlist: ["首页", "文章", "本主题","留言"],
       curindex: 0,
     };
   },
