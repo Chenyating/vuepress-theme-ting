@@ -20,6 +20,14 @@
           v-for="(catalog, index) in item.list"
           :key="index"
         >
+          <div class="catalog-tag">
+            <div class="catalog-tag-pre">
+              {{ catalog.tag }}
+            </div>
+            <div class="catalog-tag-next">
+              {{ catalog.tag }}
+            </div>
+          </div>
           <!-- 标题 -->
           <span class="catalog-tit">{{
             catalog.title ? catalog.title : "未命名"
@@ -81,7 +89,7 @@
           >
             上一页
           </div>
-          <div class="pagebtn cur">第{{ pageId + 1 }}/{{ pageNum }}页</div>
+          <div class="pagebtn cur">{{ pageId + 1 }}/{{ pageNum }}</div>
           <div
             class="pagebtn next"
             v-if="index < pageNum - 1"
@@ -128,7 +136,7 @@ export default {
       pageId: 0,
       pageNum: null, //分页
       nowList: [],
-      everyPageNumber: 5, //每页多少个
+      everyPageNumber: 7, //每页多少个
       tagList: [],
       tags: [],
       nowTag: "all",
@@ -223,6 +231,7 @@ export default {
       }
       this.pageId = 0;
       this.list = list;
+      console.log(this.list);
     },
     // 翻书
     clickpage(id) {
@@ -334,18 +343,16 @@ export default {
       text-align: center;
       color: #fff;
       font-size: 0.2em;
-      padding: 5px;
-      margin: 5px 0;
+      padding: 1em;
+      margin: 6em 0;
       transition: all 1s;
       cursor: pointer;
       background: #c3dae4;
-      text-align: right;
+      text-align: center;
       white-space: nowrap;
-      transform: translateX(-20px);
-
+      transform:rotateZ(-30deg) translateX(-20px);
       &-select {
-        transform: translateX(30px);
-        text-align: left;
+        transform:rotateZ(-30deg) translateX(30px);
         background: #fda6bc;
       }
     }
@@ -359,6 +366,115 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    
+    &:hover {
+      opacity :.8;
+      .catalog-tag-pre {
+        transition: all ease-in 0.3s;
+        transform-origin: center center;
+        transform: rotateY(90deg) !important;
+        z-index: 10;
+      }
+
+      .catalog-tag-next {
+        transition: all ease-in 0.3s 0.3s;
+        transform-origin: center center;
+        transform: rotateY(0deg) !important;
+        z-index: 10;
+      }
+    }
+
+  &-tag {
+    margin-right: 1em;
+    padding: 2em;
+    box-sizing: border-box;
+    position: absolute;
+    right: 1em;
+    text-align: center;
+    font-size:.5em;
+
+    &-pre {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      transform: rotateY(0deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+          width:2em;
+          height:2em;
+white-space: nowrap;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #c3dae4;
+        transform: rotateZ(45deg);
+        z-index: -1;
+        border-radius: 10px;
+      }
+    }
+
+    &-next {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      transform: rotateY(90deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    width:2em;
+    height: 2em;
+white-space: nowrap;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #c4deaa;
+        transform: rotateZ(45deg);
+        z-index: -1;
+        border-radius: 10px;
+      }
+    }
+
+    .leftin {
+      transition: all ease-in 0.3s 0.3s;
+      transform-origin: center center;
+      transform: rotateY(0deg) !important;
+      z-index: 10;
+    }
+
+    .leftout {
+      transition: all ease-in 0.3s;
+      transform-origin: center center;
+      transform: rotateY(90deg);
+    }
+
+    .rightout {
+      transition: all ease-in 0.3s;
+      transform: rotateY(-90deg);
+      transform-origin: center center;
+    }
+
+    .rightin {
+      z-index: 10;
+      transform: rotateY(0deg);
+      transition: all ease-in 0.3s 0.3s;
+      transform-origin: center center;
+    }
+  }
 
     &-tit {
       font-weight: 700;

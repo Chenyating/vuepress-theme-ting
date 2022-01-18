@@ -1,7 +1,7 @@
 <template>
   <div class="global-layout">
     <!-- <ting-bg /> -->
-    <div id="top"></div>
+    <div id="nav"></div>
     <SearchBox/>
     <loading v-show="isloading"/>
     <component :is="layout" />

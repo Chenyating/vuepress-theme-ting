@@ -29,12 +29,14 @@ export default {
 
 <style lang="stylus" scoped>
 .me {
-  width: 100%;
   position: relative;
-  padding: 30px 20px;
+  padding:1.5em 1em;
   padding-left: 150px;
-  margin: 0 auto;
+  margin:1em;
   box-sizing:border-box;
+  background: rgba(#fff,.8)
+  border: 2px dashed #62a7d8;
+  border-radius: 1em;
 
   &-img {
     width: 100px;
@@ -49,13 +51,24 @@ export default {
 
     &:before {
       content: '';
-      width: 100px;
-      height: 100px;
+      position :absolute;
+      top:0;
+      left:0;
+      width: 20px;
+      height: 20px;
       border-radius: 100%;
       position: absolute;
-      transform: translateX(10px) translateY(-5px);
       background: #c4deaa;
-      z-index: -1;
+    }  &:after {
+      content: '';
+      position :absolute;
+      top:0;
+      right:0;
+      width: 20px;
+      height: 20px;
+      border-radius: 100%;
+      position: absolute;
+      background: #c4deaa;
     }
     img{
       width 100%;

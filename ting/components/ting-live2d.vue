@@ -3,7 +3,7 @@
     <div class="message" id="live2deMessage" style="opacity: 1">
       点击我返回顶部
     </div>
-    <a href="#top">
+    <a href="#nav">
       <canvas id="live2d" width="280" height="250"></canvas>
     </a>
   </div>

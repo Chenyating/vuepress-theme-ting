@@ -26,7 +26,7 @@ export default {
   },
   data() {
     return {
-      navlist: ["首页", "文章", "","留言板"],
+      navlist: ["首页", "文章", "关于站点", "留言板"],
       curindex: 0,
     };
   },
@@ -45,13 +45,12 @@ export default {
 .nav-list {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  padding: 1em 0.5em;
+  margin: 1em;
   background: url(/assets/img/my-bg.jpg);
 
   .nav {
-    margin-right: 7%;
-    padding: 8%;
+    margin-right: 1em;
+    padding: 2em;
     box-sizing: border-box;
     position: relative;
     text-align: center;
@@ -84,6 +83,8 @@ export default {
       justify-content: center;
       font-size: 1em;
       font-weight: bold;
+          width:2em;
+
 
       &:before {
         content: '';
@@ -111,6 +112,7 @@ export default {
       justify-content: center;
       font-size: 1em;
       font-weight: bold;
+    width:2em;
 
       &:before {
         content: '';
