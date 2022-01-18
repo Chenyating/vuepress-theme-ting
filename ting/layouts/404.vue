@@ -1,7 +1,5 @@
 <template>
-<div class="notfound-box">
+  <div class="notfound-box">
     <ting-nav />
-</div>
+  </div>
 </template>
-
-<script>

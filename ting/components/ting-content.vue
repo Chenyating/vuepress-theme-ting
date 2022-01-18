@@ -1,7 +1,6 @@
 <template>
   <div class="article">
     <Content />
-    <a class="gotop" href="#top">回到顶部</a>
     <div v-if="preTitle.title" @click="goArticle(preTitle)" class="article-pre">
       上一篇：《{{ preTitle.title }}》
     </div>
@@ -61,7 +60,6 @@ export default {
           this.preTitle.index = this.titleIndex - 1;
         }
       }
-      console.log(this.preTitle, this.nextTitle);
     },
     goArticle(item) {
       this.titleIndex = item.index;
@@ -76,15 +74,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.gotop {
-  width: 100px;
-  height: 100px;
-  margin: 0 auto;
-}
-
 .article {
   background: rgba(255, 255, 255, 0.8);
-  padding: 1em;
+  padding: 0 1em;
   padding-bottom: 6em;
   position: relative;
 

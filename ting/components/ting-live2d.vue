@@ -1,11 +1,17 @@
 <template>
-<a href="#top" class="live2d-box">
-  <canvas id="live2d" width="280" height="250"></canvas>
-</a>
+  <div id="landlord" class="live2d-box">
+    <div class="message" id="live2deMessage" style="opacity: 1">
+      点击我返回顶部
+    </div>
+    <a href="#top">
+      <canvas id="live2d" width="280" height="250"></canvas>
+    </a>
+  </div>
 </template>
 
 <script>
 import "../public/js/live2d.js";
+import "../public/js/message.js";
 export default {
   components: {},
   data() {
@@ -22,16 +28,44 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.live2d-box{
+.live2d-box {
   user-select: none;
   position: fixed;
-  margin: 1em;
-  bottom: 1em;
+  bottom: 0;
+  left: 0;
   z-index: 10000;
-  }
+}
+
 #live2d {
   width: 100px;
   font-size: 0;
   transition: all 0.3s ease-in-out;
+}
+
+.message {
+  font-size: 0.8em;
+  color: #2e5c77;
+  scroll-behavior: smooth;
+  border: 2px dashed #fda6bc;
+  padding: 0.5em;
+  margin: 1em;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 1em;
+  position: relative;
+  transform-origin: center center;
+  animation: rorating 2s ease-in infinite;
+
+  &:after {
+    content: ' ';
+    position: absolute;
+    bottom: -1.6em;
+    left: 1.5em;
+    height: 0.5em;
+    margin: auto;
+    border: solid 0.5em #fda6bc;
+    border-bottom: transparent 0.5em solid;
+    border-right: transparent 0.5em solid;
+    border-left: transparent 0.5em solid;
+  }
 }
 </style>

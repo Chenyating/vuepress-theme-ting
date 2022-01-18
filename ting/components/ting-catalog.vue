@@ -346,13 +346,6 @@ export default {
       &-select {
         transform: translateX(30px);
         text-align: left;
-      }
-
-      &:nth-child(2n) {
-        background: #c4deaa;
-      }
-
-      &:nth-child(3n) {
         background: #fda6bc;
       }
     }
@@ -410,7 +403,7 @@ export default {
         box-sizing: border-box;
         text-align: left;
         padding-top: 40px;
-        border: 2px solid #c4deaa;
+        border: 2px dashed #c4deaa;
 
         &:nth-child(odd) {
           position: absolute;
@@ -446,7 +439,7 @@ export default {
         box-sizing: border-box;
         transition: all 0.3s ease-in;
         overflow: hidden;
-        border: 2px solid #c4deaa;
+        border: 2px dashed #c4deaa;
 
         &:first-child {
           transform-origin: right center;

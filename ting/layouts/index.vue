@@ -1,43 +1,39 @@
 <template>
-  <div class="index-page">
+  <div class="index-layout">
     <ting-nav @changenav="haha" />
     <div class="cont-list">
       <div class="cont" v-show="contid == 0">
-        <!-- <tingabout /> -->
-        <tingType />
+        <ting-about />
+        <ting-type />
       </div>
       <div class="cont" v-show="contid == 1">
-        <tingcatalog />
+        <ting-catalog />
       </div>
       <div class="cont" v-show="contid == 2">
-        <tingcontent />
+        <ting-content />
       </div>
       <div class="cont" v-show="contid == 3">
-        <tingGitalk />
+        <ting-gitalk />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import tingcontent from "../components/ting-content.vue";
 import tingNav from "../components/ting-nav.vue";
 import tingGitalk from "../components/ting-gitalk.vue";
-// import SearchBox from "@SearchBox";
-import tingcatalog from "../components/ting-catalog.vue";
+import tingCatalog from "../components/ting-catalog.vue";
 import tingType from "../components/ting-type.vue";
-import tingabout from "../components/ting-about.vue";
+import tingAbout from "../components/ting-about.vue";
 import tingContent from "../components/ting-content.vue";
 export default {
   components: {
     tingNav,
-    tingcontent,
-    tingGitalk,
-    tingabout,
-    tingcatalog,
-    tingType,
     tingContent,
-    // SearchBox,
+    tingGitalk,
+    tingAbout,
+    tingCatalog,
+    tingType,
   },
   name: "index",
   data() {
@@ -54,6 +50,12 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.index-layout {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+
 .cont-list {
   position: relative;
 
