@@ -52,6 +52,8 @@ export default {
     background: #c4deaa;
 
     &:before {
+      background: linear-gradient(to #fda6bc, #c3dae4, #c4deaa);
+      animation: huecolor 6s linear infinite;
       content: '';
       position: absolute;
       top: 0;
@@ -65,6 +67,8 @@ export default {
 
     &:after {
       content: '';
+      background: linear-gradient(to #fda6bc, #c3dae4, #c4deaa);
+      animation: huecolor 6s linear infinite;
       position: absolute;
       top: 0;
       right: 0;

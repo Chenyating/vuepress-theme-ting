@@ -90,7 +90,7 @@ export default {
   justify-content: space-around;
 
   .tag {
-    margin: 1em;
+    margin: 5%;
     padding: 1em;
     width: 4em;
     height: 4em;

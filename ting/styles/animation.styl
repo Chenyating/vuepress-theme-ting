@@ -4,23 +4,34 @@
     }
 
     50% {
-        opacity: .8;
+        opacity: 0.8;
     }
 
     100% {
-        opacity: .4;
+        opacity: 0.4;
     }
 }
+
 @keyframes rorating {
     0% {
-        transform :rotateZ(10deg);
+        transform: rotateZ(10deg);
     }
 
     50% {
-        transform :rotateZ(0deg);
+        transform: rotateZ(0deg);
     }
 
     100% {
-        transform :rotateZ(10deg);
+        transform: rotateZ(10deg);
+    }
+}
+
+@keyframes huecolor {
+    from {
+        filter: hue-rotate(0deg);
+    }
+
+    to {
+        filter: hue-rotate(360deg);
     }
 }

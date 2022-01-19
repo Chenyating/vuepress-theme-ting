@@ -139,6 +139,8 @@ export default {
     height: 3em;
     position: absolute;
     top: 0;
+    transform: translateX(-150%);
+    animation: opacitying 3s ease-in infinite;
 
     &-item {
       width: 3em;
@@ -164,6 +166,12 @@ export default {
         transform: rotateZ(45deg);
         z-index: -1;
         border-radius: 10px;
+      }
+
+      &:nth-child(1) {
+        &:before {
+          background: #fda6bc;
+        }
       }
     }
   }

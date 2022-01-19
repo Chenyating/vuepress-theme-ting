@@ -4,7 +4,7 @@
     <ting-about v-show="contid != 1"/>
     <div class="cont-list">
       <div class="cont" v-show="contid == 0">
-        <SearchBox />
+        <div>博客分类</div>
         <ting-type />
       </div>
       <div class="cont" v-show="contid == 1">
@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import SearchBox from "@SearchBox";
 import tingNav from "../components/ting-nav.vue";
 import tingGitalk from "../components/ting-gitalk.vue";
 import tingCatalog from "../components/ting-catalog.vue";
@@ -30,7 +29,6 @@ import tingAbout from "../components/ting-about.vue";
 import tingContent from "../components/ting-content.vue";
 export default {
   components: {
-    SearchBox,
     tingNav,
     tingContent,
     tingGitalk,

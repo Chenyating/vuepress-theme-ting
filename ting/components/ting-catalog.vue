@@ -20,14 +20,6 @@
           v-for="(catalog, index) in item.list"
           :key="index"
         >
-          <div class="catalog-tag">
-            <div class="catalog-tag-pre">
-              {{ catalog.tag }}
-            </div>
-            <div class="catalog-tag-next">
-              {{ catalog.tag }}
-            </div>
-          </div>
           <!-- 标题 -->
           <span class="catalog-tit">{{
             catalog.title ? catalog.title : "未命名"
@@ -42,7 +34,7 @@
             v-if="index > 0 && index % 2 == 0"
             @click="clickpage(index)"
           >
-            上一页
+            上
           </div>
           <div class="pagebtn cur">第{{ index + 1 }}/{{ pageNum }}页</div>
           <div
@@ -50,7 +42,7 @@
             v-if="index < pageNum - 1 && index % 2 == 1"
             @click="clickpage(index)"
           >
-            下一页
+            下
           </div>
         </div>
       </div>
@@ -83,15 +75,15 @@
             v-show="index > 0"
             @click="h5clickpage(pageId - 1)"
           >
-            上一页
+            上
           </div>
-          <div class="pagebtn cur">{{ pageId + 1 }}/{{ pageNum }}</div>
+          <div class="pagebtn cur">{{ index+1}}/{{ pageNum }}</div>
           <div
             class="pagebtn next"
             v-show="index < pageNum - 1"
             @click="h5clickpage(pageId + 1)"
           >
-            下一页
+            下
           </div>
         </div>
       </div>
@@ -265,17 +257,19 @@ export default {
 
 <style lang="stylus" scoped>
 .pagebtn {
-  width: 80px;
-  height: 30px;
+  height: 2em;
   color: #fff;
   text-align: center;
   font-size: 1em;
-  line-height: 30px;
-  border-radius: 10px;
+  line-height: 2em;
+  border-radius: 1em;
+  padding: 0 1em;
+  margin: 0 1em;
+  font-weight: bold;
 
   &-box {
     width: 100%;
-    height: 30px;
+    height: 2em;
     display: flex;
     justify-content: flex-end;
     margin: 1em 0;
@@ -286,7 +280,7 @@ export default {
   }
 
   &.cur {
-    color: #2e5c77;
+    color: #fda6bc;
   }
 
   &.next {
@@ -296,28 +290,27 @@ export default {
 
 .box-catalog {
   position: relative;
-  display: flex;
   justify-content: center;
-  height: 600px;
 
   .tag-list {
-    overflow-y: auto;
-    overflow-x: hidden;
     scroll-behavior: smooth;
-    align-items: flex-start;
+    width: 20%;
+    position: absolute;
+    right: 0;
 
     .tag {
       text-align: center;
       color: #fff;
-      font-size: 0.2em;
-      padding: 1em;
-      margin: 6em 0;
-      transition: all 1s;
+      font-size: 0.5em;
+      padding: 0.5em 3em;
+      margin: 1em 0;
       cursor: pointer;
       background: #c3dae4;
-      text-align: center;
+      text-align: right;
       white-space: nowrap;
       transform: rotateZ(-30deg) translateX(-20px);
+      border-radius: 1em;
+      transition: all 1s;
 
       &-select {
         transform: rotateZ(-30deg) translateX(30px);
@@ -328,8 +321,8 @@ export default {
 
   .catalog {
     position: relative;
-    height: 80px;
-    padding-left: 40px;
+    height: 15%;
+    padding-left: 2em;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -337,112 +330,6 @@ export default {
 
     &:hover {
       opacity: 0.8;
-
-      .catalog-tag-pre {
-        transition: all ease-in 0.3s;
-        transform-origin: center center;
-        transform: rotateY(90deg) !important;
-        z-index: 10;
-      }
-
-      .catalog-tag-next {
-        transition: all ease-in 0.3s 0.3s;
-        transform-origin: center center;
-        transform: rotateY(0deg) !important;
-        z-index: 10;
-      }
-    }
-
-    &-tag {
-      margin-right: 1em;
-      padding: 2em;
-      box-sizing: border-box;
-      position: absolute;
-      right: 1em;
-      text-align: center;
-      font-size: 0.5em;
-
-      &-pre {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        transform: rotateY(0deg);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 2em;
-        height: 2em;
-        white-space: nowrap;
-
-        &:before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: #c3dae4;
-          transform: rotateZ(45deg);
-          z-index: -1;
-          border-radius: 10px;
-        }
-      }
-
-      &-next {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        transform: rotateY(90deg);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 2em;
-        height: 2em;
-        white-space: nowrap;
-
-        &:before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: #c4deaa;
-          transform: rotateZ(45deg);
-          z-index: -1;
-          border-radius: 10px;
-        }
-      }
-
-      .leftin {
-        transition: all ease-in 0.3s 0.3s;
-        transform-origin: center center;
-        transform: rotateY(0deg) !important;
-        z-index: 10;
-      }
-
-      .leftout {
-        transition: all ease-in 0.3s;
-        transform-origin: center center;
-        transform: rotateY(90deg);
-      }
-
-      .rightout {
-        transition: all ease-in 0.3s;
-        transform: rotateY(-90deg);
-        transform-origin: center center;
-      }
-
-      .rightin {
-        z-index: 10;
-        transform: rotateY(0deg);
-        transition: all ease-in 0.3s 0.3s;
-        transform-origin: center center;
-      }
     }
 
     &-tit {
@@ -473,13 +360,36 @@ export default {
   }
 
   .book {
-    width: 100%;
+    height: 80vh;
     position: relative;
     z-index: 2;
+    float: left;
     display: flex;
     box-sizing: border-box;
 
     &.pc {
+      width: 90%;
+      background: #c4deaa;
+      border: 2px dashed #c4deaa;
+
+      &:after {
+        content: '喵呜～无';
+        position: absolute;
+        font-size: 0.8em;
+        right: 0;
+        top: 0;
+        color: #2e5c77;
+        border: 2px dashed #fda6bc;
+        padding: 0.5em;
+        margin: 1em;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 1em;
+        transform-origin: center center;
+        -webkit-animation: rorating 2s ease-in infinite;
+        animation: rorating 2s ease-in infinite;
+        z-index: -1;
+      }
+
       .book-page {
         position: absolute;
         width: 50%;
@@ -487,8 +397,6 @@ export default {
         background: #fff;
         box-sizing: border-box;
         text-align: left;
-        padding-top: 40px;
-        border: 2px dashed #c4deaa;
 
         &:nth-child(odd) {
           position: absolute;
@@ -498,6 +406,10 @@ export default {
           transform-origin: right;
           transform: rotateY(90deg);
           text-align: right;
+          border-right: 2px dashed #c4deaa;
+          border-top-right-radius: 1em;
+          border-bottom-right-radius: 1em;
+          box-shadow: inset -1em 0 1em rgba(#c4deaa, 0.5);
         }
 
         &:nth-child(even) {
@@ -506,11 +418,20 @@ export default {
           height: 100%;
           right: 0;
           transform-origin: left;
+          border-top-left-radius: 1em;
+          border-bottom-left-radius: 1em;
+          box-shadow: inset 1em 0 1em rgba(#c4deaa, 0.5);
+
+          .pagebtn-box {
+            justify-content: flex-start;
+          }
         }
       }
     }
 
     &.h5 {
+      width: 80%;
+
       .book-page {
         position: absolute;
         width: 100%;
@@ -523,10 +444,17 @@ export default {
         transition: all 0.3s ease-in;
         overflow: hidden;
         border: 2px dashed #c4deaa;
+        border-top-right-radius: 1em;
+        border-bottom-left-radius: 1em;
+        box-shadow: inset 1em 0 1em rgba(#c4deaa, 0.5);
 
         &:first-child {
           transform-origin: right center;
           transform: rotateY(0deg);
+        }
+
+        .pagebtn-box {
+          justify-content: center;
         }
       }
     }
