@@ -1,6 +1,6 @@
 <template>
   <div class="box-catalog">
-    <div class="pc-book book">
+    <div class="pc book">
       <div
         v-for="(item, index) in list"
         :class="[item.class, { leftin: index == 0 }]"
@@ -44,6 +44,7 @@
           >
             上一页
           </div>
+          <div class="pagebtn cur">第{{ index + 1 }}/{{ pageNum }}页</div>
           <div
             class="pagebtn next"
             v-if="index < pageNum - 1 && index % 2 == 1"
@@ -51,11 +52,10 @@
           >
             下一页
           </div>
-          <div class="pagebtn cur">第{{ index + 1 }}/{{ pageNum }}页</div>
         </div>
       </div>
     </div>
-    <div class="h5-book book">
+    <div class="h5 book">
       <div
         v-for="(item, index) in list"
         :class="item.class"
@@ -63,10 +63,6 @@
         :key="index"
         :style="'z-index:' + index"
       >
-        <div class="tagtit-box">
-          <div class="tagtit-tit">{{ nowTag == "all" ? "全部" : nowTag }}</div>
-          <div class="tagtit-num">{{ catalogList.length }}</div>
-        </div>
         <div
           v-if="catalog && catalog.frontmatter.layout != 'catalog'"
           @click="goArticle(catalog.path)"
@@ -84,7 +80,7 @@
         <div class="pagebtn-box">
           <div
             class="pagebtn pre"
-            v-if="index > 0"
+            v-show="index > 0"
             @click="h5clickpage(pageId - 1)"
           >
             上一页
@@ -92,7 +88,7 @@
           <div class="pagebtn cur">{{ pageId + 1 }}/{{ pageNum }}</div>
           <div
             class="pagebtn next"
-            v-if="index < pageNum - 1"
+            v-show="index < pageNum - 1"
             @click="h5clickpage(pageId + 1)"
           >
             下一页
@@ -136,7 +132,7 @@ export default {
       pageId: 0,
       pageNum: null, //分页
       nowList: [],
-      everyPageNumber: 7, //每页多少个
+      everyPageNumber: 6, //每页多少个
       tagList: [],
       tags: [],
       nowTag: "all",
@@ -268,67 +264,32 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.tagtit {
-  &-box {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-  }
-
-  &-tit {
-    text-align: center;
-    width: inherit;
-    font-size: 2em;
-    color: #2e5c77;
-    overflow: hidden;
-    font-weight: bold;
-    text-overflow: ellipsis;
-  }
-
-  &-num {
-    font-size: 1em;
-    color: #2e5c77;
-    font-weight: bold;
-  }
-}
-
 .pagebtn {
   width: 80px;
   height: 30px;
   color: #fff;
-  position: absolute;
   text-align: center;
   font-size: 1em;
   line-height: 30px;
   border-radius: 10px;
 
   &-box {
-    position: absolute;
-    bottom: 50px;
     width: 100%;
     height: 30px;
-    left: 0;
-    bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+    margin: 1em 0;
   }
 
   &.pre {
-    left: 10%;
     background: #c3dae4;
   }
 
   &.cur {
-    left: 0;
-    right: 0;
-    margin: 0 auto;
     color: #2e5c77;
   }
 
   &.next {
-    right: 10%;
     background: #c4deaa;
   }
 }
@@ -337,8 +298,14 @@ export default {
   position: relative;
   display: flex;
   justify-content: center;
+  height: 600px;
 
   .tag-list {
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    align-items: flex-start;
+
     .tag {
       text-align: center;
       color: #fff;
@@ -350,9 +317,10 @@ export default {
       background: #c3dae4;
       text-align: center;
       white-space: nowrap;
-      transform:rotateZ(-30deg) translateX(-20px);
+      transform: rotateZ(-30deg) translateX(-20px);
+
       &-select {
-        transform:rotateZ(-30deg) translateX(30px);
+        transform: rotateZ(-30deg) translateX(30px);
         background: #fda6bc;
       }
     }
@@ -366,9 +334,10 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    
+
     &:hover {
-      opacity :.8;
+      opacity: 0.8;
+
       .catalog-tag-pre {
         transition: all ease-in 0.3s;
         transform-origin: center center;
@@ -384,97 +353,97 @@ export default {
       }
     }
 
-  &-tag {
-    margin-right: 1em;
-    padding: 2em;
-    box-sizing: border-box;
-    position: absolute;
-    right: 1em;
-    text-align: center;
-    font-size:.5em;
-
-    &-pre {
+    &-tag {
+      margin-right: 1em;
+      padding: 2em;
+      box-sizing: border-box;
       position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      transform: rotateY(0deg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-          width:2em;
-          height:2em;
-white-space: nowrap;
+      right: 1em;
+      text-align: center;
+      font-size: 0.5em;
 
-      &:before {
-        content: '';
+      &-pre {
         position: absolute;
-        top: 0;
-        left: 0;
         width: 100%;
         height: 100%;
-        background: #c3dae4;
-        transform: rotateZ(45deg);
-        z-index: -1;
-        border-radius: 10px;
-      }
-    }
-
-    &-next {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      transform: rotateY(90deg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    width:2em;
-    height: 2em;
-white-space: nowrap;
-
-      &:before {
-        content: '';
-        position: absolute;
         top: 0;
         left: 0;
+        transform: rotateY(0deg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2em;
+        height: 2em;
+        white-space: nowrap;
+
+        &:before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: #c3dae4;
+          transform: rotateZ(45deg);
+          z-index: -1;
+          border-radius: 10px;
+        }
+      }
+
+      &-next {
+        position: absolute;
         width: 100%;
         height: 100%;
-        background: #c4deaa;
-        transform: rotateZ(45deg);
-        z-index: -1;
-        border-radius: 10px;
+        top: 0;
+        left: 0;
+        transform: rotateY(90deg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2em;
+        height: 2em;
+        white-space: nowrap;
+
+        &:before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: #c4deaa;
+          transform: rotateZ(45deg);
+          z-index: -1;
+          border-radius: 10px;
+        }
+      }
+
+      .leftin {
+        transition: all ease-in 0.3s 0.3s;
+        transform-origin: center center;
+        transform: rotateY(0deg) !important;
+        z-index: 10;
+      }
+
+      .leftout {
+        transition: all ease-in 0.3s;
+        transform-origin: center center;
+        transform: rotateY(90deg);
+      }
+
+      .rightout {
+        transition: all ease-in 0.3s;
+        transform: rotateY(-90deg);
+        transform-origin: center center;
+      }
+
+      .rightin {
+        z-index: 10;
+        transform: rotateY(0deg);
+        transition: all ease-in 0.3s 0.3s;
+        transform-origin: center center;
       }
     }
-
-    .leftin {
-      transition: all ease-in 0.3s 0.3s;
-      transform-origin: center center;
-      transform: rotateY(0deg) !important;
-      z-index: 10;
-    }
-
-    .leftout {
-      transition: all ease-in 0.3s;
-      transform-origin: center center;
-      transform: rotateY(90deg);
-    }
-
-    .rightout {
-      transition: all ease-in 0.3s;
-      transform: rotateY(-90deg);
-      transform-origin: center center;
-    }
-
-    .rightin {
-      z-index: 10;
-      transform: rotateY(0deg);
-      transition: all ease-in 0.3s 0.3s;
-      transform-origin: center center;
-    }
-  }
 
     &-tit {
       font-weight: 700;
@@ -504,13 +473,13 @@ white-space: nowrap;
   }
 
   .book {
-    width: 800px;
+    width: 100%;
     position: relative;
     z-index: 2;
     display: flex;
     box-sizing: border-box;
 
-    &.pc-book {
+    &.pc {
       .book-page {
         position: absolute;
         width: 50%;
@@ -541,7 +510,7 @@ white-space: nowrap;
       }
     }
 
-    &.h5-book {
+    &.h5 {
       .book-page {
         position: absolute;
         width: 100%;
@@ -550,8 +519,6 @@ white-space: nowrap;
         text-align: left;
         transform: rotateY(90deg);
         transform-origin: left center;
-        padding-top: 60px;
-        padding-bottom: 40px;
         box-sizing: border-box;
         transition: all 0.3s ease-in;
         overflow: hidden;

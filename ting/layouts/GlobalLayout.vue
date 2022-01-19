@@ -1,8 +1,7 @@
 <template>
   <div class="global-layout">
-    <!-- <ting-bg /> -->
+    <ting-bg />
     <div id="nav"></div>
-    <SearchBox/>
     <loading v-show="isloading"/>
     <component :is="layout" />
     <ting-live2d/>
@@ -10,7 +9,6 @@
 </template>
 
 <script>
-import SearchBox from "@SearchBox";
 import tingNav from "../components/ting-nav.vue";
 import tingLive2d from "../components/ting-live2d.vue";
 import loading from "../components/ting-loading.vue";
@@ -31,7 +29,6 @@ export default {
     tingLive2d,
     tingNav,
     tingBg,
-    SearchBox
   },
   computed: {
     layout() {

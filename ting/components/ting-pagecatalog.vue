@@ -1,6 +1,10 @@
 <template>
   <div class="page-catalog">
-    <div class="menu" @click="showcatalog">目录</div>
+    <div class="menu">
+      <div class="menu-item" @click="showcatalog">目录</div>
+      <div class="menu-item" @click="gohome">首页</div>
+      <div class="menu-item" @click="gohome">文章</div>
+    </div>
     <div :class="['catalog', { show: h5catalog }]">
       <div v-if="preTitle.title" @click="goArticle(preTitle)" class="title">
         上一篇:《{{ preTitle.title }}》
@@ -43,6 +47,9 @@ export default {
   },
   computed: {},
   methods: {
+    gohome() {
+      this.$router.push("/");
+    },
     showcatalog() {
       this.h5catalog = !this.h5catalog;
     },
@@ -116,7 +123,7 @@ export default {
   }
 
   .catalog {
-    max-height: 30em;
+    max-height: 60vh;
     overflow-y: auto;
     line-height: 1.5em;
     color: #b6c3d0;
@@ -132,27 +139,32 @@ export default {
     height: 3em;
     position: absolute;
     top: 0;
-    font-weight: bold;
-    font-size: 1em;
-    color: #2e5c77;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0.5;
-    transition: all ease-in 0.3s;
-    opacity: 0;
 
-    &:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #c4deaa;
-      transform: rotateZ(45deg);
-      z-index: -1;
-      border-radius: 10px;
+    &-item {
+      width: 3em;
+      height: 3em;
+      font-weight: bold;
+      font-size: 1em;
+      color: #2e5c77;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.5;
+      transition: all ease-in 0.3s;
+      position: relative;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #c4deaa;
+        transform: rotateZ(45deg);
+        z-index: -1;
+        border-radius: 10px;
+      }
     }
   }
 
@@ -212,7 +224,7 @@ export default {
 
   &:before {
     content: ' ';
-    width :1em;
+    width: 1em;
     margin: auto;
     border: solid 0.5em #c4deaa;
     border-top: transparent 0.5em solid;
@@ -225,6 +237,7 @@ export default {
   color: #fda6bc;
   font-weight: bold;
   font-size: 1em;
+  width: 10em;
 }
 
 @media (max-width: 750px) {
@@ -233,9 +246,8 @@ export default {
     transition: all ease-in 0.5s;
 
     .menu {
-      opacity: 1;
-      transform: translateX(500%);
-      animation: opacitying 2s ease-in infinite;
+      transform: translateX(450%);
+      animation: opacitying 3s ease-in infinite;
     }
 
     .catalog {

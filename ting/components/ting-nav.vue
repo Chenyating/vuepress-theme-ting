@@ -37,7 +37,9 @@ export default {
       this.$emit("changenav", index);
     },
   },
-  mounted() {},
+  mounted() {
+    this.changenav(this.curindex)
+  },
 };
 </script>
 
@@ -46,7 +48,7 @@ export default {
   display: flex;
   align-items: center;
   margin: 1em;
-  background: url(/assets/img/my-bg.jpg);
+  background: url('/assets/img/my-bg.jpg');
 
   .nav {
     margin-right: 1em;
@@ -83,8 +85,7 @@ export default {
       justify-content: center;
       font-size: 1em;
       font-weight: bold;
-          width:2em;
-
+      width: 2em;
 
       &:before {
         content: '';
@@ -112,7 +113,7 @@ export default {
       justify-content: center;
       font-size: 1em;
       font-weight: bold;
-    width:2em;
+      width: 2em;
 
       &:before {
         content: '';

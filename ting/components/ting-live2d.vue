@@ -1,11 +1,9 @@
 <template>
   <div id="landlord" class="live2d-box">
     <div class="message" id="live2deMessage" style="opacity: 1">
-      点击我返回顶部
+      喵喵喵～
     </div>
-    <a href="#nav">
       <canvas id="live2d" width="280" height="250"></canvas>
-    </a>
   </div>
 </template>
 
@@ -30,9 +28,11 @@ export default {
 <style lang="stylus" scoped>
 .live2d-box {
   user-select: none;
+  pointer-events: none;
   position: fixed;
   bottom: 0;
   left: 0;
+  width:100px;
   z-index: 10000;
 }
 
@@ -54,13 +54,13 @@ export default {
   position: relative;
   transform-origin: center center;
   animation: rorating 2s ease-in infinite;
+  pointer-events: none;
 
   &:after {
     content: ' ';
     position: absolute;
-    bottom: -1.6em;
+    bottom: -1em;
     left: 1.5em;
-    height: 0.5em;
     margin: auto;
     border: solid 0.5em #fda6bc;
     border-bottom: transparent 0.5em solid;

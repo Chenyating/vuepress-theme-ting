@@ -1,6 +1,7 @@
 <template>
   <div class="article">
     <Content />
+    <a href="#nav">返回顶部 </a>
     <div v-if="preTitle.title" @click="goArticle(preTitle)" class="article-pre">
       上一篇：《{{ preTitle.title }}》
     </div>

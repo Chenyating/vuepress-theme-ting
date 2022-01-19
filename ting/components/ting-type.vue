@@ -1,18 +1,22 @@
 <template>
-  <div class="taglist">
-    <div class="tag">
-      <div class="tag-name">全部</div>
-      <div class="tag-count">{{ tagList.length }}</div>
-    </div>
-    <div
-      class="tag"
-      v-for="(item, index) in tags"
-      :key="index"
-    >
-      <div class="tag-name">
-        {{ item.tagname }}
+  <div>
+    <div class="taglist">
+      <div class="tag">
+        <div class="tag-face">全部</div>
+        <div class="tag-left">
+          <div class="tag-left-cont">全部</div>
+        </div>
+        <div class="tag-right">{{ tagList.length }}</div>
       </div>
-      <div class="tag-count">{{ item.count }}</div>
+      <div class="tag" v-for="(item, index) in tags" :key="index">
+        <div class="tag-face">
+          {{ item.tagname }}
+        </div>
+        <div class="tag-left">
+          <div class="tag-left-cont">{{ item.tagname }}</div>
+        </div>
+        <div class="tag-right">{{ item.count }}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -86,86 +90,89 @@ export default {
   justify-content: space-around;
 
   .tag {
-    margin: 0em;
-    padding: 1.5em;
-    font-weight: bold;
+    margin: 1em;
+    padding: 1em;
+    width: 4em;
+    height: 4em;
+    box-sizing: border-box;
     position: relative;
-    white-space: nowrap;
-    border-radius: 100%;
-    background: transparent;
-    transform: skewX(0deg) scale(0.7);
-    border: 2px dashed #c4deaa;
-    transition: all ease-in 0.3s;
-    background: #fff;
+    text-align: center;
+    transition: all ease-in 1s;
+    transform-origin: center center;
+    font-size: 1em;
 
-    &-name {
-      font-size: 1em;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-    }
+    &:hover {
+      transform: translateX(50%);
 
-    &-count {
-      position: absolute;
-      font-size: 1.5em;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      z-index :20;
-    }
-
-    &:after {
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      margin: auto;
-      content: '';
-      width: 100%;
-      height: 100%;
-      border: 2px dashed #c4deaa;
-      box-sizing: border-box;
-      border-radius: 100%;
-      transform: skewX(30deg);
-      transition: all ease-in 0.3s;
-    }
-
-    &:before {
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      margin: auto;
-      content: '';
-      width: 100%;
-      height: 100%;
-      border: 2px dashed #c4deaa;
-      transform: skewX(-30deg);
-      transition: all ease-in 0.3s;
-      border-radius: 100%;
-      box-sizing: border-box;
-    }
-
-    &:hover{
-      border-color: #fda6bc;
-      transition: all ease-in 0.3s;
-      transform: skewX(0deg) scale(1);
-
-      &:after {
-        transform: skewX(30deg) scale(0.8);
+      .tag-face {
         transition: all ease-in 0.3s;
-        border-color: #fda6bc;
+        transform-origin: left center;
+        transform: rotateY(90deg) skewX(-20deg) !important;
+        z-index: 10;
       }
 
-      &:before {
-        transform: skewX(-30deg) scale(0.9);
-        transition: all ease-in 0.3s;
-        border-color: #fda6bc;
+      .tag-left {
+        transition: all ease-in 0.3s 0.3s;
+        transform-origin: left center;
+        transform: rotateY(180deg) !important;
+        z-index: 10;
       }
+    }
+
+    &-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      transform-origin: left center;
+      transform: rotateY(0deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      background: #c3dae4;
+      border-radius: 20px;
+      font-size: 0.8em;
+      transition: all ease-in 0.3s 0.3s;
+    }
+
+    &-left {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      transform-origin: left center;
+      transform: rotateY(90deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all ease-in 0.3s;
+      background: #fda6bc;
+      border-radius: 20px;
+      font-size: 0.8em;
+
+      &-cont {
+        transform: rotateY(180deg);
+      }
+    }
+
+    &-right {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      transform-origin: left center;
+      transform: rotateY(0deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all ease-in 0.3s;
+      z-index: -1;
+      background: #c4deaa;
+      border-radius: 20px;
     }
   }
 }
