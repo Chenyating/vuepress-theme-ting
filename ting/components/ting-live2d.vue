@@ -1,25 +1,53 @@
 <template>
   <div id="landlord" class="live2d-box">
-    <div class="message" id="live2deMessage" style="opacity: 1">
-      喵喵喵～
-    </div>
-      <canvas id="live2d" width="280" height="250"></canvas>
+    <div class="message" id="live2deMessage" style="opacity: 1">喵喵喵～</div>
+    <canvas id="live2d" width="280" height="250"></canvas>
   </div>
 </template>
 
 <script>
-import "../public/js/live2d.js";
-import "../public/js/message.js";
 export default {
   components: {},
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    loadJs(url, callback) {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      if (typeof callback != "undefined") {
+        if (script.readyState) {
+          script.onreadystatechange = function () {
+            if (
+              script.readyState == "loaded" ||
+              script.readyState == "complete"
+            ) {
+              script.onreadystatechange = null;
+              callback();
+            }
+          };
+        } else {
+          script.onload = function () {
+            callback();
+          };
+        }
+      }
+      script.src = url;
+      document.body.appendChild(script);
+    },
+  },
   mounted() {
     this.url = this.$site.themeConfig.live2dModel;
     if (this.url != undefined) {
-      loadlive2d("live2d", this.url);
+      this.loadJs(
+        "https://cdn.zhangxinxu.com/sp/demo/live2d/live2d/js/live2d.js"
+      );
+      this.loadJs(
+        "https://yating.world/js/message.js"
+      );
+      window.onload = () => {
+        loadlive2d("live2d", this.url);
+      };
     }
   },
 };
@@ -32,7 +60,7 @@ export default {
   position: fixed;
   bottom: 0;
   left: 0;
-  width:100px;
+  width: 100px;
   z-index: 10000;
 }
 
