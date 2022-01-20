@@ -1,5 +1,3 @@
-import $ from "jquery";
-
 var home_Path = 'https://yating.world/'
 var result = {
     mouseover: [{

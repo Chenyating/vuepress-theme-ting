@@ -4,7 +4,9 @@
     <ting-about v-show="contid != 1" />
     <div class="cont-list">
       <div class="cont" v-show="contid == 0">
+        <div class="cont-tit">Blog Category</div>
         <ting-type @clicktag="showcatalog" />
+        <div class="cont-tit">About Me</div>
       </div>
       <div class="cont" v-show="contid == 1">
         <ting-search />
@@ -14,6 +16,7 @@
         <ting-content />
       </div>
       <div class="cont" v-show="contid == 3">
+        <div class="cont-tit">Message Board</div>
         <ting-gitalk />
       </div>
     </div>
@@ -69,6 +72,13 @@ export default {
 
   .cont {
     transition: all 0.3s ease;
+
+    &-tit {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #c3dae4;
+      text-align: center;
+    }
   }
 }
 </style>
