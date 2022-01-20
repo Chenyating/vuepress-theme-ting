@@ -1,22 +1,24 @@
-@require './tingAnimation'
-
-html, body
-  padding 0
-  margin 0
-  background-color #fff
-
-@require './base'
-@require './tingCode'
-
-::-webkit-scrollbar {
-  width: 3px;
-  background-color: white;
+html, body {
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  cursor: default;
 }
 
-::-webkit-scrollbar-thumb {
-  // border-radius: 10px;
-  width 3px;
-  background-color: #88c1ea;
-  background linear-gradient(#88c1ea, white)
+.hide {
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s all ease-in;
 }
 
+.show {
+  opacity: 1;
+  pointer-events: auto;
+  transition: 0.3s all ease-in;
+}
+
+@require './adaptation';
+@require './markdown';
+@require './animation';

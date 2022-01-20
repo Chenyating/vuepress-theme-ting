@@ -1,5 +1,5 @@
 <template>
-    <div v-if="ifshow" id="gitalk-container">
+    <div id="gitalk-container">
     </div>
 </template>
 <script>
@@ -24,4 +24,9 @@
         }
     }
 </script>
+<style scoped>
+#gitalk-container{
+    margin: 1em;
+}
+</style>
  

@@ -1,75 +1,102 @@
 <template>
-<tingNav>
-    <div slot='expand' class="info-box">
-        <img class="my-phone" :src="headImg" />
-        <div class="info">
-            <div>
-                <div class="my-name">{{$site.themeConfig.author}}</div>
-                <div class="des">{{$site.description}}</div>
-            </div>
-        </div>
+  <div>
+    <tingCaroulse />
+    <div class="me">
+      <div class="me-img">
+        <img :src="headImg" />
+      </div>
+      <div class="me-name">{{ $site.themeConfig.author.name }}</div>
+      <div class="me-desc">{{ $site.themeConfig.author.description }}</div>
     </div>
-</tingNav>
+  </div>
 </template>
 
 <script>
-import tingNav from "../components/ting-nav.vue";
+import tingCaroulse from "../components/ting-caroulse.vue";
+
 export default {
-    components: {
-        tingNav,
-    },
-    data() {
-        return {
-            headImg: "https://yating.online/res/img/yating.jpg",
-            navLinkList: [],
-        }
-    },
-    mounted() {
-        if (this.$site.themeConfig.headImg) {
-            this.headImg = this.$site.themeConfig.headImg;
-        }
-
-        this.navLinkList = this.$site.themeConfig.nav;
-
+  components: {
+    tingCaroulse,
+  },
+  data() {
+    return {
+      headImg: "",
+    };
+  },
+  mounted() {
+    if (this.$site.themeConfig.author) {
+      this.headImg = this.$site.themeConfig.author.headImg;
     }
-}
+  },
+};
 </script>
 
 <style lang="stylus" scoped>
-.info-box {
-    background #ffffff;
-    margin 0 20px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+.me {
+  position: relative;
+  padding: 1.5em 1em;
+  padding-left: 150px;
+  margin: 2em 1em;
+  box-sizing: border-box;
 
-    .my-phone {
-        transform translateY(-40px);
-        width 80px;
-        height 80px;
-        border solid 3px #ffffff;
-        border-radius: 80px;
-        display block;
-        margin 0 50px;
+  &-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    display: block;
+    background: #c4deaa;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 100%;
+      position: absolute;
+      background: #c4deaa;
     }
 
-    .info {
-        padding-left 2em;
-        transform translateY(-30px);
-
-        .my-name {
-            font-weight bold;
-            font-size 20px;
-            margin-bottom 10px;
-        }
-
-        .des {}
-    }
-}
-
-@media (max-width $MQNarrow) {
-    .info-box {
-        transform translateY(50px);
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 100%;
+      position: absolute;
+      background: #c4deaa;
     }
 
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 100%;
+      border: solid 5px #c4deaa;
+      box-sizing: border-box;
+    }
+  }
+
+  &-name {
+    width: inherit;
+    font-size: 2em;
+    color: #2e5c77;
+    overflow: hidden;
+    font-weight: bold;
+  }
+
+  &-desc {
+    font-size: 1em;
+    color: #2e5c77;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 </style>
