@@ -11,7 +11,8 @@ module.exports = {
             rel: 'icon',
             type: "image/x-icon",
             href: '/img/logo.ico'
-        }]
+        }],
+        ['script', { src: 'https://cdn.bootcss.com/jquery/3.4.1/jquery.js' }]
     ],
     themeConfig: {
         lastUpdated: 'Last Updated',

@@ -3,20 +3,16 @@ import $ from "jquery";
 var home_Path = 'https://yating.world/'
 var result = {
     mouseover: [{
-            selector: ".link-item",
+            selector: ".tag-face",
             text: ["要去——{text}吗？"]
         },
         {
-            selector: ".title-box .title",
+            selector: ".catalog .catalog-tit",
             text: ["要看看 《{text}》 么？"]
         },
         {
-            selector: "img .top",
-            text: ["点击回到最顶部哦"]
-        },
-        {
-            selector: ".hide-button",
-            text: ["变身~我有瞬间移动的能力~"]
+            selector: ".tag",
+            text: ["分个类一定有你想看的～"]
         },
         {
             selector: ".search-box",
@@ -24,12 +20,12 @@ var result = {
         }
     ],
     click: [{
-            selector: ".link-item .router-link-active",
-            text: ["你现在在{text}页哦~"]
+            selector: ".nav",
+            text: ["是不是也喜欢这个主题呢？看看关于站点你也能拥有哦～"]
         },
         {
-            selector: "#landlord",
-            text: ["不要动手动脚的！快把手拿开~~", "真…真的是不知羞耻！", "Hentai！", "再摸的话我可要报警了！⌇●﹏●⌇", "110吗，这里有个变态一直在摸我(ó﹏ò｡)"]
+            selector: ".taglist",
+            text: ["这都是我平时积累的笔记呢～","爱学习是个好宝宝～，相信你也是！"]
         },
         {
             selector: ".tag-box",
@@ -40,7 +36,7 @@ var result = {
 
 function renderTip(template, context) {
     var tokenReg = /(\\)?\{([^\{\}\\]+)(\\)?\}/g;
-    return template.replace(tokenReg, function(word, slash1, token, slash2) {
+    return template.replace(tokenReg, function (word, slash1, token, slash2) {
         if (slash1 || slash2) {
             return word.replace('\\', '');
         }
@@ -56,24 +52,24 @@ function renderTip(template, context) {
     });
 }
 
-String.prototype.renderTip = function(context) {
+String.prototype.renderTip = function (context) {
     return renderTip(this, context);
 };
 
 var re = /x/;
 console.log(re);
-re.toString = function() {
+re.toString = function () {
     showMessage('哈哈，你打开了控制台，是想要看看我的秘密吗？', 5000);
     return '';
 };
 
-$(document).on('copy', function() {
+$(document).on('copy', function () {
     showMessage('你都复制了些什么呀，转载要记得加上出处哦~~', 5000);
 });
 
 function initTips() {
-    $.each(result.mouseover, function(index, tips) {
-        $(tips.selector).mouseover(function() {
+    $.each(result.mouseover, function (index, tips) {
+        $(tips.selector).mouseover(function () {
             var text = tips.text;
             if (Array.isArray(tips.text)) text = tips.text[Math.floor(Math.random() * tips.text.length + 1) - 1];
             text = text.renderTip({
@@ -82,8 +78,8 @@ function initTips() {
             showMessage(text, 1000);
         });
     });
-    $.each(result.click, function(index, tips) {
-        $(tips.selector).click(function() {
+    $.each(result.click, function (index, tips) {
+        $(tips.selector).click(function () {
             var text = tips.text;
             if (Array.isArray(tips.text)) text = tips.text[Math.floor(Math.random() * tips.text.length + 1) - 1];
             text = text.renderTip({
@@ -95,7 +91,7 @@ function initTips() {
 }
 initTips();
 
-(function() {
+(function () {
     var text;
     if (document.referrer !== '') {
         var referrer = document.createElement('a');
@@ -128,7 +124,7 @@ initTips();
         } else if (now > 21 && now <= 23) {
             text = '已经这么晚了呀，早点休息吧，晚安~~';
         } else {
-            text = '嗨~ 快来逗我玩吧！';
+            text = '嗨~ 你一定很爱学习吧！';
         }
     }
     showMessage(text, 12000);
@@ -137,7 +133,7 @@ initTips();
 window.setInterval(showHitokoto, 30000);
 
 function showHitokoto() {
-    $.getJSON('https://v1.hitokoto.cn/', function(result) {
+    $.getJSON('https://v1.hitokoto.cn/', function (result) {
         showMessage(result.hitokoto, 5000);
     });
 }

@@ -1,14 +1,14 @@
 <template>
   <div class="index-layout">
-    <ting-nav @changenav="haha" />
-    <ting-about v-show="contid != 1"/>
+    <ting-nav @changenav="showcont" />
+    <ting-about v-show="contid != 1" />
     <div class="cont-list">
       <div class="cont" v-show="contid == 0">
-        <div>博客分类</div>
-        <ting-type />
+        <ting-type @clicktag="showcatalog" />
       </div>
       <div class="cont" v-show="contid == 1">
-        <ting-catalog />
+        <ting-search />
+        <ting-catalog :curtag="curtype" />
       </div>
       <div class="cont" v-show="contid == 2">
         <ting-content />
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import tingSearch from "../components/ting-search.vue";
 import tingNav from "../components/ting-nav.vue";
 import tingGitalk from "../components/ting-gitalk.vue";
 import tingCatalog from "../components/ting-catalog.vue";
@@ -29,6 +30,7 @@ import tingAbout from "../components/ting-about.vue";
 import tingContent from "../components/ting-content.vue";
 export default {
   components: {
+    tingSearch,
     tingNav,
     tingContent,
     tingGitalk,
@@ -40,10 +42,15 @@ export default {
   data() {
     return {
       contid: 0,
+      curtype: "all",
     };
   },
   methods: {
-    haha(val) {
+    showcatalog(val) {
+      this.contid = 1;
+      this.curtype = val;
+    },
+    showcont(val) {
       this.contid = val;
     },
   },

@@ -18,12 +18,6 @@
 
 <script>
 export default {
-  props: {
-    curid: {
-      type: String,
-      default: "0",
-    },
-  },
   data() {
     return {
       navlist: ["首页", "文章", "关于站点", "留言板"],
@@ -48,7 +42,6 @@ export default {
   display: flex;
   align-items: center;
   margin: 1em;
-  background: url('/assets/img/my-bg.jpg');
 
   .nav {
     margin-right: 1em;

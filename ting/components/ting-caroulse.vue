@@ -190,7 +190,7 @@ export default {
   font-size: 1em;
   text-align: center;
   font-weight: bold;
-  background: rgba(#fff, 0.8);
+  background: rgba(#fff, 0.9);
   border: 2px dashed #fda6bc;
   border-radius: 1em;
   position: relative;

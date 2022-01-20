@@ -1,14 +1,19 @@
 <template>
   <div>
     <div class="taglist">
-      <div class="tag">
+      <div class="tag" @click="clicktag('all')">
         <div class="tag-face">全部</div>
         <div class="tag-left">
           <div class="tag-left-cont">全部</div>
         </div>
         <div class="tag-right">{{ tagList.length }}</div>
       </div>
-      <div class="tag" v-for="(item, index) in tags" :key="index">
+      <div
+        class="tag"
+        @click="clicktag(item.tagname)"
+        v-for="(item, index) in tags"
+        :key="index"
+      >
         <div class="tag-face">
           {{ item.tagname }}
         </div>
@@ -27,9 +32,15 @@ export default {
     return {
       tagList: [],
       tags: null,
+      tagname: "",
     };
   },
   methods: {
+    clicktag(tagname) {
+      this.tagname=tagname;
+      // 把值传给父组件去。
+      this.$emit("clicktag", tagname);
+    },
     getTag() {
       var list = this.$site.pages;
       list.forEach((element) => {
@@ -135,6 +146,7 @@ export default {
       border-radius: 20px;
       font-size: 0.8em;
       transition: all ease-in 0.3s 0.3s;
+      box-shadow: 0 2px 7px rgba(0, 0, 0, 0.15);
     }
 
     &-left {
@@ -152,6 +164,7 @@ export default {
       background: #fda6bc;
       border-radius: 20px;
       font-size: 0.8em;
+      box-shadow: 0 2px 7px rgba(0, 0, 0, 0.15);
 
       &-cont {
         transform: rotateY(180deg);
@@ -173,6 +186,7 @@ export default {
       z-index: -1;
       background: #c4deaa;
       border-radius: 20px;
+      box-shadow: 0 2px 7px rgba(0, 0, 0, 0.15);
     }
   }
 }

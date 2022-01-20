@@ -28,14 +28,15 @@
 }
 
 .loading {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
   left: 0;
+  top: 0;
   background: #c4deaa;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 11111;
-  position: fixed;
 }
 </style>

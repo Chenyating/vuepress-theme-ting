@@ -7,6 +7,18 @@ html, body {
   cursor: default;
 }
 
+.hide {
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s all ease-in;
+}
+
+.show {
+  opacity: 1;
+  pointer-events: auto;
+  transition: 0.3s all ease-in;
+}
+
 @require './adaptation';
 @require './markdown';
 @require './palette';

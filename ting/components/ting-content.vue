@@ -1,7 +1,6 @@
 <template>
   <div class="article">
     <Content />
-    <a href="#nav">返回顶部 </a>
     <div v-if="preTitle.title" @click="goArticle(preTitle)" class="article-pre">
       上一篇：《{{ preTitle.title }}》
     </div>
@@ -76,7 +75,7 @@ export default {
 
 <style lang="stylus" scoped>
 .article {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   padding: 0 1em;
   padding-bottom: 6em;
   position: relative;

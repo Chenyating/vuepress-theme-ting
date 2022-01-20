@@ -1,16 +1,14 @@
 <template>
   <div class="global-layout">
-    <ting-bg />
-    <SearchBox />
+    <ting-bg/>
     <loading v-show="isloading" />
+    <div id="top"></div>
     <component :is="layout" />
     <ting-live2d />
   </div>
 </template>
 
 <script>
-import SearchBox from "@SearchBox";
-
 import tingNav from "../components/ting-nav.vue";
 import tingLive2d from "../components/ting-live2d.vue";
 import loading from "../components/ting-loading.vue";
@@ -26,7 +24,6 @@ export default {
     this.isloading = false;
   },
   components: {
-    SearchBox,
     loading,
     tingLive2d,
     tingNav,

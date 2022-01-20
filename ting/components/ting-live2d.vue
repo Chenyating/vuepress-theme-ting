@@ -1,11 +1,12 @@
 <template>
   <div id="landlord" class="live2d-box">
-    <div class="message" id="live2deMessage" style="opacity: 1">喵喵喵～</div>
+    <div class="message show" id="live2deMessage">喵喵喵～</div>
     <canvas id="live2d" width="280" height="250"></canvas>
   </div>
 </template>
 
 <script>
+
 export default {
   components: {},
   data() {
@@ -40,7 +41,7 @@ export default {
     this.url = this.$site.themeConfig.live2dModel;
     if (this.url != undefined) {
       this.loadJs(
-        "https://cdn.zhangxinxu.com/sp/demo/live2d/live2d/js/live2d.js"
+        "https://yating.world/js/live2d.js"
       );
       this.loadJs(
         "https://yating.world/js/message.js"

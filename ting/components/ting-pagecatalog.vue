@@ -1,9 +1,9 @@
 <template>
   <div class="page-catalog">
     <div class="menu">
-      <div class="menu-item" @click="showcatalog">目录</div>
+      <div class="menu-item cur" @click="showcatalog">目录</div>
       <div class="menu-item" @click="gohome">首页</div>
-      <div class="menu-item" @click="gohome">文章</div>
+      <div class="menu-item"><a href="#top"> 顶部</a></div>
     </div>
     <div :class="['catalog', { show: h5catalog }]">
       <div v-if="preTitle.title" @click="goArticle(preTitle)" class="title">
@@ -51,6 +51,7 @@ export default {
       this.$router.push("/");
     },
     showcatalog() {
+      console.log("???");
       this.h5catalog = !this.h5catalog;
     },
     // 点击a以后获得改变的hash路由
@@ -130,30 +131,38 @@ export default {
     scroll-behavior: smooth;
     border: 2px dashed #c4deaa;
     padding: 1em;
-    background: rgba(#fff, 0.8);
+    background: #fff;
     border-radius: 1em;
   }
 
   .menu {
-    width: 3em;
     height: 3em;
     position: absolute;
     top: 0;
-    transform: translateX(-150%);
-    animation: opacitying 3s ease-in infinite;
+    display: flex;
 
     &-item {
       width: 3em;
       height: 3em;
       font-weight: bold;
       font-size: 1em;
+      margin: 0.5em;
       color: #2e5c77;
       display: flex;
       align-items: center;
       justify-content: center;
-      opacity: 0.5;
       transition: all ease-in 0.3s;
       position: relative;
+
+      a {
+        text-align: center;
+        font-weight: bold;
+        font-size: 1em;
+      }
+
+      &.cur {
+        animation: opacitying 3s ease-in infinite;
+      }
 
       &:before {
         content: '';
@@ -248,21 +257,21 @@ export default {
   width: 10em;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 1000px) {
   .page-catalog {
-    transform: translateX(-100%);
+    transform: translateX(100vw);
     transition: all ease-in 0.5s;
 
     .menu {
-      transform: translateX(450%);
-      animation: opacitying 3s ease-in infinite;
+      transform: translateX(-100%) translateY(-100%);
+      display: block;
     }
 
     .catalog {
       transition: all ease-in 0.3s;
 
       &.show {
-        transform: translateX(100%);
+        transform: translateX(-100%);
       }
     }
   }

@@ -77,7 +77,7 @@
           >
             上
           </div>
-          <div class="pagebtn cur">{{ index+1}}/{{ pageNum }}</div>
+          <div class="pagebtn cur">{{ index + 1 }}/{{ pageNum }}</div>
           <div
             class="pagebtn next"
             v-show="index < pageNum - 1"
@@ -118,6 +118,12 @@ export default {
     tingType,
   },
   name: "catalog",
+  props: {
+    curtag: {
+      type: String,
+      default: "all",
+    },
+  },
   data() {
     return {
       catalogList: [],
@@ -131,6 +137,11 @@ export default {
       showCatalog: false,
       list: [],
     };
+  },
+  watch: {
+    curtag(val) {
+      this.changeType(val);
+    },
   },
   methods: {
     ifshowCatalog() {
@@ -249,8 +260,8 @@ export default {
   },
   mounted() {
     this.nowTag = this.$route.query.type ? this.$route.query.type : "all";
-    this.init(this.nowTag);
     this.getTag();
+    this.init(this.nowTag);
   },
 };
 </script>
@@ -265,7 +276,6 @@ export default {
   border-radius: 1em;
   padding: 0 1em;
   margin: 0 1em;
-  font-weight: bold;
 
   &-box {
     width: 100%;
@@ -280,7 +290,7 @@ export default {
   }
 
   &.cur {
-    color: #fda6bc;
+    color: #2c3e50;
   }
 
   &.next {
@@ -289,9 +299,6 @@ export default {
 }
 
 .box-catalog {
-  position: relative;
-  justify-content: center;
-
   .tag-list {
     scroll-behavior: smooth;
     width: 20%;
@@ -302,15 +309,17 @@ export default {
       text-align: center;
       color: #fff;
       font-size: 0.5em;
-      padding: 0.5em 3em;
+      padding: 0.5em 1em;
       margin: 1em 0;
       cursor: pointer;
       background: #c3dae4;
       text-align: right;
-      white-space: nowrap;
       transform: rotateZ(-30deg) translateX(-20px);
       border-radius: 1em;
       transition: all 1s;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
       &-select {
         transform: rotateZ(-30deg) translateX(30px);
@@ -333,7 +342,6 @@ export default {
     }
 
     &-tit {
-      font-weight: 700;
       display: block;
       width: inherit;
       font-size: 1em;
@@ -347,7 +355,6 @@ export default {
     }
 
     &-time {
-      font-weight: 700;
       display: block;
       width: inherit;
       font-size: 0.5em;
@@ -366,11 +373,13 @@ export default {
     float: left;
     display: flex;
     box-sizing: border-box;
-
     &.pc {
       width: 90%;
+      height: 70vh;
+      min-height :550px;
       background: #c4deaa;
       border: 2px dashed #c4deaa;
+      box-shadow: 0 2px 7px rgba(0, 0, 0, 0.15);
 
       &:after {
         content: '喵呜～无';
@@ -431,6 +440,8 @@ export default {
 
     &.h5 {
       width: 80%;
+      box-shadow: 0 2px 7px rgba(0, 0, 0, 0.15);
+      border-radius: 1em;
 
       .book-page {
         position: absolute;
