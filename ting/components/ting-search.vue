@@ -2,7 +2,6 @@
   <div class="search-box">
     <input
       autofocus="autofocus"
-      @blur="hide"
       v-model="searchKey"
       placeholder="找找关键词哦～"
     />
@@ -52,9 +51,6 @@ export default {
     },
   },
   methods: {
-    hide() {
-      this.searchKey = "";
-    },
     // 跳转页面
     searchLink(item) {
       this.$router
@@ -104,6 +100,7 @@ export default {
   position: relative;
   font-size: 1em;
   margin: 1em;
+
   input {
     border-radius: 1em;
     padding: 0.5em 1em;
@@ -114,7 +111,6 @@ export default {
     margin: 1em 0;
     box-sizing: border-box;
     position: relative;
-
   }
 
   .result-list {

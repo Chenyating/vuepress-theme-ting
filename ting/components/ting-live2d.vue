@@ -6,7 +6,6 @@
 </template>
 
 <script>
-
 export default {
   components: {},
   data() {
@@ -40,12 +39,8 @@ export default {
   mounted() {
     this.url = this.$site.themeConfig.live2dModel;
     if (this.url != undefined) {
-      this.loadJs(
-        "https://yating.world/js/live2d.js"
-      );
-      this.loadJs(
-        "https://yating.world/js/message.js"
-      );
+      this.loadJs("https://yating.world/js/live2d.js");
+      this.loadJs("https://yating.world/js/message.js");
       window.onload = () => {
         loadlive2d("live2d", this.url);
       };
@@ -61,12 +56,12 @@ export default {
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 100px;
+  width: 25vw;
   z-index: 10000;
 }
 
 #live2d {
-  width: 100px;
+  width: 25vw;
   font-size: 0;
   transition: all 0.3s ease-in-out;
 }
@@ -89,7 +84,9 @@ export default {
     content: ' ';
     position: absolute;
     bottom: -1em;
-    left: 1.5em;
+    left: 0;
+    right: 0;
+    width:0;
     margin: auto;
     border: solid 0.5em #fda6bc;
     border-bottom: transparent 0.5em solid;

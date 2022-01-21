@@ -89,21 +89,23 @@
       </div>
     </div>
     <div class="tag-list">
-      <div
-        class="tag"
-        :class="{ 'tag-select': nowTag == 'all' }"
-        @click="changeType('all')"
-      >
-        全部
-      </div>
-      <div
-        class="tag"
-        @click="changeType(item.date)"
-        :class="{ 'tag-select': nowTag == item.date }"
-        v-for="(item, index) in tags"
-        :key="index"
-      >
-        {{ item.date }}
+      <div class="tag-inner-list">
+        <div
+          class="tag"
+          :class="{ 'tag-select': nowTag == 'all' }"
+          @click="changeType('all')"
+        >
+          全部
+        </div>
+        <div
+          class="tag"
+          @click="changeType(item.date)"
+          :class="{ 'tag-select': nowTag == item.date }"
+          v-for="(item, index) in tags"
+          :key="index"
+        >
+          {{ item.date }}
+        </div>
       </div>
     </div>
   </div>
@@ -282,7 +284,6 @@ export default {
     height: 2em;
     display: flex;
     justify-content: flex-end;
-    margin: 1em 0;
   }
 
   &.pre {
@@ -302,13 +303,45 @@ export default {
   .tag-list {
     scroll-behavior: smooth;
     width: 20%;
+    height: 70vh;
     position: absolute;
     right: 0;
+    overflow: hidden;
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 2em;
+      background: linear-gradient(#fff,transparent);
+      border-bottom-left-radius: 100%;
+      top: 0;
+      right: 0;
+      z-index :1;
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 2em;
+      background: linear-gradient(transparent,#fff);
+      border-top-left-radius: 100%;
+      bottom: 0;
+      right: 0;
+      z-index :1;
+    }
+
+    .tag-inner-list {
+      height: 100%;
+      width: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
 
     .tag {
       text-align: center;
       color: #fff;
-      font-size: 0.5em;
+      font-size: 1em;
       padding: 0.5em 1em;
       margin: 1em 0;
       cursor: pointer;
@@ -367,16 +400,17 @@ export default {
   }
 
   .book {
-    height: 80vh;
+    height: 70vh;
     position: relative;
     z-index: 2;
     float: left;
     display: flex;
     box-sizing: border-box;
+
     &.pc {
       width: 90%;
       height: 70vh;
-      min-height :550px;
+      min-height: 550px;
       background: #c4deaa;
       border: 2px dashed #c4deaa;
       box-shadow: 0 2px 7px rgba(0, 0, 0, 0.15);
