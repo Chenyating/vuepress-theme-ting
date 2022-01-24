@@ -1,12 +1,12 @@
 <template>
   <div>
-    <tingCaroulse />
+    <tingCaroulse v-if="this.$site.themeConfig.author.infolist"/>
     <div class="me">
       <div class="me-img">
-        <img :src="headImg" />
+        <img v-if="this.$site.themeConfig.author.headImg" :src="$site.themeConfig.author.headImg" />
       </div>
-      <div class="me-name">{{ $site.themeConfig.author.name }}</div>
-      <div class="me-desc">{{ $site.themeConfig.author.description }}</div>
+      <div class="me-name">{{ $site.themeConfig.author.name?$site.themeConfig.author.name:'vuepress-theme-ting' }}</div>
+      <div class="me-desc">{{ $site.themeConfig.author.description?$site.themeConfig.author.description:'一个小清新风格的vuepress主题' }}</div>
     </div>
   </div>
 </template>
@@ -17,16 +17,6 @@ import tingCaroulse from "../components/ting-caroulse.vue";
 export default {
   components: {
     tingCaroulse,
-  },
-  data() {
-    return {
-      headImg: "",
-    };
-  },
-  mounted() {
-    if (this.$site.themeConfig.author) {
-      this.headImg = this.$site.themeConfig.author.headImg;
-    }
   },
 };
 </script>

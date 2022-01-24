@@ -23,7 +23,7 @@
   white-space: nowrap;
   border-right: 0.1em solid;
   font-weight: bold;
-  animation: typing 5s steps(6) infinite ; 
+  animation: typing 2s steps(6) infinite ; 
 
 }
 
@@ -33,10 +33,10 @@
   position: fixed;
   left: 0;
   top: 0;
-  background: #c4deaa;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 11111;
+  pointer-events: none;
 }
 </style>

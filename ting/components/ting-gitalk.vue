@@ -1,5 +1,5 @@
 <template>
-    <div id="gitalk-container">
+    <div v-if="ifshow" id="gitalk-container">
     </div>
 </template>
 <script>

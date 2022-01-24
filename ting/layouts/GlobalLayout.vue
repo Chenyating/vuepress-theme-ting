@@ -1,10 +1,12 @@
 <template>
   <div class="global-layout">
-    <ting-bg/>
+    <ting-bg />
     <loading v-show="isloading" />
-    <div id="top"></div>
-    <component :is="layout" />
-    <ting-live2d />
+    <div :class="!isloading?'show':'hide'">
+      <div id="top"></div>
+      <component :is="layout" />
+      <ting-live2d />
+    </div>
   </div>
 </template>
 
@@ -21,7 +23,9 @@ export default {
   },
   methods: {},
   mounted() {
-    this.isloading = false;
+    setTimeout(() => {
+      this.isloading = false;
+    }, 2000);
   },
   components: {
     loading,

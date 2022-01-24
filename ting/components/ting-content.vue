@@ -88,6 +88,7 @@ export default {
     line-height: 1.5em;
     border-radius: 1em;
     padding-right: 1em;
+    white-space: nowrap;
 
     &:before {
       content: '';
@@ -106,6 +107,7 @@ export default {
     right: 1em;
     border-radius: 1em;
     background: #c4deaa;
+    white-space: nowrap;
 
     &:after {
       content: '';

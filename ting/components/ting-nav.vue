@@ -20,7 +20,7 @@
 export default {
   data() {
     return {
-      navlist: ["首页", "文章", "关于站点", "留言板"],
+      navlist: ["首页", "文章", "关于"],
       curindex: 1,
     };
   },
@@ -32,6 +32,9 @@ export default {
     },
   },
   mounted() {
+    if (this.$site.themeConfig.gitalk) {
+      this.navlist.push('留言板')
+    }
     this.changenav(this.curindex)
   },
 };

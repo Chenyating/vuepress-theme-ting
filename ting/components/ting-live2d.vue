@@ -1,7 +1,7 @@
 <template>
   <div id="landlord" class="live2d-box">
     <div class="message show" id="live2deMessage">喵喵喵～</div>
-    <canvas id="live2d" width="280" height="250"></canvas>
+    <canvas v-if="url" id="live2d" width="280" height="250"></canvas>
   </div>
 </template>
 
@@ -9,7 +9,9 @@
 export default {
   components: {},
   data() {
-    return {};
+    return {
+      url:''
+    };
   },
   methods: {
     loadJs(url, callback) {

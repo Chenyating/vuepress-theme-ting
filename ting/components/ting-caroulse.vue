@@ -115,13 +115,13 @@ export default {
         }
         this.list = list;
       }
+      this.times = setInterval(() => {
+        this.toleft();
+      }, 3000);
     },
   },
   mounted() {
     this.judgment();
-    this.times = setInterval(() => {
-      this.toleft();
-    }, 3000);
   },
 };
 </script>
@@ -186,7 +186,7 @@ export default {
 .item {
   display: flxe;
   color: #2e5c77;
-  padding:1em;
+  padding: 1em;
   font-size: 1em;
   text-align: center;
   font-weight: bold;
@@ -199,7 +199,7 @@ export default {
     content: ' ';
     position: absolute;
     bottom: 0;
-    top:0;
+    top: 0;
     height: 0;
     left: -2em;
     margin: auto;
@@ -210,8 +210,9 @@ export default {
   }
 
   img {
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
   }
 }
 </style>

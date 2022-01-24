@@ -232,7 +232,6 @@ export default {
       }
       this.pageId = 0;
       this.list = list;
-      console.log(this.list);
     },
     // 翻书
     clickpage(id) {

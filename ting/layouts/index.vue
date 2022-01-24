@@ -6,7 +6,6 @@
       <div class="cont" v-show="contid == 0">
         <div class="cont-tit">Blog Category</div>
         <ting-type @clicktag="showcatalog" />
-        <div class="cont-tit">About Me</div>
       </div>
       <div class="cont" v-show="contid == 1">
         <ting-search />
