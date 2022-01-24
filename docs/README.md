@@ -1,3 +1,7 @@
+---
+layout: index
+---
+
 # vuepress-theme-ting
 [github项目](https://github.com/Chenyating/vuepress-theme-ting)
 > 这是一个vuepress主题，主要功能有博客归档分类，以及留言，个人展示等；主题追求极简，根据 vuepress 的默认主题修改而成，官方的主题配置仍然适用；

@@ -1,34 +1,39 @@
 <template>
-  <div class="mine" v-if="all.length"> 
-        <div class="tip">既然来了，就别想回去，留下玩扫雷吧</div>
-    <div class="y" v-for="n in height - 2" v-show="all.length" :key="n">
-      <!-- x值 -->
-      <div
-        class="boom"
-        v-for="m in width - 2"
-        v-show="all[n - 1]"
-        @click="click(n, m)"
-        :key="m"
-      >
+  <div class="mine">
+    <div class="tip">既然来了，就别想回去，留下玩扫雷吧</div>
+    <div class="boom begin" v-if="!ifbegin" @click="beginMine">
+      <div class="boom-pre">开始</div>
+    </div>
+    <div v-else>
+      <div class="y" v-for="n in height - 2" v-show="all.length" :key="n">
+        <!-- x值 -->
         <div
-          class="boom-pre"
-          :class="{
-            leftout: all[n][m][1] >= 0,
-            isboom: all[n][m][0] == 2,
-          }"
-        ></div>
-        <div
-          class="boom-next"
-          :class="{
-            leftin: all[n][m][1] >= 0,
-            isboom: all[n][m][0] == 2,
-          }"
+          class="boom"
+          v-for="m in width - 2"
+          v-show="all[n - 1]"
+          @click="click(n, m)"
+          :key="m"
         >
-          {{ all[n][m][1] != 0 ? all[n][m][1] : "" }}
+          <div
+            class="boom-pre"
+            :class="{
+              leftout: all[n][m][1] >= 0,
+              isboom: all[n][m][0] == 2,
+            }"
+          ></div>
+          <div
+            class="boom-next"
+            :class="{
+              leftin: all[n][m][1] >= 0,
+              isboom: all[n][m][0] == 2,
+            }"
+          >
+            {{ all[n][m][1] != 0 ? all[n][m][1] : "" }}
+          </div>
         </div>
       </div>
+      <div class="tip">{{ text }}</div>
     </div>
-    <div class="tip">{{ text }}</div>
   </div>
 </template>
 <script>
@@ -45,6 +50,7 @@ export default {
       bombNum: 10,
       ifboom: false,
       text: "休息一下玩个扫雷吧～",
+      ifbegin: false,
     };
   },
   methods: {
@@ -133,7 +139,9 @@ export default {
           this.$set(this.all[i][j], 1, -1);
         }
       }
-      this.random();
+      this.$nextTick(() => {
+        this.random();
+      });
     },
     // 随便上色
     random() {
@@ -189,6 +197,10 @@ export default {
         }
       }
     },
+    beginMine() {
+      this.ifbegin = true;
+      this.randomBegin(10);
+    },
   },
   beforeMount() {
     for (let i = 0; i < this.height; i++) {
@@ -199,7 +211,7 @@ export default {
     }
   },
   mounted() {
-    this.randomBegin(10);
+    console.log(this.all, "??");
   },
 };
 </script>
@@ -219,7 +231,7 @@ export default {
   position: fixed;
   left: 0;
   right: 0;
-  top :2em;
+  top: 2em;
   margin: auto;
 }
 
@@ -338,5 +350,16 @@ export default {
     height: 8vw;
     width: 8vw;
   }
+}
+
+.begin {
+  transform: scale(2);
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  font-size :.5em;
 }
 </style>

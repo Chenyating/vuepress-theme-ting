@@ -313,7 +313,7 @@ export default {
       position: absolute;
       width: 200%;
       height: 2em;
-      background: linear-gradient(#fff,transparent);
+      background: linear-gradient(#fff,rgba(255,255,255,0));
       border-bottom-left-radius: 100%;
       top: 0;
       right: 0;
@@ -324,7 +324,7 @@ export default {
       position: absolute;
       width: 200%;
       height: 2em;
-      background: linear-gradient(transparent,#fff);
+      background: linear-gradient(rgba(255,255,255,0),#fff);
       border-top-left-radius: 100%;
       bottom: 0;
       right: 0;
