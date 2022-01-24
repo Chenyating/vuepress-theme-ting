@@ -1,6 +1,6 @@
 {
     "name": "vuepress-theme-ting",
-    "version": "2.0.2",
+    "version": "3.0.0",
     "description": "小清新看板娘主题,small fresh vuepress theme vuepress theme Ting",
     "main": "./index.js",
     "scripts": {
@@ -10,7 +10,7 @@
     "author": {
         "name": "chenyating",
         "email": "924471303@qq.com",
-        "url": "https://www.yating.online/"
+        "url": "https://www.yating.world/"
     },
     "license": "ISC",
     "keywords": [
@@ -19,7 +19,7 @@
         "Theme",
         "vuepress-Theme"
     ],
-    "homepage": "https://www.yating.online/",
+    "homepage": "https://www.yating.world/",
     "bugs": {
         "url": "https://github.com/Chenyating/vuepress-theme-ting/issues"
     },
