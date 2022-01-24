@@ -1,5 +1,5 @@
 <template>
-  <div class="mine">
+  <div class="mine" v-if="all.length"> 
         <div class="tip">既然来了，就别想回去，留下玩扫雷吧</div>
     <div class="y" v-for="n in height - 2" v-show="all.length" :key="n">
       <!-- x值 -->
