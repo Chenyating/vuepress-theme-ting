@@ -4,7 +4,7 @@
 这是一个看板娘小清新vuepress主题，主要功能有博客归档分类，以及留言，个人展示等；主题追求极简，根据 vuepress 的默认主题修改而成，官方的主题配置仍然适用；
 
 ## 预览地址
-[预览地址](https://www.yating.online/)
+[预览地址](https://www.yating.world/)
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200512101419420.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)
 
@@ -204,7 +204,7 @@ npm run build
 
 
 ## 预览地址
-[预览地址](https://www.yating.online/)
+[预览地址](https://www.yating.world/)
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200106225330395.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlbWlzaQ==,size_16,color_FFFFFF,t_70)
 
@@ -292,7 +292,7 @@ module.exports = {
     ],
     themeConfig: {
         author:'tinger',
-        headImg:'https://yating.online/res/img/yating.jpg',//选填：头像
+        headImg:'https://yating.world/res/img/yating.jpg',//选填：头像
         //导航栏
         nav: [
             { text: '主页', link: '/' },
