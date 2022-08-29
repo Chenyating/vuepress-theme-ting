@@ -4,7 +4,7 @@ var author = require('./config/author.js')
 
 module.exports = {
     theme: path.resolve(__dirname, '../../ting/'),
-    title: 'word', //网站名称
+    title: '我的开发笔记', //网站名称
     //head标签
     head: [
         ['link', {

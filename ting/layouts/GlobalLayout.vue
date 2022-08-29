@@ -7,6 +7,7 @@
       <component :is="layout" />
       <ting-live2d />
     </div>
+    <h6 style="position: fixed;bottom: 0;text-align: center;width: 100%;margin: 10px 0;">备案号：粤ICP备2022105528号-1</h6>
   </div>
 </template>
 

@@ -33,7 +33,7 @@ export default {
   },
   mounted() {
     if (this.$site.themeConfig.gitalk) {
-      this.navlist.push('留言板')
+      // this.navlist.push('留言板')
     }
     this.changenav(this.curindex)
   },

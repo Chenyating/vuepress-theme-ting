@@ -9,7 +9,7 @@
     export default {
         data() {
             return {
-                ifshow: true
+                ifshow: false
         }
         },
         mounted() {

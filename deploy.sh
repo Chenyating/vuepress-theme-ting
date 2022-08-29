@@ -9,8 +9,6 @@ yarn run build
 # 进入生成的文件夹
 cd docs/.vuepress/dist
 
-echo "yating.world" >> CNAME
-
 # git init
 # git add -A
 # git commit -m 'deploy'
